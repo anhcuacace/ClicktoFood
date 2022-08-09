@@ -1,52 +1,37 @@
 package com.tunanh.clicktofood.ui.login
 
+
+//import com.facebook.CallbackManager
+
+
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Dialog
-import android.content.ContentValues
-import android.content.Intent
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentLoginBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import timber.log.Timber
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.TextUtils
-
-
-import android.util.Patterns
-import android.view.View
-import android.widget.Toast
-
-
-import com.facebook.CallbackManager
-
-
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-
-
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
-    private var callbackManager= CallbackManager.Factory.create()
+//    private var callbackManager= CallbackManager.Factory.create()
     private lateinit var googleSignInClient:GoogleSignInClient
     private lateinit var auth: FirebaseAuth
     private val time_loading:Long = 2000
-    private var dialog: Dialog?=null
 
-    private var TAG="Login"
+
+
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (Activity.RESULT_OK == result.resultCode) {
@@ -56,48 +41,73 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                     val account = task.getResult(ApiException::class.java)!!
                     Timber.d("FirebaseAuthWithGoogle:" + account.id)
                     firebaseauthWithGoogle(account.idToken!!)
-                }catch (e: ApiException){
+                }catch (e: ApiException) {
                     // google sign in failed, update iu
-                    Log.w(ContentValues.TAG,"Google sign in failed",e)
+                    Timber.w(e, "Google sign in failed")
                 }
             }
-            callbackManager.onActivityResult(Activity.RESULT_OK,result.resultCode, result.data)
+            //callbackManager.onActivityResult(Activity.RESULT_OK,result.resultCode, result.data)
         }
     override fun layoutRes(): Int =R.layout.fragment_login
 
     override fun viewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 
     override fun initView() {
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            binding.cardView.visibility=View.VISIBLE
+            binding.animationView.visibility=View.GONE
+        },time_loading)
+        logInTransparent()
 
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.your_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient= GoogleSignIn.getClient(this.requireActivity(),gso)
+        binding.googleSignIn.setOnClickListener{
+            signInGoogle()
+
+        }
     }
     private fun firebaseauthWithGoogle(idToken: String){
 
         val credential= GoogleAuthProvider.getCredential(idToken,null)
         auth.signInWithCredential(credential)
-            .addOnCompleteListener(this){ task ->
-                if (task.isSuccessful){
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
                     // sign in success, update UI with the signed- in user's information
-                    Log.d(ContentValues.TAG,"signInwithcredential:success")
-                    val user= auth.currentUser
+                    Timber.d("signInwithcredential:success")
+                    val user = auth.currentUser
                     updateUI(user)
-                }else{
+                }else {
                     //if sign in fails, display a message to the user
-                    Log.w(ContentValues.TAG,"signinWithCredential:failure",task.exception)
+                    Timber.w(it.exception, "signinWithCredential:failure")
                     updateUI(null)
                 }
             }
+//            .addOnCompleteListener(this){ task ->
+//                if (task.isSuccessful){
+//                    // sign in success, update UI with the signed- in user's information
+//                    Log.d(ContentValues.TAG,"signInwithcredential:success")
+//                    val user= auth.currentUser
+//                    updateUI(user)
+//                }else{
+//                    //if sign in fails, display a message to the user
+//                    Log.w(ContentValues.TAG,"signinWithCredential:failure",task.exception)
+//                    updateUI(null)
+//                }
+//            }
     }
-    private fun updateUI(user: FirebaseUser?){
+    private fun signInGoogle() {
+        val signIntent= googleSignInClient.signInIntent
+//        startActivityForResult(signIntent, RC_SING_IN)
+        startForResult.launch(signIntent)
 
-        if (user!=null){
 
-//            val intent= Intent(applicationContext,MainActivity::class.java)
-//            intent.putExtra(EXTRA_NAME,user.displayName)
-//            intent.putExtra(EXTRA_EMAIL,user.email)
-//            intent.putExtra(IMAGE,user.photoUrl)
-//            startActivity(intent)
-//            finish()
-        }
+
+
+
     }
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun logInTransparent() {
@@ -123,8 +133,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
         }
 
+}
+    private fun updateUI(user: FirebaseUser?){
 
+        if (user!=null){
+
+//            val intent= Intent(applicationContext,MainActivity::class.java)
+//            intent.putExtra(EXTRA_NAME,user.displayName)
+//            intent.putExtra(EXTRA_EMAIL,user.email)
+//            intent.putExtra(IMAGE,user.photoUrl)
+//            startActivity(intent)
+//            finish()
+        }
     }
-
-
 }
