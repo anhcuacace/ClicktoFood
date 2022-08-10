@@ -14,4 +14,5 @@ interface FavouriteQuoteDao {
 
     @Delete
     suspend fun removeFromFavourite(quote: FavouriteQuote)
+
 }

@@ -38,6 +38,11 @@ class DatabaseModule {
 
     @Singleton
     @Provides
+    fun provideUserDao(db: LocalDatabase) =
+        db.userDao()
+
+    @Singleton
+    @Provides
     fun provideAppPreference(appContext: Context): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(appContext)
     }

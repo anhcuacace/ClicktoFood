@@ -14,7 +14,19 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
 
     override fun initView() {
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_introFragment)
+            viewModel.intro.observe(this){
+                if (it){
+                    findNavController().navigate(R.id.action_splashFragment_to_introFragment)
+                }else{
+                    viewModel.user.observe(this){it1 ->
+                        if (it1){
+                            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                        }else{
+                            findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+                        }
+                    }
+                }
+                }
         }, 2000)
     }
 }

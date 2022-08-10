@@ -3,12 +3,15 @@ package com.tunanh.clicktofood.ui.intro
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tunanh.clicktofood.R
+import com.tunanh.clicktofood.data.local.AppPreferences
 import com.tunanh.clicktofood.data.local.model.IntroItem
 import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class IntroViewModel @Inject constructor() : BaseViewModel() {
+class IntroViewModel @Inject constructor(
+    private val appPreferences: AppPreferences
+) : BaseViewModel() {
 
     private var introItemList= mutableListOf<IntroItem>()
     var introList = MutableLiveData<List<IntroItem>>()
@@ -18,7 +21,9 @@ class IntroViewModel @Inject constructor() : BaseViewModel() {
 
     }
 
-
+    fun setIntro(){
+        appPreferences.setIntro(true)
+    }
 
     private fun addItem(){
         viewModelScope.launch {

@@ -4,6 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tunanh.clicktofood.di.viewmodel.ViewModelFactory
 import com.tunanh.clicktofood.di.viewmodel.ViewModelKey
+import com.tunanh.clicktofood.ui.home.MainFragmentViewModel
+import com.tunanh.clicktofood.ui.home.category.CategoryViewModel
+import com.tunanh.clicktofood.ui.home.main.HomeViewModel
+import com.tunanh.clicktofood.ui.home.more.MoreViewModel
+import com.tunanh.clicktofood.ui.home.wishlist.WishListViewModel
 import com.tunanh.clicktofood.ui.intro.IntroViewModel
 import com.tunanh.clicktofood.ui.login.LoginViewModel
 import com.tunanh.clicktofood.ui.main.MainViewModel
@@ -37,5 +42,31 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     internal abstract fun loginViewModel(viewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainFragmentViewModel::class)
+    internal abstract fun mainFragmentViewModel(viewModel: MainFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    internal abstract fun homeViewModel(viewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CategoryViewModel::class)
+    internal abstract fun categoryViewModel(viewModel: CategoryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(WishListViewModel::class)
+    internal abstract fun wishListViewModel(viewModel: WishListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MoreViewModel::class)
+    internal abstract fun moreViewModel(viewModel: MoreViewModel): ViewModel
+
 
 }

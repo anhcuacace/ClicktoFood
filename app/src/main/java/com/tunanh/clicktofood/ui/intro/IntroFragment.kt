@@ -46,6 +46,7 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
         binding.btn.text = resources.getText(R.string.Getstarted)
         binding.btn.textSize = 14F
         binding.btn.setOnSingClickListener {
+            viewModel.setIntro()
 //            editor.putBoolean("intro",true)
 //            editor.apply()
 //            editor.commit()
