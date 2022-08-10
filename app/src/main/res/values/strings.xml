@@ -68,5 +68,7 @@
     <string name="edit_profile">Edit profile     ></string>
     <string name="account">Account</string>
 
+    <string name="app_id">com.tunanh.clicktofood</string>
+
 
 </resources>
