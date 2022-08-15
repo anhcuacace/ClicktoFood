@@ -27,9 +27,9 @@ class IntroViewModel @Inject constructor(
 
     private fun addItem(){
         viewModelScope.launch {
-            addToList("ORDER ONLINE","you can eat anything\nas long as L Food",R.drawable.intro3)
-            addToList("SELECT FOOD","Just sit at home and L food take care",R.drawable.intro2)
-            addToList("DELIVERY","Just sit at home and L food take care",R.drawable.intro3)
+            addToList("ORDER ONLINE","you can eat anything\nas long as Click to Food",R.drawable.intro3)
+            addToList("SELECT FOOD","Just sit at home and Click to Food take care",R.drawable.intro2)
+            addToList("DELIVERY","Just sit at home and Click to Food take care",R.drawable.intro3)
             introList.value=introItemList
         }
     }

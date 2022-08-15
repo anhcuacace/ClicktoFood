@@ -9,7 +9,6 @@ import android.app.Activity
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -30,6 +29,7 @@ import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentLoginBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
+import com.tunanh.clicktofood.util.setOnSingClickListener
 import timber.log.Timber
 
 
@@ -70,11 +70,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         transparent()
         logInTransparent()
         loginGoogle()
-        binding.btnLogIn.setOnClickListener {
-            signIn()
+        binding.btnLogIn.setOnSingClickListener {
+            signInWithEmail()
         }
-        signUp()
+//        binding.zaloLogin.setOnSingClickListener {
+//            signinWithZalo()
+//        }
+        signUpWithEmail()
     }
+
 
 
 
@@ -151,7 +155,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     startForResult.launch(signIntent)
     }
 
-    private fun signIn() {
+    private fun signInWithEmail() {
         val username = binding.edtEmail.text.toString()
         val password = binding.edtPassword.text.toString()
         auth.signInWithEmailAndPassword(username, password)
@@ -173,7 +177,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             }
         // [END sign_in_with_email]
     }
-    private fun signUp() {
+    private fun signUpWithEmail() {
     binding.btnSignUp.setOnClickListener {
         var email:String=binding.edtEmailSignUp.text.toString()
         var password=binding.edtPassSignUp.text.toString()
@@ -202,6 +206,37 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             }
         }
     }}
+   // Login with zalo
+//private fun signinWithZalo() {
+//
+//    ZaloSDK.Instance.authenticator()
+//
+//}
+//    fun onLoginSuccess() {
+//        updateUI(null)
+//
+//    }
+//
+//
+//
+//    fun onLoginError(code: Int, message: String) {
+//        Toast.makeText(context, "[$code] $message", Toast.LENGTH_LONG).show()
+//    }
+//
+//    private val listener = object : OAuthCompleteListener() {
+//        override fun onGetOAuthComplete(response: OauthResponse?) {
+//            if(TextUtils.isEmpty(response?.oauthCode)) {
+//                onLoginError(response?.errorCode ?: -1, response?.errorMessage ?: "Unknown error")
+//            } else {
+//                onLoginSuccess()
+//            }
+//        }
+//
+//         fun onAuthenError(errorCode: Int, message: String?) {
+//            onLoginError(errorCode, message ?: "Unknown error")
+//        }
+//    }
+
     private fun updateUI(user: FirebaseUser?){
 
         if (user!=null){

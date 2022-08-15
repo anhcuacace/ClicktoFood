@@ -14,6 +14,6 @@ interface UserDao {
     @Update
     fun update(user: User)
 
-    @Query("select * from User where email = :email")
-    suspend fun getItemWithEmail(email: String): User
+    @Query("select * from User")
+    suspend fun getUser(): List<User>
 }

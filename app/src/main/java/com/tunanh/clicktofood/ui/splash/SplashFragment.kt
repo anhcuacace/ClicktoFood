@@ -16,15 +16,17 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.intro.observe(this){
                 if (it){
-                    findNavController().navigate(R.id.action_splashFragment_to_introFragment)
-                }else{
                     viewModel.user.observe(this){it1 ->
                         if (it1){
-                            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-                        }else{
                             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+
+                        }else{
+                            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                         }
                     }
+
+                }else{
+                    findNavController().navigate(R.id.action_splashFragment_to_introFragment)
                 }
                 }
         }, 2000)

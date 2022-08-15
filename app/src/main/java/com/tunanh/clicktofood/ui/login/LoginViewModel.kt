@@ -1,10 +1,8 @@
 package com.tunanh.clicktofood.ui.login
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tunanh.clicktofood.data.local.AppPreferences
 import com.tunanh.clicktofood.data.local.LocalDatabase
-import com.tunanh.clicktofood.data.local.LocalRepository
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
@@ -19,19 +17,18 @@ class LoginViewModel @Inject constructor(
     init {
 
     }
-    fun saveUser(email:String,name:String,user:Boolean,img:String){
+
+    fun saveUser(email: String, name: String, user: Boolean, img: String) {
 
         appPreferences.setUser(user)
         appPreferences.setEmail(email)
-        viewModelScope.launch{
-            val mUser=User(
+        viewModelScope.launch {
+            val mUser = User(
                 email = email,
-                name = name,
-                image = img,
+                name = name
             )
             localDatabase.userDao().addUser(mUser)
         }
-
 
 
     }

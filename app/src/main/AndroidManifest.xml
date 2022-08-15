@@ -4,6 +4,9 @@
     package="com.tunanh.clicktofood">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+        <package android:name="com.zing.zalo" />
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -16,6 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClickToFood"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.zing.zalo.zalosdk.appID"
+            android:value="@string/appID" />
         <activity
             android:name=".ui.main.MainActivity"
 
@@ -27,6 +34,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity android:name="com.zing.zalo.zalosdk.oauth.BrowserLoginActivity"-->
+<!--        android:exported="true" >-->
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.VIEW" />-->
+<!--            <category android:name="android.intent.category.DEFAULT" />-->
+<!--            <category android:name="android.intent.category.BROWSABLE" />-->
+<!--            <data android:scheme="zalo-993028136701941997" />-->
+
+<!--        </intent-filter>-->
+<!--    </activity>-->
+
     </application>
 
 </manifest>

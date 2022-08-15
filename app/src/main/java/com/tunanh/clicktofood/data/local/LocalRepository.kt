@@ -43,6 +43,6 @@ class LocalRepository @Inject constructor(
 
     suspend fun updateUser(user: User){ userDao.update(user)}
 
-    suspend fun getItemWithEmail(email: String)=userDao.getItemWithEmail(email)
+    suspend fun getUser(email: String)=userDao.getUser()
 
 }

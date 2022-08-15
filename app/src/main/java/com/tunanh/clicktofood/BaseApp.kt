@@ -3,6 +3,7 @@ package com.tunanh.clicktofood
 import com.squareup.leakcanary.core.BuildConfig
 import com.tunanh.clicktofood.di.AppComponent
 import com.tunanh.clicktofood.di.DaggerAppComponent
+//import com.zing.zalo.zalosdk.oauth.ZaloSDKApplication
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber
@@ -13,6 +14,7 @@ class BaseApp : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
+//        ZaloSDKApplication.wrap(this);
         instance = this
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
