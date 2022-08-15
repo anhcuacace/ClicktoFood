@@ -13,7 +13,7 @@ class IntroViewModel @Inject constructor(
     private val appPreferences: AppPreferences
 ) : BaseViewModel() {
 
-    private var introItemList= mutableListOf<IntroItem>()
+    private var introItemList = mutableListOf<IntroItem>()
     var introList = MutableLiveData<List<IntroItem>>()
 
     init {
@@ -21,20 +21,29 @@ class IntroViewModel @Inject constructor(
 
     }
 
-    fun setIntro(){
+    fun setIntro() {
         appPreferences.setIntro(true)
     }
 
-    private fun addItem(){
+    private fun addItem() {
         viewModelScope.launch {
-            addToList("ORDER ONLINE","you can eat anything\nas long as Click to Food",R.drawable.intro3)
-            addToList("SELECT FOOD","Just sit at home and Click to Food take care",R.drawable.intro2)
-            addToList("DELIVERY","Just sit at home and Click to Food take care",R.drawable.intro3)
-            introList.value=introItemList
+            addToList(
+                "ORDER ONLINE",
+                "you can eat anything\nas long as Click to Food",
+                R.drawable.intro3
+            )
+            addToList(
+                "SELECT FOOD",
+                "Just sit at home and Click to Food take care",
+                R.drawable.intro2
+            )
+            addToList("DELIVERY", "Just sit at home and Click to Food take care", R.drawable.intro3)
+            introList.value = introItemList
         }
     }
-    private fun addToList(title:String,description:String,img:Int){
-        val introItem=IntroItem(title,description,img)
+
+    private fun addToList(title: String, description: String, img: Int) {
+        val introItem = IntroItem(title, description, img)
         introItemList.add(introItem)
     }
 }

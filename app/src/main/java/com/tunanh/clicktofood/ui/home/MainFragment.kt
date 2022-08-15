@@ -1,6 +1,5 @@
 package com.tunanh.clicktofood.ui.home
 
-import androidx.navigation.NavController
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentMainBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
@@ -57,5 +56,4 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
-
 }

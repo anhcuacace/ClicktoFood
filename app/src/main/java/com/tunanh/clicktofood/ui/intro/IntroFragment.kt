@@ -8,30 +8,30 @@ import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
-    private val adapter= IntroAdapter()
+    private val adapter = IntroAdapter()
     override fun layoutRes(): Int = R.layout.fragment_intro
 
-    override fun viewModelClass(): Class<IntroViewModel> =IntroViewModel::class.java
+    override fun viewModelClass(): Class<IntroViewModel> = IntroViewModel::class.java
 
     override fun initView() {
         adapter.onItemClick = { _, _ ->
             //mở link nè
         }
-        viewModel.introList.observe(this){
-            adapter.itemtList=it
+        viewModel.introList.observe(this) {
+            adapter.itemtList = it
         }
-        binding.screenViewpager.adapter=adapter
+        binding.screenViewpager.adapter = adapter
 
-        binding.screenViewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        binding.screenViewpager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if (binding.screenViewpager.currentItem==2){
+                if (binding.screenViewpager.currentItem == 2) {
                     changbutton()
-                }
-                else{
+                } else {
                     binding.btn.text = resources.getText(R.string.next)
-                    binding.btn.textSize=20F
-                    binding.btn.setOnSingClickListener{
+                    binding.btn.textSize = 20F
+                    binding.btn.setOnSingClickListener {
                         binding.screenViewpager.apply {
                             beginFakeDrag()
                             fakeDragBy(-200f)
@@ -42,7 +42,8 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
             }
         })
     }
-    private fun changbutton(){
+
+    private fun changbutton() {
         binding.btn.text = resources.getText(R.string.Getstarted)
         binding.btn.textSize = 14F
         binding.btn.setOnSingClickListener {

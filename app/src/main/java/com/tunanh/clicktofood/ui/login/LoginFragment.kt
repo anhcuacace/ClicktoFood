@@ -1,9 +1,6 @@
 package com.tunanh.clicktofood.ui.login
 
 
-
-
-
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Handler
@@ -34,12 +31,11 @@ import timber.log.Timber
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
-    private var TAG = "Login"
-    private var callbackManager= CallbackManager.Factory.create()
-    private lateinit var googleSignInClient:GoogleSignInClient
+    private val TAG = "Login"
+    private var callbackManager = CallbackManager.Factory.create()
+    private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-    private val time_loading:Long = 3000
-
+    private val time_loading: Long = 3000
 
 
     private val startForResult =
@@ -47,22 +43,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
             if (Activity.RESULT_OK == result.resultCode) {
 
-                val task =GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 try {
                     //google sign in was successful, authenticate with firebase
                     val account = task.getResult(ApiException::class.java)!!
                     Timber.d("FirebaseAuthWithGoogle:" + account.id)
                     firebaseauthWithGoogle(account.idToken!!)
-                }catch (e: ApiException) {
+                } catch (e: ApiException) {
                     // google sign in failed, update iu
                     Timber.w(e, "Google sign in failed")
                 }
             }
-            callbackManager.onActivityResult(Activity.RESULT_OK,result.resultCode, result.data)
+            callbackManager.onActivityResult(Activity.RESULT_OK, result.resultCode, result.data)
 
 
         }
-    override fun layoutRes(): Int =R.layout.fragment_login
+
+    override fun layoutRes(): Int = R.layout.fragment_login
 
     override fun viewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 
@@ -80,16 +77,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     }
 
 
-
-
     //biến hóa
     private fun transparent() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            binding.cardView.visibility=View.VISIBLE
-            binding.animationView.visibility=View.GONE
-        },time_loading)
+            binding.cardView.visibility = View.VISIBLE
+            binding.animationView.visibility = View.GONE
+        }, time_loading)
     }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun logInTransparent() {
         binding.tvSignUp.setOnClickListener {
@@ -122,17 +118,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
             .requestEmail()
             .build()
-        googleSignInClient= GoogleSignIn.getClient(this.requireActivity(),gso)
-        binding.googleSignIn.setOnClickListener{
+        googleSignInClient = GoogleSignIn.getClient(this.requireActivity(), gso)
+        binding.googleSignIn.setOnClickListener {
             signInGoogle()
 
         }
         auth = Firebase.auth
     }
 
-    private fun firebaseauthWithGoogle(idToken: String){
+    private fun firebaseauthWithGoogle(idToken: String) {
 
-        val credential= GoogleAuthProvider.getCredential(idToken,null)
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -141,18 +137,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                     val user = auth.currentUser
                     (activity as MainActivity).hiddenLoading()
                     updateUI(user)
-                }else {
+                } else {
                     //if sign in fails, display a message to the user
                     Timber.w(it.exception, "signinWithCredential:failure")
                     updateUI(null)
                 }
-            }}
+            }
+    }
 
     private fun signInGoogle() {
         (activity as MainActivity).showLoading()
-        val signIntent= googleSignInClient.signInIntent
+        val signIntent = googleSignInClient.signInIntent
 //        startActivityForResult(signIntent, RC_SING_IN)
-    startForResult.launch(signIntent)
+        startForResult.launch(signIntent)
     }
 
     private fun signInWithEmail() {
@@ -177,36 +174,39 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             }
         // [END sign_in_with_email]
     }
-    private fun signUpWithEmail() {
-    binding.btnSignUp.setOnClickListener {
-        var email:String=binding.edtEmailSignUp.text.toString()
-        var password=binding.edtPassSignUp.text.toString()
-        var confirmpass= binding.edtRePass.text.toString()
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.edtEmailSignUp.setError("Invaild email format")
-            binding.edtEmailSignUp.requestFocus()
-        }else if (TextUtils.isEmpty(password)){
-            binding.edtPassSignUp.setError("password can't be empty")
-            binding.edtPassSignUp.requestFocus()
-        }else if (password.length<6){
-            binding.edtPassSignUp.setError("password must at least 6 charters long")
-            binding.edtPassSignUp.requestFocus()
-        }else if (password.compareTo(confirmpass)!=0){
-            binding.edtRePass.setError("password is not matching")
-            binding.edtRePass.requestFocus()
-        }else{
-            auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-                val firebaseUser = auth.currentUser
-                val emails = firebaseUser!!.email
-                Timber.d("create acc with " + emails)
-                updateUI(null)
 
-            }.addOnFailureListener {
-                Timber.tag(TAG).d("sign up fail due to %s", it.message)
+    private fun signUpWithEmail() {
+        binding.btnSignUp.setOnClickListener {
+            val email: String = binding.edtEmailSignUp.text.toString()
+            val password = binding.edtPassSignUp.text.toString()
+            val confirmpass = binding.edtRePass.text.toString()
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.edtEmailSignUp.error = "Invaild email format"
+                binding.edtEmailSignUp.requestFocus()
+            } else if (TextUtils.isEmpty(password)) {
+                binding.edtPassSignUp.error = "password can't be empty"
+                binding.edtPassSignUp.requestFocus()
+            } else if (password.length < 6) {
+                binding.edtPassSignUp.error = "password must at least 6 charters long"
+                binding.edtPassSignUp.requestFocus()
+            } else if (password.compareTo(confirmpass) != 0) {
+                binding.edtRePass.error = "password is not matching"
+                binding.edtRePass.requestFocus()
+            } else {
+                auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+                    val firebaseUser = auth.currentUser
+                    val emails = firebaseUser!!.email
+
+                    Timber.d("create acc with $emails")
+                    updateUI(null)
+
+                }.addOnFailureListener {
+                    Timber.tag(TAG).d("sign up fail due to %s", it.message)
+                }
             }
         }
-    }}
-   // Login with zalo
+    }
+    // Login with zalo
 //private fun signinWithZalo() {
 //
 //    ZaloSDK.Instance.authenticator()
@@ -237,11 +237,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 //        }
 //    }
 
-    private fun updateUI(user: FirebaseUser?){
+    private fun updateUI(user: FirebaseUser?) {
 
-        if (user!=null){
+        if (user != null) {
             (activity as MainActivity).hiddenLoading()
-            viewModel.saveUser(user.email.toString(),user.displayName.toString(),true, img = "")
+            viewModel.saveUser(user.email.toString(), user.displayName.toString(), true)
             findNavController().navigate(
                 R.id.action_loginFragment_to_mainFragment
             )

@@ -39,10 +39,12 @@ class LocalRepository @Inject constructor(
 
     suspend fun getWatchedEpisodesSum() = itemDao.getWatchedEpisodesSum()
 
-    suspend fun insertUser(user: User)=userDao.addUser(user)
+    suspend fun insertUser(user: User) = userDao.addUser(user)
 
-    suspend fun updateUser(user: User){ userDao.update(user)}
+    suspend fun updateUser(user: User) {
+        userDao.update(user)
+    }
 
-    suspend fun getUser(email: String)=userDao.getUser()
+    suspend fun getUser(email: String) = userDao.getUser()
 
 }

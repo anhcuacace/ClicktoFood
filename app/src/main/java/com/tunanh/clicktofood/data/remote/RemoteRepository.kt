@@ -12,7 +12,7 @@ class RemoteRepository @Inject constructor(
     private val mangaService: MangaService
 ) {
 
-    suspend fun getAllPhotos() : List<Photo> {
+    suspend fun getAllPhotos(): List<Photo> {
         return animeService.getAllPhoto()
     }
 }

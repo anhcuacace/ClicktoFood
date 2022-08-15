@@ -10,8 +10,8 @@ import com.tunanh.clicktofood.data.local.model.Item
 import com.tunanh.clicktofood.data.local.model.User
 
 @Database(
-    entities = [FavouriteQuote::class, Item::class,User::class],
-    version = 2,
+    entities = [FavouriteQuote::class, Item::class, User::class],
+    version = 1,
     exportSchema = false
 )
 abstract class LocalDatabase : RoomDatabase() {

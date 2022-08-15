@@ -9,14 +9,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avt"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_margin="@dimen/_16sdp"
-                android:background="@drawable/rounded"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,12 +60,14 @@
                 tools:text="@string/phone" />
 
             <ImageView
+                android:id="@+id/edit_profile"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:src="@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/name" />
+                app:layout_constraintTop_toTopOf="@+id/name"
+                />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -86,8 +88,10 @@
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        tools:listitem="@layout/item_rclv_more"
                         android:id="@+id/account_list"
                         android:layout_width="match_parent"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp" />
 
@@ -102,6 +106,7 @@
                         android:id="@+id/general_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_marginTop="@dimen/_5sdp" />
                 </LinearLayout>
 

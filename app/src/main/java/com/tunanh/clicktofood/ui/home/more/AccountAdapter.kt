@@ -6,17 +6,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tunanh.clicktofood.databinding.ItemRclvMoreBinding
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
-class AccountAdapter:RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() {
-   inner class AccountViewHolder constructor(private val binding: ItemRclvMoreBinding) :RecyclerView.ViewHolder(binding.root) {
-       fun bind(itemMore: ItemMore){
-           binding.imageItem.setImageResource(itemMore.img )
-           binding.text.text=itemMore.text
-       }
+class AccountAdapter : RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() {
+    inner class AccountViewHolder constructor(private val binding: ItemRclvMoreBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(itemMore: ItemMore) {
+            binding.imageItem.setImageResource(itemMore.img)
+            binding.text.text = itemMore.text
+        }
     }
-    var itemMore:List<ItemMore>?=null
-    var onClickItem:((ItemMore,Int)-> Unit)?=null
+
+    var itemMore: List<ItemMore>? = null
+    var onClickItem: ((ItemMore, Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountViewHolder {
-        val binding=ItemRclvMoreBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemRclvMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AccountViewHolder(binding)
     }
 
@@ -29,6 +32,6 @@ class AccountAdapter:RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return itemMore?.size?:0
+        return itemMore?.size ?: 0
     }
 }

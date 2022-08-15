@@ -83,4 +83,5 @@
     <!--app-->
     <string name="appID">993028136701941997</string>
     <string name="general">General</string>
+    <string name="update_profile">Update Profile</string>
 </resources>
