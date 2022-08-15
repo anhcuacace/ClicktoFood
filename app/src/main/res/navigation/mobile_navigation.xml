@@ -49,6 +49,30 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.tunanh.clicktofood.ui.home.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_updateProfileFragment2"
+            app:destination="@id/updateProfileFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.tunanh.clicktofood.ui.home.main.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.tunanh.clicktofood.ui.home.wishlist.WishListFragment"
+        android:label="WishListFragment" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.tunanh.clicktofood.ui.home.category.CategoryFragment"
+        android:label="CategoryFragment" />
+    <fragment
+        android:id="@+id/moreFragment2"
+        android:name="com.tunanh.clicktofood.ui.home.more.MoreFragment"
+        android:label="MoreFragment" />
+    <fragment
+        android:id="@+id/updateProfileFragment2"
+        android:name="com.tunanh.clicktofood.ui.home.more.profile.UpdateProfileFragment"
+        android:label="UpdateProfileFragment" />
 
 </navigation>

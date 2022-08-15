@@ -24,7 +24,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
     private fun editProfile() {
         binding.editProfile.setOnSingClickListener {
             findNavController().navigate(
-                R.id.action_moreFragment_to_updateProfileFragment
+                R.id.action_mainFragment_to_updateProfileFragment2
 
             )
         }

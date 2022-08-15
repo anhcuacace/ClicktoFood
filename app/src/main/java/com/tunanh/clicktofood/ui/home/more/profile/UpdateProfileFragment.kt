@@ -87,9 +87,9 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             image = mUri.toString(),
             phone = binding.phone.text.toString()
         )
-        findNavController().navigate(
-            R.id.action_updateProfileFragment_to_moreFragment
-        )
+//        findNavController().navigate(
+//            R.id.action_moreFragment2_to_updateProfileFragment2
+//        )
     }
 
     private fun setUri(mUri: Uri) {
