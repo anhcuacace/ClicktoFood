@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <FrameLayout
+        android:id="@+id/cardViewRecommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:id="@+id/imgRecommend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                 />
+
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/cardViewRecommend"
+        app:layout_constraintEnd_toEndOf="@id/cardViewRecommend"
+        app:layout_constraintStart_toStartOf="@id/cardViewRecommend"
+        app:layout_constraintTop_toBottomOf="@id/cardViewRecommend">
+
+        <ImageView
+
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_star" />
+
+        <TextView
+            android:id="@+id/tvRateCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="4.5"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNameRecommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Mixue, Hoàng Ngân"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/cardViewRecommend"
+        app:layout_constraintTop_toTopOf="@id/cardViewRecommend" />
+
+    <TextView
+        android:id="@+id/tvHashTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Boba World, Sweet Tooth"
+        app:layout_constraintStart_toStartOf="@id/tvNameRecommend"
+        app:layout_constraintTop_toBottomOf="@id/tvNameRecommend" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="#2C000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvNameRecommend"
+        app:layout_constraintTop_toBottomOf="@id/tvHashTag" />
+
+    <TextView
+        android:id="@+id/tvDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.02 km"
+        app:layout_constraintBottom_toBottomOf="@id/cardViewRecommend"
+        app:layout_constraintStart_toStartOf="@id/tvNameRecommend" />
+
+    <ImageView
+        android:id="@+id/btnFavorite"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_favorite_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cardViewRecommend" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
