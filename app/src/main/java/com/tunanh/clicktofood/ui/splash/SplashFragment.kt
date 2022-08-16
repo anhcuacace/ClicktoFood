@@ -31,4 +31,5 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
             }
         }, 2000)
     }
+    override fun backPress(): Boolean = false
 }

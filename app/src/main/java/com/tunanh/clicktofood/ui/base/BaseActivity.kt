@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.tunanh.clicktofood.R
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -19,6 +20,7 @@ abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppC
     protected lateinit var viewModel: M
 
     protected var dialog: AlertDialog? = null
+    protected var navHost: NavHostFragment? = null
 
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -37,10 +39,15 @@ abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppC
         viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass()]
         initView()
         createDialog()
+        navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        val fragment =
+            navHost!!.childFragmentManager.primaryNavigationFragment as BaseFragment<*, *>
+        if (!fragment.backPress()) {
+            super.onBackPressed()
+        }
     }
 
     private fun createDialog() {

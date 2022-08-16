@@ -10,6 +10,10 @@ import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
+    companion object {
+        fun newInstance() = MoreFragment()
+    }
+
     private val accountAdapter = AccountAdapter()
     private var user: User? = null
     override fun layoutRes(): Int = R.layout.fragment_more
@@ -51,4 +55,6 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
             accountAdapter.itemMore = it
         }
     }
+
+    override fun backPress(): Boolean = false
 }

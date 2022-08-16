@@ -12,4 +12,5 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
     override fun initView() {
 
     }
+    override fun backPress(): Boolean = false
 }

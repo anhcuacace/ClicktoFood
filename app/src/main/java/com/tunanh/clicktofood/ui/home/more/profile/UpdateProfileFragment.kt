@@ -1,6 +1,7 @@
 package com.tunanh.clicktofood.ui.home.more.profile
 
 import android.Manifest
+
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -8,15 +9,19 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.tunanh.clicktofood.R
+
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentUpdateProfileBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.ui.home.MainFragment
+import com.tunanh.clicktofood.ui.home.more.MoreFragment
 import com.tunanh.clicktofood.util.setOnSingClickListener
+
 
 class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateProfileViewModel>() {
     companion object {
@@ -70,10 +75,9 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
 
     private fun onClickUpdateProfile() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
-        val strFullName: String = binding.name.text.toString().trim { it <= ' ' }
+        val strFullName: String = binding.name.text.toString().trim()
         val profileUpdates = UserProfileChangeRequest.Builder()
             .setDisplayName(strFullName)
-            .setPhotoUri(mUri)
             .build()
         user.updateProfile(profileUpdates)
             .addOnCompleteListener { task ->
@@ -82,14 +86,23 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
                 }
             }
         mUser = User(
-            email = binding.email.text.toString(),
+            email = binding.email.text.toString().trim(),
             name = strFullName,
             image = mUri.toString(),
-            phone = binding.phone.text.toString()
+            phone = binding.phone.text.toString().trim()
         )
+        viewModel.updateUser(mUser!!)
 //        findNavController().navigate(
 //            R.id.action_moreFragment2_to_updateProfileFragment2
 //        )
+
+//        val fragmentManager1=childFragmentManager
+//        val fragmentTransaction1: FragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction1.add(R.id.frame_layout, MoreFragment(), null)
+//        fragmentTransaction1.addToBackStack(null)
+//        //fragmentTransaction.replace(R.id.container, new FragmentA(), null);
+//        //fragmentTransaction.replace(R.id.container, new FragmentA(), null);
+//        fragmentTransaction1.commit()
     }
 
     private fun setUri(mUri: Uri) {
@@ -113,6 +126,8 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"))
     }
 
@@ -131,4 +146,5 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             }
         }
     }
+    override fun backPress(): Boolean = false
 }

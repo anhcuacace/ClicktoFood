@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -22,7 +25,7 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
     protected abstract fun layoutRes(): Int
     protected abstract fun viewModelClass(): Class<M>
     protected abstract fun initView()
-
+    abstract fun backPress(): Boolean
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,4 +41,6 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
         viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass()]
         initView()
     }
+    fun Fragment.navController(): NavController =
+        NavHostFragment.findNavController(this)
 }

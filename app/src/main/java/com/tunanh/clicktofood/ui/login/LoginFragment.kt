@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
-import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -31,11 +30,13 @@ import timber.log.Timber
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
-    private val TAG = "Login"
-    private var callbackManager = CallbackManager.Factory.create()
+    companion object {
+        private const val TAG = "Login"
+    }
+
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-    private val time_loading: Long = 3000
+    private val timeLoading: Long = 3000
 
 
     private val startForResult =
@@ -54,7 +55,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                     Timber.w(e, "Google sign in failed")
                 }
             }
-            callbackManager.onActivityResult(Activity.RESULT_OK, result.resultCode, result.data)
+//            callbackManager.onActivityResult(Activity.RESULT_OK, result.resultCode, result.data)
 
 
         }
@@ -83,7 +84,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         handler.postDelayed({
             binding.cardView.visibility = View.VISIBLE
             binding.animationView.visibility = View.GONE
-        }, time_loading)
+        }, timeLoading)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -195,10 +196,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             } else {
                 auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
                     val firebaseUser = auth.currentUser
+
                     val emails = firebaseUser!!.email
 
                     Timber.d("create acc with $emails")
-                    updateUI(null)
+                    updateUI(firebaseUser)
 
                 }.addOnFailureListener {
                     Timber.tag(TAG).d("sign up fail due to %s", it.message)
@@ -206,6 +208,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             }
         }
     }
+
     // Login with zalo
 //private fun signinWithZalo() {
 //
@@ -236,12 +239,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 //            onLoginError(errorCode, message ?: "Unknown error")
 //        }
 //    }
-
+    override fun backPress(): Boolean = false
     private fun updateUI(user: FirebaseUser?) {
 
         if (user != null) {
             (activity as MainActivity).hiddenLoading()
-            viewModel.saveUser(user.email.toString(), user.displayName.toString(), true)
+            user.photoUrl?.let {
+                viewModel.saveUser(
+                    user.email ?: "",
+                    user.displayName ?: "",
+                    true,
+                    img = it,
+                    user.phoneNumber ?: ""
+                )
+            }
             findNavController().navigate(
                 R.id.action_loginFragment_to_mainFragment
             )

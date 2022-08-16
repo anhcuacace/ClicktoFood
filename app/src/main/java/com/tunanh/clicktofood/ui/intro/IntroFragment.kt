@@ -57,5 +57,6 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
         }
     }
 
+    override fun backPress(): Boolean = false
 
 }

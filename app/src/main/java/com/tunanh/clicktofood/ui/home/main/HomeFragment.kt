@@ -12,6 +12,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun initView() {
 
     }
-
+    override fun backPress(): Boolean = false
 
 }
