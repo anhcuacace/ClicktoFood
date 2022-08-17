@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentMainBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
-import com.tunanh.clicktofood.ui.home.MainFragmentViewModel_Factory.newInstance
 import com.tunanh.clicktofood.ui.home.category.CategoryFragment
 import com.tunanh.clicktofood.ui.home.main.HomeFragment
 import com.tunanh.clicktofood.ui.home.more.MoreFragment

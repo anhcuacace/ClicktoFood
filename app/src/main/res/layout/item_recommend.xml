@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp">
@@ -37,7 +38,8 @@
         app:layout_constraintBottom_toBottomOf="@id/cardViewRecommend"
         app:layout_constraintEnd_toEndOf="@id/cardViewRecommend"
         app:layout_constraintStart_toStartOf="@id/cardViewRecommend"
-        app:layout_constraintTop_toBottomOf="@id/cardViewRecommend">
+        app:layout_constraintTop_toBottomOf="@id/cardViewRecommend"
+        tools:ignore="RtlSymmetry">
 
         <ImageView
 
@@ -60,7 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="Mixue, Hoàng Ngân"
+        android:text="@string/restaurant_name"
+        android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -69,10 +72,12 @@
 
     <TextView
         android:id="@+id/tvHashTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="154dp"
+        android:layout_height="17dp"
         android:layout_marginTop="4dp"
+        android:maxLines="1"
         android:text="Boba World, Sweet Tooth"
+
         app:layout_constraintStart_toStartOf="@id/tvNameRecommend"
         app:layout_constraintTop_toBottomOf="@id/tvNameRecommend" />
 
@@ -85,13 +90,7 @@
         app:layout_constraintStart_toStartOf="@id/tvNameRecommend"
         app:layout_constraintTop_toBottomOf="@id/tvHashTag" />
 
-    <TextView
-        android:id="@+id/tvDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0.02 km"
-        app:layout_constraintBottom_toBottomOf="@id/cardViewRecommend"
-        app:layout_constraintStart_toStartOf="@id/tvNameRecommend" />
+
 
     <ImageView
         android:id="@+id/btnFavorite"
