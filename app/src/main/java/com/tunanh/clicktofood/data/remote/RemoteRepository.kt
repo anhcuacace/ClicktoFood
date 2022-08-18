@@ -20,9 +20,9 @@ class RemoteRepository @Inject constructor(
         return animeService.getAllPhoto("https://click-to-food-3639d-default-rtdb.firebaseio.com/app/slider.json")
     }
     suspend fun getAllCategory(): Categories {
-        return animeService.getAllCategory().await()
+        return animeService.getAllCategory()
     }
     suspend fun getAllPhoToList(c:String): Meals {
-        return animeService.getAllFoodList(c).await()
+        return animeService.getAllFoodList(c)
     }
 }

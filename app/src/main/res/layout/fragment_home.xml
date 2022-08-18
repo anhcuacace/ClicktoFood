@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
@@ -44,8 +43,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/indicator"
-                        android:orientation="vertical"
-                        android:layout_centerInParent="true" />
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal" />
 
                 </RelativeLayout>
 
@@ -68,6 +67,36 @@
                     android:background="#1E000000"
                     app:layout_constraintTop_toBottomOf="@id/promoLayout" />
 
+                <TextView
+                    android:id="@+id/seeAllCategory"
+                    android:layout_width="70dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/see_all"
+                    android:textAllCaps="false"
+                    android:textColor="#229728"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view1" />
+
+                <TextView
+                    android:id="@+id/title_category"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/category"
+                    android:textAllCaps="true"
+                    android:textColor="#EE000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/seeAllCategory"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/seeAllCategory" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryes"
@@ -76,7 +105,7 @@
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/view1"
+                    app:layout_constraintTop_toBottomOf="@id/seeAllCategory"
                     app:spanCount="2"
                     tools:listitem="@layout/item_category_home" />
 
@@ -102,7 +131,7 @@
                     android:maxLines="2"
                     android:paddingStart="12dp"
                     android:paddingEnd="10dp"
-                    android:text="@string/tasty_snack_gofood"
+                    android:text="@string/listfood"
                     android:textAllCaps="true"
                     android:textColor="#EE000000"
                     android:textSize="16sp"
@@ -121,7 +150,6 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/titleSnack"
                     app:layout_constraintTop_toBottomOf="@id/titleSnack" />
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView2"
@@ -142,7 +170,8 @@
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/recyclerView2" />
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView2"
+                    tools:ignore="RtlSymmetry" />
 
                 <TextView
                     android:id="@+id/tvTry"
@@ -152,7 +181,8 @@
                     android:paddingStart="12dp"
                     android:text="@string/try_these_and_thank_us_latter"
                     android:textSize="16sp"
-                    app:layout_constraintTop_toBottomOf="@id/tvRecommend" />
+                    app:layout_constraintTop_toBottomOf="@id/tvRecommend"
+                    tools:ignore="RtlSymmetry" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewRecommend"

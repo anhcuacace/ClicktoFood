@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom
 
 data class Meals(
     @SerializedName("meals")
-    val meals: List<Meal> ?= null
+    val meals: List<Meal>?= null
 )
 
 data class Meal(
@@ -21,7 +21,7 @@ data class Meal(
 data class Food(
     val id: Long? = null,
     val title: String? = null,
-    val cost: Int? = ThreadLocalRandom.current().nextInt(20, 100),
-    val star: Double? = ThreadLocalRandom.current().nextDouble(3.5, 5.0),
+    val cost: Int? = null,
+    val star: Double? = null,
     val img: String? = null
 )

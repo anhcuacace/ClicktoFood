@@ -31,7 +31,7 @@ private val animeService: AnimeService) :
         viewModelScope.launch (Dispatchers.IO){
             try {
                 val data = async { remoteRepository.getAllPhoToList("Dessert") }
-                val data2 = async { remoteRepository.getAllPhoToList("Pasta") }
+//                val data2 = async { remoteRepository.getAllPhoToList("Pasta") }
                 foodList.postValue(data.await())
 //                foodList.postValue(data2.await())
             }catch (e:ApiException){

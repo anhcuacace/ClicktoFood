@@ -5,6 +5,7 @@ data class Categories(
     @SerializedName("categories")
     val Categories: List<Category> ?=null
 )
+
 data class Category(
     @SerializedName("idCategory")
     val id: Long ?=null,
