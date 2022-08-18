@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tunanh.clicktofood.di.viewmodel.ViewModelFactory
 import com.tunanh.clicktofood.di.viewmodel.ViewModelKey
+import com.tunanh.clicktofood.ui.detail.DetailViewModel
 import com.tunanh.clicktofood.ui.home.MainFragmentViewModel
 import com.tunanh.clicktofood.ui.home.category.CategoryViewModel
 import com.tunanh.clicktofood.ui.home.main.HomeViewModel
@@ -74,5 +75,8 @@ abstract class ViewModelModule {
     @ViewModelKey(UpdateProfileViewModel::class)
     internal abstract fun updateProfileViewModel(viewModel: UpdateProfileViewModel): ViewModel
 
-
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    internal abstract fun detailViewModel(viewModel: DetailViewModel): ViewModel
 }

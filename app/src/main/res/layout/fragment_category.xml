@@ -8,10 +8,11 @@
         tools:context=".ui.home.category.CategoryFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+            app:spanCount="3"
             android:orientation="vertical"/>
 
     </FrameLayout>

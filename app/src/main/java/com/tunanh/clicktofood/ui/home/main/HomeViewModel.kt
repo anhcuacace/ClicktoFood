@@ -20,7 +20,7 @@ private val animeService: AnimeService) :
     var sliderList = MutableLiveData<List<Slider>>()
     var categoryList = MutableLiveData<Categories>()
     var foodList= MutableLiveData<Meals>()
-
+    var isLoadCategory=MutableLiveData<Boolean>()
     init {
         loadSlider()
         loadCategory()
@@ -45,6 +45,7 @@ private val animeService: AnimeService) :
             try {
                 val data = async { remoteRepository.getAllCategory() }
                 categoryList.postValue(data.await())
+                isLoadCategory.postValue(true)
             } catch (e: ApiException) {
                 e.printStackTrace()
             }

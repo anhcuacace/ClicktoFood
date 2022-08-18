@@ -1,6 +1,7 @@
 package com.tunanh.clicktofood.di.module
 
 
+import com.tunanh.clicktofood.ui.detail.DetailFragment
 import com.tunanh.clicktofood.ui.home.MainFragment
 import com.tunanh.clicktofood.ui.home.category.CategoryFragment
 import com.tunanh.clicktofood.ui.home.main.HomeFragment
@@ -46,4 +47,7 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindUpdateProfileFragment(): UpdateProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindDetailFragment(): DetailFragment
 }

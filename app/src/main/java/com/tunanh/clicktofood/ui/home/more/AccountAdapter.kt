@@ -16,7 +16,7 @@ class AccountAdapter : RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() 
     }
 
     var itemMore: List<ItemMore>? = null
-    var onClickItem: ((ItemMore, Int) -> Unit)? = null
+    var onClickItem: (( Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountViewHolder {
         val binding =
             ItemRclvMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,8 +26,7 @@ class AccountAdapter : RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() 
     override fun onBindViewHolder(holder: AccountViewHolder, position: Int) {
         itemMore?.let { holder.bind(it[position]) }
         holder.itemView.setOnSingClickListener {
-            itemMore?.get(position)
-                .let { it1 -> it1?.let { it2 -> onClickItem?.invoke(it2, position) } }
+            onClickItem?.invoke(position)
         }
     }
 
