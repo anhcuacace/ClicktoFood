@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName
 import java.util.concurrent.ThreadLocalRandom
 
 data class Meals(
+    @SerializedName("meals")
+    val meals: List<Meal> ?= null
+)
+
+data class Meal(
     @SerializedName("idMeal")
     val id: Long? = null,
     @SerializedName("strMeal")
@@ -11,6 +16,7 @@ data class Meals(
     @SerializedName("strMealThumb")
     val img: String? = null
 )
+//data class MealsResults(val results: List<Meals>)
 
 data class Food(
     val id: Long? = null,

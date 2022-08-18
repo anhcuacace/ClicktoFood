@@ -18,7 +18,7 @@ class RecyclerViewAdapter :
             binding.tvRating.text=food.star.toString()
         }
     }
-    val foodList:List<Food>?=null
+    var foodList:List<Food>?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v =
             ItemRecyclerview2Binding.inflate(LayoutInflater.from(parent.context),parent,false)

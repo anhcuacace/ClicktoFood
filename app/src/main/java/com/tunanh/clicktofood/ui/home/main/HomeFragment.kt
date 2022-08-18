@@ -4,6 +4,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.viewpager2.widget.ViewPager2
 import com.tunanh.clicktofood.R
+import com.tunanh.clicktofood.data.remote.model.Food
+import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentHomeBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
@@ -17,7 +19,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         (activity as MainActivity).showLoading()
         sliders()
         categories()
+        foodList()
     }
+
+    private fun foodList() {
+        val recyclerViewAdapter=RecyclerViewAdapter()
+        val recommendAdapter=RecommendAdapter()
+        viewModel.foodList.observe(this){
+            val listMeals= it.meals as ArrayList<Meal>
+//            val listMeals2= listMeals.sortBy { listMeal->listMeal.id } as ArrayList<Meals>
+            val data=convertData(listMeals)
+            recommendAdapter.foodList=data
+            recyclerViewAdapter.foodList=data
+            binding.recyclerView2.adapter=recyclerViewAdapter
+            binding.recyclerViewRecommend.adapter=recommendAdapter
+        }
+    }
+    private fun convertData(array: ArrayList<Meal>):List<Food>{
+        val data= ArrayList<Food>()
+        for (i in 0..array.size ){
+            val food=Food(id = array[i].id, title = array[i].title,cost = null, star = null, img = array[i].img)
+            data.add(food)
+        }
+        return data as List<Food>
+    }
+
 
 
 
@@ -54,7 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         val adapter= CategoryHomeAdapter()
         binding.categoryes.adapter=adapter
         viewModel.categoryList.observe(this){
-            adapter.categoryList=it
+            adapter.categoryList= it.Categories
         }
 //        adapter.onClickItem= {category, i ->
 //            bundleOf(

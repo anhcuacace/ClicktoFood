@@ -4,7 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.common.api.ApiException
 import com.tunanh.clicktofood.data.remote.RemoteRepository
-import com.tunanh.clicktofood.data.remote.model.Category
+import com.tunanh.clicktofood.data.remote.model.Categories
+import com.tunanh.clicktofood.data.remote.model.Meals
 import com.tunanh.clicktofood.data.remote.model.Slider
 import com.tunanh.clicktofood.data.remote.service.AnimeService
 import com.tunanh.clicktofood.ui.base.BaseViewModel
@@ -17,7 +18,8 @@ class HomeViewModel @Inject constructor(private val remoteRepository: RemoteRepo
 private val animeService: AnimeService) :
     BaseViewModel() {
     var sliderList = MutableLiveData<List<Slider>>()
-    var categoryList = MutableLiveData<List<Category>>()
+    var categoryList = MutableLiveData<Categories>()
+    var foodList= MutableLiveData<Meals>()
 
     init {
         loadSlider()
@@ -27,8 +29,14 @@ private val animeService: AnimeService) :
 
     private fun loadRecyclerView() {
         viewModelScope.launch (Dispatchers.IO){
-            val data = async { animeService.getAllFoodList("Chicken") }
-            val data2 = async { animeService.getAllFoodList("Pasta") }
+            try {
+                val data = async { remoteRepository.getAllPhoToList("Dessert") }
+                val data2 = async { remoteRepository.getAllPhoToList("Pasta") }
+                foodList.postValue(data.await())
+//                foodList.postValue(data2.await())
+            }catch (e:ApiException){
+                e.printStackTrace()
+            }
         }
     }
 

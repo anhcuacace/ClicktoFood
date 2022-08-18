@@ -131,7 +131,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 //    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+
     //zalo
 //    implementation "me.zalo:sdk-core:+"
 //    implementation "me.zalo:sdk-auth:+"

@@ -1,7 +1,10 @@
 package com.tunanh.clicktofood.data.remote.model
 
 import com.google.gson.annotations.SerializedName
-
+data class Categories(
+    @SerializedName("categories")
+    val Categories: List<Category> ?=null
+)
 data class Category(
     @SerializedName("idCategory")
     val id: Long ?=null,
