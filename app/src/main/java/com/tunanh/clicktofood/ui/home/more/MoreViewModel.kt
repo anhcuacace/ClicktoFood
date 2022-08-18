@@ -48,7 +48,7 @@ class MoreViewModel @Inject constructor(
 
     private fun getUser() {
         viewModelScope.launch {
-            user.value = localDatabase.userDao().getUser()[0]
+            user.postValue(localDatabase.userDao().getUser()[0])
         }
     }
 }

@@ -19,7 +19,7 @@ class LoginViewModel @Inject constructor(
 
     }
 
-    fun saveUser(email: String, name: String, user: Boolean,img: Uri,phone:String) {
+    fun saveUser(email: String, name: String, user: Boolean,img: String,phone:String) {
 
         appPreferences.setUser(user)
         appPreferences.setEmail(email)
@@ -27,7 +27,7 @@ class LoginViewModel @Inject constructor(
             val mUser = User(
                 email = email,
                 name = name,
-                image = img.toString(), phone = phone
+                image = img, phone = phone
             )
             localDatabase.userDao().addUser(mUser)
         }

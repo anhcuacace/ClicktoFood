@@ -196,7 +196,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 binding.edtRePass.requestFocus()
             } else {
                 auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-                    val firebaseUser = auth.currentUser
+                    val firebaseUser: FirebaseUser? = auth.currentUser
 
                     val emails = firebaseUser!!.email
 
@@ -245,20 +245,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     private fun updateUI(user: FirebaseUser?) {
         (activity as MainActivity).hiddenLoading()
         if (user != null) {
-
-            user.photoUrl?.let {
                 viewModel.saveUser(
-                    user.email ?: "",
-                    user.displayName ?: "",
-                    true,
-                    img = it,
+                   email= user.email ?: "",
+                   name= user.displayName ?: "",
+                    user = true,
+                    img = user.photoUrl.toString(),
                     user.phoneNumber ?: ""
                 )
             }
+            (activity as MainActivity).hiddenLoading()
             findNavController().navigate(
                 R.id.action_loginFragment_to_mainFragment
             )
 //
         }
     }
-}
+
