@@ -178,9 +178,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     private fun signUpWithEmail() {
         binding.btnSignUp.setOnClickListener {
-            val email: String = binding.edtEmailSignUp.text.toString()
-            val password = binding.edtPassSignUp.text.toString()
-            val confirmpass = binding.edtRePass.text.toString()
+            (activity as MainActivity).showLoading()
+            val email: String = binding.edtEmailSignUp.text.toString().trim()
+            val password = binding.edtPassSignUp.text.toString().trim()
+            val confirmpass = binding.edtRePass.text.toString().trim()
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 binding.edtEmailSignUp.error = "Invaild email format"
                 binding.edtEmailSignUp.requestFocus()
@@ -190,7 +191,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             } else if (password.length < 6) {
                 binding.edtPassSignUp.error = "password must at least 6 charters long"
                 binding.edtPassSignUp.requestFocus()
-            } else if (password.compareTo(confirmpass) != 0) {
+            } else if (password != confirmpass) {
                 binding.edtRePass.error = "password is not matching"
                 binding.edtRePass.requestFocus()
             } else {
@@ -204,6 +205,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
                 }.addOnFailureListener {
                     Timber.tag(TAG).d("sign up fail due to %s", it.message)
+                    updateUI(null)
                 }
             }
         }
@@ -241,9 +243,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 //    }
     override fun backPress(): Boolean = false
     private fun updateUI(user: FirebaseUser?) {
-
+        (activity as MainActivity).hiddenLoading()
         if (user != null) {
-            (activity as MainActivity).hiddenLoading()
+
             user.photoUrl?.let {
                 viewModel.saveUser(
                     user.email ?: "",

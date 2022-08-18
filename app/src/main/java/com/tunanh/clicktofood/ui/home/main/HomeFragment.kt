@@ -72,11 +72,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
                         handler.postDelayed({
                             binding.viewPager2.currentItem = 0
-                        }, 5000)
+                        }, 3000)
                     } else {
                         handler.postDelayed({
                             binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
-                        }, 5000)
+                        }, 3000)
                     }
 
                 }
@@ -109,7 +109,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         super.onResume()
         handler.postDelayed(
             { binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1 },
-            5000
+            3000
         )
     }
 
