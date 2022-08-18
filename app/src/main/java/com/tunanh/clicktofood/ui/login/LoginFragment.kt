@@ -245,19 +245,24 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     private fun updateUI(user: FirebaseUser?) {
         (activity as MainActivity).hiddenLoading()
         if (user != null) {
-                viewModel.saveUser(
-                   email= user.email ?: "",
-                   name= user.displayName ?: "",
-                    user = true,
-                    img = user.photoUrl.toString(),
-                    user.phoneNumber ?: ""
-                )
+            val img: String = if (user.photoUrl == null) {
+                ""
+            } else {
+                user.photoUrl.toString()
             }
-            (activity as MainActivity).hiddenLoading()
-            findNavController().navigate(
-                R.id.action_loginFragment_to_mainFragment
+            viewModel.saveUser(
+                user.email ?: "",
+                user.displayName ?: "",
+                true,
+                img,
+                user.phoneNumber ?: ""
             )
-//
         }
+        (activity as MainActivity).hiddenLoading()
+        findNavController().navigate(
+            R.id.action_loginFragment_to_mainFragment
+        )
+//
     }
+}
 
