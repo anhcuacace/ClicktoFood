@@ -26,7 +26,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="4dp"
 
-        android:textColor="@color/black"
+        android:textColor="@color/textcolor1"
         android:textSize="14sp"
         android:textStyle="bold" />
 

@@ -15,6 +15,7 @@ import com.tunanh.clicktofood.ui.intro.IntroViewModel
 import com.tunanh.clicktofood.ui.login.LoginViewModel
 import com.tunanh.clicktofood.ui.main.MainViewModel
 import com.tunanh.clicktofood.ui.splash.SplashViewModel
+import com.tunanh.clicktofood.ui.temp.TempViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -79,4 +80,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
     internal abstract fun detailViewModel(viewModel: DetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TempViewModel::class)
+    internal abstract fun tempViewModel(viewModel: TempViewModel): ViewModel
 }

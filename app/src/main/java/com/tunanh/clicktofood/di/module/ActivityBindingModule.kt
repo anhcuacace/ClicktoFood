@@ -12,6 +12,7 @@ import com.tunanh.clicktofood.ui.intro.IntroFragment
 import com.tunanh.clicktofood.ui.login.LoginFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.ui.splash.SplashFragment
+import com.tunanh.clicktofood.ui.temp.TempFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -50,4 +51,7 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindDetailFragment(): DetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindTempFragment(): TempFragment
 }

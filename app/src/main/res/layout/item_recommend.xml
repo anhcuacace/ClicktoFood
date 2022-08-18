@@ -54,7 +54,7 @@
             android:layout_marginStart="2dp"
             android:text="4.5"
             android:maxLength="3"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolor1"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -63,9 +63,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="@string/restaurant_name"
+
         android:maxLines="1"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolor1"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/cardViewRecommend"
@@ -77,7 +77,7 @@
         android:layout_height="17dp"
         android:layout_marginTop="4dp"
         android:maxLines="1"
-        android:text="Boba World, Sweet Tooth"
+        android:text="@string/restaurant_name"
 
         app:layout_constraintStart_toStartOf="@id/tvNameRecommend"
         app:layout_constraintTop_toBottomOf="@id/tvNameRecommend" />

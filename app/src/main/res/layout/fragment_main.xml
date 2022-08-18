@@ -23,7 +23,7 @@
             android:id="@+id/buttonNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/edt_background"
             app:itemIconTint="@drawable/botton_nav_color"
             app:itemTextColor="@drawable/botton_nav_color"
             app:layout_constraintBottom_toBottomOf="parent"

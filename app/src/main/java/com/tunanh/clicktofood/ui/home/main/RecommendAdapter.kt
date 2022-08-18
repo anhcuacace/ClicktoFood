@@ -17,7 +17,7 @@ class RecommendAdapter :
     inner class MyViewHolder constructor(private val binding: ItemRecommendBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(food: Food){
             Glide.with(itemView.context).load(food.img).error(R.mipmap.ic_launcher).into(binding.imgRecommend)
-            binding.tvHashTag.text=food.title
+            binding.tvNameRecommend.text=food.title
             binding.tvRateCount.text=food.star.toString()
         }
     }
