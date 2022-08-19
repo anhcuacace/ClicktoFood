@@ -2,7 +2,7 @@
     <string name="app_name">Click To Food</string>
     <string name="manager_student">Student Manager</string>
     <string name="add">Add</string>
-    <string name="cancel">Hủy</string>
+    <string name="cancel">Cancel</string>
 
     <string name="Name">Name: </string>
     <string name="Address">Address: </string>

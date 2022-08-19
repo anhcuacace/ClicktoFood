@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Click To Food</string>
+    <string name="add">Thêm</string>
+    <string name="cancel">Hủy</string>
+    <string name="Name">Tên:</string>
+    <string name="Address">Địa chỉ:</string>
+    <string name="phone">Số điện thoai:</string>
+    <string name="next">Tiếp theo</string>
+    <string name="manager_student">Quản lý sinh viên</string>
+</resources>
