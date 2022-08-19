@@ -9,7 +9,10 @@ import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentMoreBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.util.openPlaystore
+import com.tunanh.clicktofood.util.openWebsite
 import com.tunanh.clicktofood.util.setOnSingClickListener
+import com.tunanh.clicktofood.util.shareApp
 
 class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
     companion object {
@@ -34,6 +37,13 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
         viewModel.mItemMoreList2.observe(this) {
             accountAdapter.itemMore = it
             binding.generalList.adapter = accountAdapter
+        }
+        accountAdapter.onClickItem = {
+            when (it) {
+                1 -> {
+                    openPlaystore(requireContext())
+                }
+            }
         }
 
     }
@@ -68,6 +78,12 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
         }
         accountAdapter.onClickItem = {
             when (it) {
+                3 -> {
+                    openWebsite("https://messenger.com/t/100009599087926", requireContext())
+                }
+                6 -> {
+                    shareApp(requireContext())
+                }
                 9 -> {
                     Firebase.auth.signOut()
                     viewModel.logOut()

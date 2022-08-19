@@ -42,7 +42,7 @@ class MoreViewModel @Inject constructor(
             addToList(R.drawable.notifications, context.getString(R.string.notifications))
             addToList(R.drawable.logout, context.getString(R.string.logout))
             mItemMoreList.value = itemMoreList1
-            addToList1(R.drawable.percent, context.getString(R.string.privacy))
+            addToList1(R.drawable.privacy, context.getString(R.string.privacy))
             addToList1(R.drawable.rate, context.getString(R.string.rate_app))
             mItemMoreList2.postValue(itemMoreList2)
         }
@@ -71,6 +71,5 @@ class MoreViewModel @Inject constructor(
             localDatabase.userDao().deleteByEmail(email)
             appPreferences.setEmail("")
         }
-
     }
 }

@@ -61,7 +61,7 @@ fun openPlaystore(context: Context) {
         context.startActivity(
             Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackage"))
         )
-    } catch (anfe: ActivityNotFoundException) {
+    } catch (e: ActivityNotFoundException) {
         context.startActivity(
             Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackage"))
         )

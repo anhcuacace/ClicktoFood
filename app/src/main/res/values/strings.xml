@@ -94,4 +94,6 @@
     <string name="try_these_and_thank_us_latter">Try these and thank us latter</string>
     <string name="restaurant_name">restaurant name</string>
     <string name="_8_promo_are_available">8 promo are available</string>
+    <string name="network_fail">network connection error</string>
+    <string name="connected">connection has been restored</string>
 </resources>
