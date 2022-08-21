@@ -2,6 +2,7 @@ package com.tunanh.clicktofood.data.remote.service
 
 import com.tunanh.clicktofood.data.remote.model.Categories
 import com.tunanh.clicktofood.data.remote.model.Meals
+import com.tunanh.clicktofood.data.remote.model.MealsForId
 import com.tunanh.clicktofood.data.remote.model.Slider
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
@@ -18,4 +19,7 @@ interface AnimeService {
 
     @GET("filter.php")
     suspend fun getAllFoodList(@Query("c") meals: String):Meals
+
+    @GET("lookup.php")
+    suspend fun getFood(@Query("i") id:Long):MealsForId
 }

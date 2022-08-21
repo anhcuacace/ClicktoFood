@@ -1,5 +1,6 @@
 package com.tunanh.clicktofood.ui.home.category
 
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentCategoryBinding
@@ -22,9 +23,18 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
                 myViewModel.categoryList.observe(this) { it1 ->
                     categoryHomeAdapter.categoryList = it1.Categories
                     binding.listCategory.adapter = categoryHomeAdapter
+                    categoryHomeAdapter.onClickItem= { category, _ ->
+                        navController().navigate(
+                            R.id.action_mainFragment_to_tempFragment,
+                            bundleOf(
+                                Pair("category",category.title)
+                            )
+                        )
+
+                    }
                 }
             }
         }
     }
-    override fun backPress(): Boolean = false
+
 }

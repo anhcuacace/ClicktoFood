@@ -146,5 +146,5 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             }
         }
     }
-    override fun backPress(): Boolean = false
+
 }

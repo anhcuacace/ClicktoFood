@@ -49,6 +49,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                     //google sign in was successful, authenticate with firebase
                     val account = task.getResult(ApiException::class.java)!!
                     Timber.d("FirebaseAuthWithGoogle:" + account.id)
+
                     firebaseauthWithGoogle(account.idToken!!)
                 } catch (e: ApiException) {
                     // google sign in failed, update iu
@@ -158,6 +159,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         val password = binding.edtPassword.text.toString()
         auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener { task ->
+
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Timber.d("signInWithEmail:success")
@@ -241,7 +243,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 //            onLoginError(errorCode, message ?: "Unknown error")
 //        }
 //    }
-    override fun backPress(): Boolean = false
+
     private fun updateUI(user: FirebaseUser?) {
         (activity as MainActivity).hiddenLoading()
         if (user != null) {
@@ -250,14 +252,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             } else {
                 user.photoUrl.toString()
             }
+
             viewModel.saveUser(
                 user.email ?: "",
                 user.displayName ?: "",
                 true,
                 img,
-                user.phoneNumber ?: ""
+                user.phoneNumber ?: "",
+                user.uid
+
             )
+
         }
+
         (activity as MainActivity).hiddenLoading()
         findNavController().navigate(
             R.id.action_loginFragment_to_mainFragment

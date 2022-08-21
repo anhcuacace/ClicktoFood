@@ -30,4 +30,12 @@ class AppPreferences @Inject constructor(private val preferences: SharedPreferen
     fun getEmail(): String {
         return preferences.getString(MainActivity.EMAIL, "").toString()
     }
+
+    fun setToken(token: String) {
+        preferences.edit().putString(MainActivity.TOKEN, token).apply()
+    }
+
+    fun getToken(): String {
+        return preferences.getString(MainActivity.TOKEN, "").toString()
+    }
 }

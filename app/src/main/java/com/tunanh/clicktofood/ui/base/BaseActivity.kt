@@ -42,13 +42,7 @@ abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppC
         navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
     }
 
-    override fun onBackPressed() {
-        val fragment =
-            navHost!!.childFragmentManager.primaryNavigationFragment as BaseFragment<*, *>
-        if (!fragment.backPress()) {
-            super.onBackPressed()
-        }
-    }
+
 
     private fun createDialog() {
         val dialogBuilder = AlertDialog.Builder(this)

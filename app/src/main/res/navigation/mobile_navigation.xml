@@ -60,26 +60,22 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_tempFragment"
+            app:destination="@id/tempFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment2"
-        android:name="com.tunanh.clicktofood.ui.home.main.HomeFragment"
-        android:label="HomeFragment" />
-    <fragment
-        android:id="@+id/wishListFragment"
-        android:name="com.tunanh.clicktofood.ui.home.wishlist.WishListFragment"
-        android:label="WishListFragment" />
-    <fragment
-        android:id="@+id/categoryFragment"
-        android:name="com.tunanh.clicktofood.ui.home.category.CategoryFragment"
-        android:label="CategoryFragment" />
-    <fragment
-        android:id="@+id/moreFragment2"
-        android:name="com.tunanh.clicktofood.ui.home.more.MoreFragment"
-        android:label="MoreFragment" />
     <fragment
         android:id="@+id/updateProfileFragment2"
         android:name="com.tunanh.clicktofood.ui.home.more.profile.UpdateProfileFragment"
         android:label="UpdateProfileFragment" />
+    <fragment
+        android:id="@+id/tempFragment"
+        android:name="com.tunanh.clicktofood.ui.temp.TempFragment"
+        android:label="TempFragment"
+        tools:layout="@layout/fragment_temp" />
 
 </navigation>

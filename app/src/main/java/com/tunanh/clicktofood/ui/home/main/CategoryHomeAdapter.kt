@@ -2,6 +2,7 @@ package com.tunanh.clicktofood.ui.home.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
@@ -33,8 +34,11 @@ class CategoryHomeAdapter :
         categoryList?.let { holder.bind(it[position]) }
         holder.itemView.setOnSingClickListener {
             categoryList?.let { it1 -> onClickItem?.invoke(it1[position],position) }
+
         }
     }
 
     override fun getItemCount(): Int = categoryList?.size ?: 0
+
+
 }

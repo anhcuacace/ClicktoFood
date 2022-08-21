@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
-import com.tunanh.clicktofood.data.remote.model.Food
+import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.ItemRecommendBinding
-import com.tunanh.clicktofood.databinding.ItemRecyclerview2Binding
 
 
 class RecommendAdapter :

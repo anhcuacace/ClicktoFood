@@ -2,14 +2,14 @@ package com.tunanh.clicktofood.ui.home.main
 
 import android.os.Handler
 import android.os.Looper
+import androidx.core.os.bundleOf
 import androidx.viewpager2.widget.ViewPager2
 import com.tunanh.clicktofood.R
-import com.tunanh.clicktofood.data.remote.model.Food
 import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentHomeBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
-import java.util.concurrent.ThreadLocalRandom
+import com.tunanh.clicktofood.util.convertData
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private var handler = Handler(Looper.getMainLooper())
@@ -38,22 +38,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.recyclerViewRecommend.adapter = recommendAdapter
         }
     }
-
-    private fun convertData(array: ArrayList<Meal>): List<Food> {
-        val data = ArrayList<Food>()
-        for (i in 0 until (array.size - 1)) {
-            val food = Food(
-                id = array.get(index = i).id,
-                title = array[i].title,
-                cost = ThreadLocalRandom.current().nextInt(20, 100),
-                star = ThreadLocalRandom.current().nextDouble(3.5, 5.0),
-                img = array[i].img
-            )
-            data.add(food)
-        }
-        return data
-    }
-
 
     private fun sliders() {
 
@@ -94,15 +78,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             adapter.categoryList = it.Categories
             binding.categoryes.adapter = adapter
         }
-//        adapter.onClickItem= {category, i ->
-//            bundleOf(
-//
-//            )
-//        }
+        adapter.onClickItem = { category, _ ->
+            navController().navigate(
+                R.id.action_mainFragment_to_tempFragment,
+                bundleOf(
+                    Pair("category", category.title)
+                )
+            )
+
+        }
     }
 
 
-    override fun backPress(): Boolean = false
+
 
 
     override fun onResume() {

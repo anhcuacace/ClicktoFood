@@ -18,10 +18,9 @@ data class Meal(
 )
 //data class MealsResults(val results: List<Meals>)
 
-data class Food(
-    val id: Long? = null,
-    val title: String? = null,
-    val cost: Int? = null,
-    val star: Double? = null,
-    val img: String? = null
+
+data class MealsForId(
+    @SerializedName("meals")
+    val meals: List<Meal>?= null
 )
+

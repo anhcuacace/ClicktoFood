@@ -18,15 +18,17 @@ class LoginViewModel @Inject constructor(
 
     }
 
-    fun saveUser(email: String, name: String, user: Boolean, img: String, phone: String) {
+    fun saveUser(email: String, name: String, user: Boolean, img: String, phone: String,token:String) {
 
         appPreferences.setUser(user)
         appPreferences.setEmail(email)
+        appPreferences.setToken(token)
         viewModelScope.launch {
             val mUser = User(
                 email = email,
                 name = name,
-                image = img, phone = phone
+                image = img,
+                phone = phone
             )
             localDatabase.userDao().addUser(mUser)
         }

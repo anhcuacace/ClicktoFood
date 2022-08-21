@@ -1,9 +1,11 @@
 package com.tunanh.clicktofood.data.local
 
 import com.tunanh.clicktofood.data.local.dao.FavouriteQuoteDao
+import com.tunanh.clicktofood.data.local.dao.FoodDao
 import com.tunanh.clicktofood.data.local.dao.ItemDao
 import com.tunanh.clicktofood.data.local.dao.UserDao
 import com.tunanh.clicktofood.data.local.model.FavouriteQuote
+import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.local.model.Item
 import com.tunanh.clicktofood.data.local.model.User
 import javax.inject.Inject
@@ -13,7 +15,8 @@ import javax.inject.Singleton
 class LocalRepository @Inject constructor(
     private val favouriteQuoteDao: FavouriteQuoteDao,
     private val itemDao: ItemDao,
-    private val userDao: UserDao
+    private val userDao: UserDao,
+    private val foodDao: FoodDao
 ) {
 
     suspend fun addFavouriteQuote(favouriteQuote: FavouriteQuote) {
@@ -47,4 +50,15 @@ class LocalRepository @Inject constructor(
 
     suspend fun getUser(email: String) = userDao.getUser()
 
+    suspend fun insertFood(food: Food) {
+        foodDao.addFood(food)
+    }
+
+    suspend fun getAllFood() = foodDao.getAllFood()
+    suspend fun deleteById(id: Long) {
+        foodDao.deleteById(id)
+    }
+    suspend fun deleteAllFood(){
+        foodDao.deleteAllFood()
+    }
 }

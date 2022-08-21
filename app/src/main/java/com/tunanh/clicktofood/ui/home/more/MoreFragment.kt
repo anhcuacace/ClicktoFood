@@ -95,5 +95,5 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
         }
     }
 
-    override fun backPress(): Boolean = false
+
 }

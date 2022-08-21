@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
-import com.tunanh.clicktofood.data.remote.model.Food
+import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.ItemRecyclerview2Binding
 
 
 class RecyclerViewAdapter :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
     inner class MyViewHolder constructor(private val binding:ItemRecyclerview2Binding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food:Food){
+        fun bind(food: Food){
             Glide.with(itemView.context).load(food.img).error(R.mipmap.ic_launcher).into(binding.imgItem2)
             binding.nameItem.text=food.title
             binding.tvRating.text=food.star.toString()

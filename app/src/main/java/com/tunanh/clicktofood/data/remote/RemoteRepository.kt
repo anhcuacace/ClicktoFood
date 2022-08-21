@@ -1,9 +1,6 @@
 package com.tunanh.clicktofood.data.remote
 
-import com.tunanh.clicktofood.data.remote.model.Categories
-import com.tunanh.clicktofood.data.remote.model.Category
-import com.tunanh.clicktofood.data.remote.model.Meals
-import com.tunanh.clicktofood.data.remote.model.Slider
+import com.tunanh.clicktofood.data.remote.model.*
 import com.tunanh.clicktofood.data.remote.service.AnimeService
 import com.tunanh.clicktofood.data.remote.service.MangaService
 import kotlinx.coroutines.Deferred
@@ -24,5 +21,8 @@ class RemoteRepository @Inject constructor(
     }
     suspend fun getAllPhoToList(c:String): Meals {
         return animeService.getAllFoodList(c)
+    }
+    suspend fun getFood(id:Long):MealsForId{
+        return animeService.getFood(id)
     }
 }

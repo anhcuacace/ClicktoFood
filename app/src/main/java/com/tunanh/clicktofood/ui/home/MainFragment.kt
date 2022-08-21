@@ -20,6 +20,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
 
     private var listFragment = mutableListOf<Fragment>()
     private var currentPosition = 0
+    private var isFragmentAdded = false
     override fun layoutRes(): Int = R.layout.fragment_main
 
     override fun viewModelClass(): Class<MainFragmentViewModel> = MainFragmentViewModel::class.java
@@ -32,15 +33,17 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
 
         val fragmentTransaction = childFragmentManager.beginTransaction()
         listFragment.forEachIndexed { index, fragment ->
-            fragmentTransaction.add(R.id.frame_layout, fragment, fragment.javaClass.simpleName)
-            if (index != 0) {
-                fragmentTransaction.hide(fragment)
-            } else {
-                fragmentTransaction.show(fragment)
+            if (!isFragmentAdded) {
+                fragmentTransaction.add(R.id.frame_layout, fragment, fragment.javaClass.simpleName)
+                if (index != 0) {
+                    fragmentTransaction.hide(fragment)
+                } else {
+                    fragmentTransaction.show(fragment)
+                }
             }
         }
         fragmentTransaction.commitAllowingStateLoss()
-
+        isFragmentAdded = true
         binding.buttonNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
@@ -69,17 +72,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
     }
 
 
-    override fun backPress(): Boolean {
-        val fragment = listFragment[currentPosition]
-        return if (currentPosition == 0) {
-            (fragment as HomeFragment).backPress()
-        } else {
-            binding.buttonNavigation.selectedItemId = R.id.home
-            openTab(POSITION_HOME)
-            true
-        }
-    }
-
     private fun openTab(position: Int) {
         val fragmentTransaction = childFragmentManager.beginTransaction()
         listFragment.forEachIndexed { index, fragment ->
@@ -95,6 +87,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
             fragmentTransaction.setCustomAnimations(R.anim.trans_right_out, R.anim.trans_right_out)
         }
         currentPosition = position
-        fragmentTransaction.commitNowAllowingStateLoss()
+        fragmentTransaction.commitAllowingStateLoss()
     }
+
 }

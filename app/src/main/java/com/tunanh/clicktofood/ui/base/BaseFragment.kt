@@ -25,7 +25,7 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
     protected abstract fun layoutRes(): Int
     protected abstract fun viewModelClass(): Class<M>
     protected abstract fun initView()
-    abstract fun backPress(): Boolean
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

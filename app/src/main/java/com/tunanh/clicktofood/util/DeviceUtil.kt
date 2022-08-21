@@ -9,7 +9,40 @@ import android.net.NetworkCapabilities
 import android.net.Uri
 import android.provider.Settings
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.core.app.ShareCompat
+import com.tunanh.clicktofood.data.local.model.Food
+import com.tunanh.clicktofood.data.remote.model.Meal
+import java.util.concurrent.ThreadLocalRandom
+private var count=false
+private var count1=0
+fun resetCount(){
+    count=false
+    count1=0
+}
+fun count(): Int {
+     if (!count){
+        count=true
+    }else{
+         count1 += 1
+    }
+    return count1
+}
+
+fun convertData(array: ArrayList<Meal>): List<Food> {
+    val data = ArrayList<Food>()
+    for (i in 0 until (array.size - 1)) {
+        val food = Food(
+            array[i].id!!,
+            title = array[i].title.toString(),
+            cost = ThreadLocalRandom.current().nextInt(20, 100),
+            star = ThreadLocalRandom.current().nextDouble(3.5, 5.0),
+            img = array[i].img
+        )
+        data.add(food)
+    }
+    return data
+}
 
 fun showDialogSetting(context: Context) {
     val intent = Intent()
@@ -19,10 +52,11 @@ fun showDialogSetting(context: Context) {
     context.startActivity(intent)
 }
 
-fun showSoftKeyboard(activity: Activity) {
+fun showKeyboard(mEtSearch: EditText, context: Context) {
+    mEtSearch.requestFocus()
     val imm: InputMethodManager =
-        activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(mEtSearch, 0)
 }
 
 fun hiddenSoftKeyboard(activity: Activity) {
@@ -63,7 +97,10 @@ fun openPlaystore(context: Context) {
         )
     } catch (e: ActivityNotFoundException) {
         context.startActivity(
-            Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackage"))
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://play.google.com/store/apps/details?id=$appPackage")
+            )
         )
     }
 }
