@@ -18,7 +18,14 @@ class LoginViewModel @Inject constructor(
 
     }
 
-    fun saveUser(email: String, name: String, user: Boolean, img: String, phone: String,token:String) {
+    fun saveUser(
+        email: String,
+        name: String,
+        user: Boolean,
+        img: String,
+        phone: String,
+        token: String
+    ) {
 
         appPreferences.setUser(user)
         appPreferences.setEmail(email)

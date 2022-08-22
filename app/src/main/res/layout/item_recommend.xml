@@ -22,8 +22,7 @@
                 android:id="@+id/imgRecommend"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                 />
+                android:scaleType="fitXY" />
 
         </androidx.cardview.widget.CardView>
     </FrameLayout>
@@ -52,8 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="4.5"
             android:maxLength="3"
+            android:text="4.5"
             android:textColor="@color/textcolor1"
             android:textStyle="bold" />
     </LinearLayout>
@@ -90,7 +89,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvNameRecommend"
         app:layout_constraintTop_toBottomOf="@id/tvHashTag" />
-
 
 
     <ImageView

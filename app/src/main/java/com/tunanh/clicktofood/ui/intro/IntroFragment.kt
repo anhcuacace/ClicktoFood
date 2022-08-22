@@ -58,5 +58,4 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
     }
 
 
-
 }

@@ -24,11 +24,11 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
                 myViewModel.categoryList.observe(this) { it1 ->
                     categoryHomeAdapter.categoryList = it1.Categories
                     binding.listCategory.adapter = categoryHomeAdapter
-                    categoryHomeAdapter.onClickItem= { category, _ ->
+                    categoryHomeAdapter.onClickItem = { category, _ ->
                         findNavController().navigate(
                             R.id.action_mainFragment_to_tempFragment,
                             bundleOf(
-                                Pair("category",category.title)
+                                Pair("category", category.title)
                             )
                         )
 

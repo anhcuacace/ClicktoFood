@@ -18,8 +18,8 @@ interface AnimeService {
     suspend fun getAllCategory(): Categories
 
     @GET("filter.php")
-    suspend fun getAllFoodList(@Query("c") meals: String):Meals
+    suspend fun getAllFoodList(@Query("c") meals: String): Meals
 
     @GET("lookup.php")
-    suspend fun getFood(@Query("i") id:Long):MealsForId
+    suspend fun getFood(@Query("i") id: Long): MealsForId
 }

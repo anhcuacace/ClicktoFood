@@ -120,7 +120,6 @@
                     app:layout_constraintTop_toBottomOf="@id/cardViewPink">
 
 
-
                     <TextView
                         android:id="@+id/star"
                         android:layout_width="wrap_content"
@@ -178,7 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/tvBestseller"
-                    tools:listitem="@layout/item_temp"/>
+                    tools:listitem="@layout/item_temp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

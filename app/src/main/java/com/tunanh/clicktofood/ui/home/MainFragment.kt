@@ -90,16 +90,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
         fragmentTransaction.commitAllowingStateLoss()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
 
 }

@@ -24,6 +24,7 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
         super.onCreate(savedInstanceState)
         click()
     }
+
     override fun initView() {
 
         val categoryTitle = arguments?.getString("category").toString()
@@ -67,7 +68,6 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
             dialog.show()
         }
     }
-
 
 
 }

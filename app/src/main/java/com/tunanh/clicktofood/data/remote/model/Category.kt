@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class Categories(
     @SerializedName("categories")
-    val Categories: List<Category> ?=null
+    val Categories: List<Category>? = null
 )
 
 data class Category(
     @SerializedName("idCategory")
-    val id: Long ?=null,
+    val id: Long? = null,
     @SerializedName("strCategory")
-    val title: String ?=null,
+    val title: String? = null,
     @SerializedName("strCategoryThumb")
-    val image: String ?=null,
+    val image: String? = null,
     @SerializedName("strCategoryDescription")
-    val description: String ?=null
+    val description: String? = null
 )

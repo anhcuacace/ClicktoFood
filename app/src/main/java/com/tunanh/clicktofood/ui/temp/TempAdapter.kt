@@ -18,7 +18,7 @@ class TempAdapter : RecyclerView.Adapter<TempAdapter.MyViewHolder>() {
             Glide.with(itemView.context).load(food.img).error(R.mipmap.ic_launcher)
                 .into(binding.imgFood)
             binding.tvTitleItem.text = food.title
-            binding.cost.text = "${food.cost.toString()} $"
+            binding.cost.text = "${food.cost} $"
         }
     }
 

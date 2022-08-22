@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom
 
 data class Meals(
     @SerializedName("meals")
-    val meals: List<Meal>?= null
+    val meals: List<Meal>? = null
 )
 
 data class Meal(
@@ -21,6 +21,6 @@ data class Meal(
 
 data class MealsForId(
     @SerializedName("meals")
-    val meals: List<Meal>?= null
+    val meals: List<Meal>? = null
 )
 

@@ -12,7 +12,7 @@ import com.tunanh.clicktofood.data.local.model.Item
 import com.tunanh.clicktofood.data.local.model.User
 
 @Database(
-    entities = [FavouriteQuote::class, Item::class, User::class,Food::class],
+    entities = [FavouriteQuote::class, Item::class, User::class, Food::class],
     version = 2,
     exportSchema = false
 )
@@ -21,5 +21,5 @@ abstract class LocalDatabase : RoomDatabase() {
     abstract fun favouriteQuoteDao(): FavouriteQuoteDao
     abstract fun itemDao(): ItemDao
     abstract fun userDao(): UserDao
-    abstract fun foodDao():FoodDao
+    abstract fun foodDao(): FoodDao
 }

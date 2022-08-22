@@ -14,17 +14,19 @@ import androidx.core.app.ShareCompat
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.remote.model.Meal
 import java.util.concurrent.ThreadLocalRandom
-private var count=false
-private var count1=0
-fun resetCount(){
-    count=false
-    count1=0
+
+private var count = false
+private var count1 = 0
+fun resetCount() {
+    count = false
+    count1 = 0
 }
+
 fun count(): Int {
-     if (!count){
-        count=true
-    }else{
-         count1 += 1
+    if (!count) {
+        count = true
+    } else {
+        count1 += 1
     }
     return count1
 }

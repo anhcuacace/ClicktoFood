@@ -14,13 +14,16 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(private val remoteRepository: RemoteRepository,
-private val animeService: AnimeService) :
+class HomeViewModel @Inject constructor(
+    private val remoteRepository: RemoteRepository,
+    private val animeService: AnimeService
+) :
     BaseViewModel() {
     var sliderList = MutableLiveData<List<Slider>>()
     var categoryList = MutableLiveData<Categories>()
-    var foodList= MutableLiveData<Meals>()
-    var isLoadCategory=MutableLiveData<Boolean>()
+    var foodList = MutableLiveData<Meals>()
+    var isLoadCategory = MutableLiveData<Boolean>()
+
     init {
         loadSlider()
         loadCategory()
@@ -28,13 +31,13 @@ private val animeService: AnimeService) :
     }
 
     private fun loadRecyclerView() {
-        viewModelScope.launch (Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val data = async { remoteRepository.getAllPhoToList("Dessert") }
 //                val data2 = async { remoteRepository.getAllPhoToList("Pasta") }
                 foodList.postValue(data.await())
 //                foodList.postValue(data2.await())
-            }catch (e:ApiException){
+            } catch (e: ApiException) {
                 e.printStackTrace()
             }
         }

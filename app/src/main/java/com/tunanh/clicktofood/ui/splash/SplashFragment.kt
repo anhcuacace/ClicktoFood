@@ -27,14 +27,22 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
             viewModel.viewModelScope.launch(Dispatchers.Main) {
                 delay(2000)
                 binding.animationView.visibility = View.GONE
-                Toast.makeText(requireContext(), getString(R.string.network_fail), Toast.LENGTH_LONG)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.network_fail),
+                    Toast.LENGTH_LONG
+                )
                     .show()
                 (activity as MainActivity).showLoading()
             }
             viewModel.viewModelScope.launch {
                 repeat(1000) {
                     if (hasNetworkConnection(requireContext())) {
-                        Toast.makeText(requireContext(), getString(R.string.connected), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.connected),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         (activity as MainActivity).hiddenLoading()
                         transition()
                     }

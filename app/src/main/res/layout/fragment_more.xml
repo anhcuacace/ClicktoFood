@@ -66,8 +66,7 @@
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:src="@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/name"
-                />
+                app:layout_constraintTop_toTopOf="@+id/name" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -88,12 +87,12 @@
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        tools:listitem="@layout/item_rclv_more"
                         android:id="@+id/account_list"
                         android:layout_width="match_parent"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp" />
+                        android:layout_marginTop="@dimen/_5sdp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_rclv_more" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -102,12 +101,13 @@
                         android:text="@string/general"
                         android:textColor="@color/textcolor1"
                         android:textStyle="bold" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/general_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        android:layout_marginTop="@dimen/_5sdp" />
+                        android:layout_marginTop="@dimen/_5sdp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

@@ -58,7 +58,8 @@ class LocalRepository @Inject constructor(
     suspend fun deleteById(id: Long) {
         foodDao.deleteById(id)
     }
-    suspend fun deleteAllFood(){
+
+    suspend fun deleteAllFood() {
         foodDao.deleteAllFood()
     }
 }

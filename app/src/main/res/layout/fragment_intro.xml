@@ -20,11 +20,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_btn"
 
+            android:maxLines="1"
             android:paddingStart="@dimen/_32sdp"
             android:paddingEnd="@dimen/_32sdp"
             android:text="@string/next"
             android:textAllCaps="false"
-            android:maxLines="1"
             android:textColor="@color/textcolor1"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

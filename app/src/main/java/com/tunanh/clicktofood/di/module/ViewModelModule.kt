@@ -9,6 +9,7 @@ import com.tunanh.clicktofood.ui.home.MainFragmentViewModel
 import com.tunanh.clicktofood.ui.home.category.CategoryViewModel
 import com.tunanh.clicktofood.ui.home.main.HomeViewModel
 import com.tunanh.clicktofood.ui.home.more.MoreViewModel
+import com.tunanh.clicktofood.ui.home.more.cart.CartViewModel
 import com.tunanh.clicktofood.ui.home.more.profile.UpdateProfileViewModel
 import com.tunanh.clicktofood.ui.home.wishlist.WishListViewModel
 import com.tunanh.clicktofood.ui.intro.IntroViewModel
@@ -91,4 +92,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     internal abstract fun searchViewModel(viewModel: SearchViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CartViewModel::class)
+    internal abstract fun cartViewModel(viewModel: CartViewModel): ViewModel
 }

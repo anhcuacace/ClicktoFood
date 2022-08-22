@@ -34,14 +34,13 @@ abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, layoutRes());
+        binding = DataBindingUtil.setContentView(this, layoutRes())
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass()]
         initView()
         createDialog()
 
     }
-
 
 
     private fun createDialog() {
