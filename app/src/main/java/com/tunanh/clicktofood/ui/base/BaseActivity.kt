@@ -39,7 +39,7 @@ abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppC
         viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass()]
         initView()
         createDialog()
-        navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
     }
 
 

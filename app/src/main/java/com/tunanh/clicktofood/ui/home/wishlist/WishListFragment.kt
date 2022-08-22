@@ -12,5 +12,5 @@ class WishListFragment : BaseFragment<FragmentWishListBinding, WishListViewModel
 
     }
 
-    override fun backPress(): Boolean = false
+
 }

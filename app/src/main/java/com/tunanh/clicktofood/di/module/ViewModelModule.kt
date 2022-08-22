@@ -14,6 +14,7 @@ import com.tunanh.clicktofood.ui.home.wishlist.WishListViewModel
 import com.tunanh.clicktofood.ui.intro.IntroViewModel
 import com.tunanh.clicktofood.ui.login.LoginViewModel
 import com.tunanh.clicktofood.ui.main.MainViewModel
+import com.tunanh.clicktofood.ui.search.SearchViewModel
 import com.tunanh.clicktofood.ui.splash.SplashViewModel
 import com.tunanh.clicktofood.ui.temp.TempViewModel
 import dagger.Binds
@@ -85,4 +86,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(TempViewModel::class)
     internal abstract fun tempViewModel(viewModel: TempViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    internal abstract fun searchViewModel(viewModel: SearchViewModel): ViewModel
 }

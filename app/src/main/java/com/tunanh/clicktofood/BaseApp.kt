@@ -1,9 +1,8 @@
 package com.tunanh.clicktofood
 
-import com.squareup.leakcanary.core.BuildConfig
+//import com.zing.zalo.zalosdk.oauth.ZaloSDKApplication
 import com.tunanh.clicktofood.di.AppComponent
 import com.tunanh.clicktofood.di.DaggerAppComponent
-//import com.zing.zalo.zalosdk.oauth.ZaloSDKApplication
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber

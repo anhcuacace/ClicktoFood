@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +21,7 @@ import com.tunanh.clicktofood.databinding.FragmentUpdateProfileBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.home.MainFragment
 import com.tunanh.clicktofood.ui.home.more.MoreFragment
+import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
 
@@ -49,11 +51,20 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
     override fun viewModelClass(): Class<UpdateProfileViewModel> =
         UpdateProfileViewModel::class.java
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        click()
+    }
     override fun initView() {
         getInfo()
         updateInfo()
     }
+    private fun click() {
+        binding.back.setOnSingClickListener {
+            (activity as MainActivity).onBackPressed()
+        }
 
+    }
     private fun getInfo() {
         viewModel.user.observe(this) {
             mUser = it
@@ -147,4 +158,11 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
 }

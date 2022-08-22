@@ -3,6 +3,7 @@ package com.tunanh.clicktofood.ui.home.main
 import android.os.Handler
 import android.os.Looper
 import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.remote.model.Meal
@@ -79,7 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.categoryes.adapter = adapter
         }
         adapter.onClickItem = { category, _ ->
-            navController().navigate(
+            findNavController().navigate(
                 R.id.action_mainFragment_to_tempFragment,
                 bundleOf(
                     Pair("category", category.title)

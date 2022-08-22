@@ -79,4 +79,6 @@
     <string name="_8_promo_are_available">8 promo are available</string>
     <string name="network_fail">network connection error</string>
     <string name="connected">connection has been restored</string>
+    <string name="bestsellers">Bestsellers</string>
+    <string name="_200_ratings">200+ ratings</string>
 </resources>

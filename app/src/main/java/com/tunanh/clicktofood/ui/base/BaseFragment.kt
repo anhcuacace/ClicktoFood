@@ -41,6 +41,6 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
         viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass()]
         initView()
     }
-    fun Fragment.navController(): NavController =
+    fun Fragment.getNavController(): NavController =
         NavHostFragment.findNavController(this)
 }

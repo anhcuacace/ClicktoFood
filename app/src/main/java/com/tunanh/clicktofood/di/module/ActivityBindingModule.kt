@@ -11,6 +11,7 @@ import com.tunanh.clicktofood.ui.home.wishlist.WishListFragment
 import com.tunanh.clicktofood.ui.intro.IntroFragment
 import com.tunanh.clicktofood.ui.login.LoginFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
+import com.tunanh.clicktofood.ui.search.SearchFragment
 import com.tunanh.clicktofood.ui.splash.SplashFragment
 import com.tunanh.clicktofood.ui.temp.TempFragment
 import dagger.Module
@@ -54,4 +55,7 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindTempFragment(): TempFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindSearchFragment(): SearchFragment
 }

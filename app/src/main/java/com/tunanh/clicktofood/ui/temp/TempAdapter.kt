@@ -34,8 +34,10 @@ class TempAdapter : RecyclerView.Adapter<TempAdapter.MyViewHolder>() {
         foodList?.let { holder.bind(it[position]) }
         holder.itemView.setOnSingClickListener {
             foodList?.get(position)?.let { it1 -> onClickItem?.invoke(it1) }
+
         }
     }
 
     override fun getItemCount(): Int = foodList?.size ?: 0
+
 }

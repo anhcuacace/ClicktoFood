@@ -1,6 +1,7 @@
 package com.tunanh.clicktofood.ui.temp
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tunanh.clicktofood.R
@@ -9,6 +10,7 @@ import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentTempBinding
 import com.tunanh.clicktofood.databinding.ItemModalBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.convertData
 import com.tunanh.clicktofood.util.setOnSingClickListener
 import com.tunanh.clicktofood.util.shareLink
@@ -18,11 +20,21 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_temp
 
     override fun viewModelClass(): Class<TempViewModel> = TempViewModel::class.java
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        click()
+    }
     override fun initView() {
 
         val categoryTitle = arguments?.getString("category").toString()
         categoryList(categoryTitle)
+
+    }
+
+    private fun click() {
+        binding.back.setOnSingClickListener {
+            (activity as MainActivity).onBackPressed()
+        }
 
     }
 
