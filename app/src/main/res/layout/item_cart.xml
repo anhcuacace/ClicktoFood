@@ -9,8 +9,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewFood"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_90sdp"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,34 +49,37 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitleItem"
         tools:text="25.000" />
 
-    <TextView
-        android:id="@+id/tvAdd"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:background="@drawable/corner_add"
-        android:gravity="center"
-        android:padding="@dimen/_4sdp"
-        android:text="@string/add"
-        android:textColor="@color/hmm"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/cardViewFood"
-        app:layout_constraintStart_toStartOf="@id/cardViewFood"
-        app:layout_constraintTop_toBottomOf="@id/cardViewFood" />
-
     <ImageView
+        android:id="@+id/plus"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/rounded"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_favorite_border"
-        app:layout_constraintBottom_toBottomOf="@id/tvAdd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvAdd" />
+        android:textColor="@color/textcolor1"
+        android:textSize="18sp"
+        android:layout_marginStart="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/plus"
+        tools:text="2" />
+    <ImageView
+        android:id="@+id/plus"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/rounded"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/edt_background"
         app:layout_constraintTop_toBottomOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
