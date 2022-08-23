@@ -11,13 +11,9 @@ import com.tunanh.clicktofood.util.setOnSingClickListener
 class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_detail
     override fun viewModelClass(): Class<DetailViewModel> = DetailViewModel::class.java
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        click()
-    }
 
     override fun initView() {
-
+        click()
     }
 
     private fun click() {

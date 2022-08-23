@@ -24,7 +24,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_more
     override fun viewModelClass(): Class<MoreViewModel> = MoreViewModel::class.java
 
-    override fun initView() {
+     override fun initView() {
         getInfo()
         accountList()
         generalList()

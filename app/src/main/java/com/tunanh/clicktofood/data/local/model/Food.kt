@@ -3,6 +3,7 @@ package com.tunanh.clicktofood.data.local.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
 @Entity
 data class Food(
     @PrimaryKey
@@ -10,5 +11,6 @@ data class Food(
     val title: String = "",
     val cost: Int = 0,
     val star: Double? = 0.0,
-    val img: String? = ""
+    val img: String? = "",
+    val amount:Int=1
 )

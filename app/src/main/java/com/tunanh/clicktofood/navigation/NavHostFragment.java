@@ -23,7 +23,6 @@ import androidx.navigation.Navigator;
 
 import com.tunanh.clicktofood.R;
 
-
 /**
  * NavHostFragment provides an area within your layout for self-contained navigation to occur.
  *

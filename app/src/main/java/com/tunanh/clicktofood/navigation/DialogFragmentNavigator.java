@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
@@ -20,10 +21,9 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigator;
 import androidx.navigation.NavigatorProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.tunanh.clicktofood.R;
-
-import timber.log.Timber;
 
 /**
  * Navigator that uses {@link DialogFragment#show(FragmentManager, String)}. Every
@@ -64,7 +64,7 @@ public final class DialogFragmentNavigator extends Navigator<androidx.navigation
             return false;
         }
         if (mFragmentManager.isStateSaved()) {
-            Timber.tag(TAG).i("Ignoring popBackStack() call: FragmentManager has already"
+            Log.i(TAG, "Ignoring popBackStack() call: FragmentManager has already"
                     + " saved its state");
             return false;
         }
@@ -88,7 +88,7 @@ public final class DialogFragmentNavigator extends Navigator<androidx.navigation
     public NavDestination navigate(@NonNull final androidx.navigation.fragment.DialogFragmentNavigator.Destination destination, @Nullable Bundle args,
                                    @Nullable NavOptions navOptions, @Nullable Extras navigatorExtras) {
         if (mFragmentManager.isStateSaved()) {
-            Timber.tag(TAG).i("Ignoring navigate() call: FragmentManager has already"
+            Log.i(TAG, "Ignoring navigate() call: FragmentManager has already"
                     + " saved its state");
             return null;
         }

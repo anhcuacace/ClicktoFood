@@ -17,6 +17,9 @@ interface FoodDao {
     @Query("DELETE FROM Food WHERE id = :id")
     fun deleteById(id: Long)
 
+    @Query("select * FROM Food WHERE id= :id")
+    fun selectFromId(id: Long):Food
+
     @Query("DELETE FROM Food")
     fun deleteAllFood()
 
