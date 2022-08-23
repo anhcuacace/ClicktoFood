@@ -33,7 +33,7 @@ fun count(): Int {
 
 fun convertData(array: ArrayList<Meal>): List<Food> {
     val data = ArrayList<Food>()
-    for (i in 0 until (array.size - 1)) {
+    for (i in array.indices ) {
         val food = Food(
             array[i].id!!,
             title = array[i].title.toString(),

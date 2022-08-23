@@ -51,13 +51,11 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
     override fun viewModelClass(): Class<UpdateProfileViewModel> =
         UpdateProfileViewModel::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        click()
-    }
+
     override fun initView() {
         getInfo()
         updateInfo()
+        click()
     }
     private fun click() {
         binding.back.setOnSingClickListener {

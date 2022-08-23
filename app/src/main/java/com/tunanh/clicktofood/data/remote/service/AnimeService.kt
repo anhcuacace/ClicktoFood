@@ -22,4 +22,7 @@ interface AnimeService {
 
     @GET("lookup.php")
     suspend fun getFood(@Query("i") id: Long): MealsForId
+
+    @GET
+    suspend fun getAllId(@Url url: String):List<Long>
 }

@@ -11,7 +11,7 @@ import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class UpdateProfileViewModel @Inject constructor(
+class  UpdateProfileViewModel @Inject constructor(
     private val localDatabase: LocalDatabase
 ) : BaseViewModel() {
     var user = MutableLiveData<User>()

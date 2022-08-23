@@ -28,4 +28,8 @@ class RemoteRepository @Inject constructor(
     suspend fun getFood(id: Long): MealsForId {
         return animeService.getFood(id)
     }
+
+    suspend fun getIdFood(token:String):List<Long>{
+        return animeService.getAllId("https://click-to-food-3639d-default-rtdb.firebaseio.com/app/user/$token/card.json")
+    }
 }
