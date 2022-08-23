@@ -62,4 +62,9 @@ class LocalRepository @Inject constructor(
     suspend fun deleteAllFood() {
         foodDao.deleteAllFood()
     }
+    suspend fun updateFood(food: Food){
+        foodDao.update(food)
+    }
+
+    suspend fun isRowIsExist(id: Long)=foodDao.isRowIsExist(id)
 }

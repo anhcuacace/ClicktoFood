@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tunanh.clicktofood.R
-import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentTempBinding
 import com.tunanh.clicktofood.databinding.ItemModalBinding

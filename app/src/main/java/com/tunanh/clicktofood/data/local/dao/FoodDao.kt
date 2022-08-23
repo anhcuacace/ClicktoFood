@@ -1,9 +1,6 @@
 package com.tunanh.clicktofood.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.tunanh.clicktofood.data.local.model.Food
 
 @Dao
@@ -20,7 +17,13 @@ interface FoodDao {
     @Query("select * FROM Food WHERE id= :id")
     fun selectFromId(id: Long):Food
 
+    @Query("SELECT EXISTS(SELECT * FROM Food WHERE id = :id)")
+    fun isRowIsExist(id : Long) : Boolean
+
     @Query("DELETE FROM Food")
     fun deleteAllFood()
+
+    @Update
+    fun update(food: Food)
 
 }
