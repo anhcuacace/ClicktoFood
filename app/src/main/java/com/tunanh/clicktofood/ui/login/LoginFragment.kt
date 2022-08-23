@@ -266,7 +266,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         }
 
         (activity as MainActivity).hiddenLoading()
-        findNavController().navigate(
+        getNavController().navigate(
             R.id.action_loginFragment_to_mainFragment
         )
 //

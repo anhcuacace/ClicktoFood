@@ -80,7 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.categoryes.adapter = adapter
         }
         adapter.onClickItem = { category, _ ->
-            findNavController().navigate(
+            getNavController().navigate(
                 R.id.action_mainFragment_to_tempFragment,
                 bundleOf(
                     Pair("category", category.title)
