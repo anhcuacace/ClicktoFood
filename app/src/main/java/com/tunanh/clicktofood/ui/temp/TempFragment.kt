@@ -19,15 +19,12 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_temp
 
     override fun viewModelClass(): Class<TempViewModel> = TempViewModel::class.java
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        click()
-    }
 
     override fun initView() {
 
         val categoryTitle = arguments?.getString("category").toString()
         categoryList(categoryTitle)
+        click()
 
     }
 

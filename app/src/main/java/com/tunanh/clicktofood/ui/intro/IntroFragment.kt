@@ -51,7 +51,7 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
 //            editor.putBoolean("intro",true)
 //            editor.apply()
 //            editor.commit()
-            findNavController().navigate(
+            getNavController().navigate(
                 R.id.action_introFragment_to_loginFragment
             )
         }

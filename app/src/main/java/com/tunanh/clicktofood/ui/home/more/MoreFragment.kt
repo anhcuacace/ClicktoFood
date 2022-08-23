@@ -50,7 +50,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
 
     private fun editProfile() {
         binding.editProfile.setOnSingClickListener {
-            findNavController().navigate(
+            getNavController().navigate(
                 R.id.action_mainFragment_to_updateProfileFragment2
             )
         }
@@ -87,7 +87,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
                 9 -> {
                     Firebase.auth.signOut()
                     viewModel.logOut()
-                    findNavController().navigate(
+                    getNavController().navigate(
                         R.id.action_mainFragment_to_loginFragment
                     )
                 }

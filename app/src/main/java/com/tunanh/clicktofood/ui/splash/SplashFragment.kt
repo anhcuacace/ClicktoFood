@@ -60,15 +60,15 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
                 if (it) {
                     viewModel.user.observe(this) { it1 ->
                         if (it1) {
-                            findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+                            getNavController().navigate(R.id.action_splashFragment_to_mainFragment)
 
                         } else {
-                            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                            getNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                         }
                     }
 
                 } else {
-                    findNavController().navigate(R.id.action_splashFragment_to_introFragment)
+                    getNavController().navigate(R.id.action_splashFragment_to_introFragment)
                 }
             }
         }, 2000)
