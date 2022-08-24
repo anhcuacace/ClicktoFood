@@ -11,7 +11,7 @@ class AccountAdapter : RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(itemMore: ItemMore) {
             binding.imageItem.setImageResource(itemMore.img)
-            binding.text.text = itemMore.text
+            binding.textItemAcc.text = itemMore.text
         }
     }
 

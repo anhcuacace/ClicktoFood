@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
+import com.tunanh.clicktofood.data.remote.model.Category
 import com.tunanh.clicktofood.data.remote.model.Slider
 import com.tunanh.clicktofood.databinding.ItemSlideBinding
+import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>() {
     inner class PagerViewHolder constructor(private val binding: ItemSlideBinding) :
@@ -19,6 +21,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>(
     }
 
     var sliderList: List<Slider>? = null
+    var onClickItem: ((Slider) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
         val binding =
             ItemSlideBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,6 +30,9 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>(
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         sliderList?.get(position)?.let { holder.bind(it) }
+        holder.itemView.setOnSingClickListener {
+            sliderList?.let { it1 -> onClickItem?.invoke(it1[position]) }
+        }
     }
 
     override fun getItemCount(): Int {

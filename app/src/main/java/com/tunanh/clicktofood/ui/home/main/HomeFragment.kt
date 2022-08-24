@@ -11,6 +11,7 @@ import com.tunanh.clicktofood.databinding.FragmentHomeBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.convertData
+import com.tunanh.clicktofood.util.openWebsite
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private var handler = Handler(Looper.getMainLooper())
@@ -47,6 +48,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             adapterViewPager2.sliderList = it
             (activity as MainActivity).hiddenLoading()
             binding.viewPager2.adapter = adapterViewPager2
+            adapterViewPager2.onClickItem={sliders->
+                sliders.img?.let { it1 -> openWebsite(it1,requireContext()) }
+            }
             binding.indicator.setViewPager(view?.findViewById(R.id.viewPager2))
             binding.viewPager2.registerOnPageChangeCallback(object :
                 ViewPager2.OnPageChangeCallback() {
