@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -37,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Trà sữa tình duyên"
+            tools:text="Trà sữa tình duyên"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -96,7 +97,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Share" />
+                tools:text="Share" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,7 +120,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Report" />
+                tools:text="Report" />
         </LinearLayout>
 
         <RelativeLayout
@@ -138,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Add to cart"
+                tools:text="Add to cart"
                 android:textColor="@color/edt_background"
                 android:textSize="16sp"
                 android:textStyle="bold" />

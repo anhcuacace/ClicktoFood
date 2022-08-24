@@ -81,4 +81,5 @@
     <string name="connected">connection has been restored</string>
     <string name="bestsellers">Bestsellers</string>
     <string name="_200_ratings">200+ ratings</string>
+    <string name="place_delivery_order">Place delivery order</string>
 </resources>

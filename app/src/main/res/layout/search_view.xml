@@ -6,17 +6,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.SearchView
+        <EditText
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/search_view"
-            app:iconifiedByDefault="false"
-            app:queryHint="What would you like to eat?" />
+            android:hint="What would you like to eat?"
+            />
     </RelativeLayout>
 </layout>

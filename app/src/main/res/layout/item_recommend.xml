@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:maxLength="3"
-            android:text="4.5"
+            tools:text="4.5"
             android:textColor="@color/textcolor1"
             android:textStyle="bold" />
     </LinearLayout>
