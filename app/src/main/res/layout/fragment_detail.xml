@@ -102,6 +102,13 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:drawableLeftCompat="@drawable/ic_star" />
+                    <TextView
+                        android:id="@+id/tv_star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/star"
+                        android:layout_marginStart="@dimen/_2sdp"/>
+
 
                     <TextView
                         android:id="@+id/tvRatings"

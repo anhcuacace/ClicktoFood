@@ -1,18 +1,14 @@
 package com.tunanh.clicktofood.ui.temp
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import com.bumptech.glide.Glide
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentTempBinding
-import com.tunanh.clicktofood.databinding.ItemModalBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.ui.custemview.BottomSheetDialogFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.convertData
 import com.tunanh.clicktofood.util.setOnSingClickListener
-import com.tunanh.clicktofood.util.shareLink
 
 class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
     private val adapter = TempAdapter()
@@ -46,22 +42,8 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
             binding.foodList.adapter = adapter
         }
         adapter.onClickItem = { it ->
-            val v = ItemModalBinding.inflate(layoutInflater)
-            val view = v.root
-            val food = it
-            val dialog = BottomSheetDialog(requireContext())
-            Glide.with(requireContext()).load(food.img).error(R.mipmap.ic_launcher).into(v.imgFood)
-            v.tvNameItem.text = food.title
-            v.tvPrice.text = "${food.cost} $"
-            v.lnShare.setOnSingClickListener { shareLink(food.img.toString(), requireContext()) }
-            v.addToCard.setOnSingClickListener {
-                viewModel.addToCard(food)
-                dialog.dismiss()
-            }
-
-            dialog.setCancelable(true)
-            dialog.setContentView(view)
-            dialog.show()
+            val bottomSheetDialogFragment=BottomSheetDialogFragment(food = it)
+            bottomSheetDialogFragment.show(childFragmentManager,"ActionButton")
         }
     }
 

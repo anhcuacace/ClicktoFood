@@ -17,7 +17,7 @@ import javax.inject.Inject
 abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppCompatActivity() {
 
     protected lateinit var binding: T
-    protected lateinit var viewModel: M
+    lateinit var viewModel: M
 
     protected var dialog: AlertDialog? = null
     protected var navHost: NavHostFragment? = null

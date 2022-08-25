@@ -4,6 +4,7 @@ import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.FragmentCartBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.ui.main.MainActivity
 
 class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_cart
@@ -19,6 +20,12 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
     }
 
     private fun initRecycleView() {
+        (activity as MainActivity).viewModel.isLoadCart.observe(this){
+            if (it){
+                viewModel.addToCart()
+                (activity as MainActivity).viewModel.isLoadCart.value=false
+            }
+        }
         viewModel.cart.observe(this) {
             adapter.itemFood = it as ArrayList<Food>
             binding.foodList.adapter = adapter

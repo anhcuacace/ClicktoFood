@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.ItemRecommendBinding
+import com.tunanh.clicktofood.util.setOnSingClickListener
 
 
 class RecommendAdapter :
@@ -22,7 +23,7 @@ class RecommendAdapter :
             binding.tvRateCount.text = food.star.toString()
         }
     }
-
+    var onClickItem: ((Food) -> Unit)? = null
     var foodList: List<Food>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v =
@@ -32,6 +33,9 @@ class RecommendAdapter :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         foodList?.let { holder.bind(it[position]) }
+        holder.itemView.setOnSingClickListener {
+            foodList?.let { it1 -> onClickItem?.invoke(it1[position]) }
+        }
     }
 
     override fun getItemCount(): Int = foodList?.size ?: 0

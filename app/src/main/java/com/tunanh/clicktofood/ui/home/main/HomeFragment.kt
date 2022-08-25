@@ -50,6 +50,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.recyclerView2.adapter = recyclerViewAdapter
             binding.recyclerViewRecommend.adapter = recommendAdapter
         }
+        recommendAdapter.onClickItem={
+            getNavController().navigate(
+                R.id.action_mainFragment_to_detailFragment,
+                bundleOf(Pair("food",it))
+            )
+        }
     }
 
     private fun sliders() {
