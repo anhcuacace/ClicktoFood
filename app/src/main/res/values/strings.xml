@@ -16,7 +16,6 @@
     <string name="category">Category</string>
     <string name="count_voucher">8 promos are available</string>
     <!--    text fragment home-->
-    <string name="shop_by_category">Shop By Category</string>
     <string name="viewall">View All</string>
     <string name="hotdealforhotmenu">Hot deal for hot menu</string>
     <string name="recommended_for_you">Recommended for you</string>
@@ -24,7 +23,7 @@
 
     <!--    login-->
     <string name="welcome">"Welcome"</string>
-    <string name="username">Email</string>
+    <string name="username" translatable="false">Email</string>
     <string name="password">Password</string>
     <string name="signin">Sign in</string>
     <string name="login">Log in</string>
@@ -32,9 +31,9 @@
     <string name="forgetpassword">Forget Password?</string>
     <string name="create_new_acc">Create a new account</string>
 
-    <string name="facebook_app_id">3122316111339918</string>
-    <string name="fb_login_protocol_scheme">fb3122316111339918</string>
-    <string name="facebook_client_token">b97cf45301b3f047eff4fe00f22b4ffc</string>
+    <string name="facebook_app_id" translatable="false">3122316111339918</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb3122316111339918</string>
+    <string name="facebook_client_token" translatable="false">b97cf45301b3f047eff4fe00f22b4ffc</string>
     <string name="or">OR</string>
 
     <!--    ko rõ-->
@@ -62,25 +61,24 @@
     <string name="rate_app">Rate App</string>
     <string name="quick_login">Quick login</string>
     <string name="save">Saved</string>
-    <string name="app_id">com.tunanh.clicktofood</string>
+    <string name="app_id" translatable="false">com.tunanh.clicktofood</string>
     <!--app-->
-    <string name="appID">993028136701941997</string>
-    <string name="general">General</string>
+    <string name="appID" translatable="false">993028136701941997</string>
+    <string name="general" translatable="false">General</string>
     <string name="update_profile">Update Profile</string>
 
 <!--    home-->
     <string name="see_all">See all</string>
-    <string name="go_food_hn">Go Food Hn</string>
-    <string name="listfood">ăn ngon cực</string>
-    <string name="rating">4,3 . 60+ ratings</string>
+    <string name="listfood">delicious food</string>
+    <string name="rating" translatable="false">4,3 . 60+ ratings</string>
     <string name="tvRecommend">More to love. Recommend of you.</string>
-    <string name="try_these_and_thank_us_latter">Try these and thank us latter</string>
+    <string name="try_these_and_thank_us_latter">Try these and thank us later</string>
     <string name="restaurant_name">restaurant name</string>
-    <string name="_8_promo_are_available">8 promo are available</string>
     <string name="network_fail">network connection error</string>
     <string name="connected">connection has been restored</string>
     <string name="bestsellers">Bestsellers</string>
     <string name="_200_ratings">200+ ratings</string>
     <string name="place_delivery_order">Place delivery order</string>
     <string name="add_to_cart">Add to cart</string>
+    <string name="ahihi" translatable="false">ahihi</string>
 </resources>

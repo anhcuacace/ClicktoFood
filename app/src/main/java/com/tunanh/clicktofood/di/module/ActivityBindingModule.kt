@@ -6,9 +6,9 @@ import com.tunanh.clicktofood.ui.home.MainFragment
 import com.tunanh.clicktofood.ui.home.category.CategoryFragment
 import com.tunanh.clicktofood.ui.home.main.HomeFragment
 import com.tunanh.clicktofood.ui.home.more.MoreFragment
-import com.tunanh.clicktofood.ui.home.more.cart.CartFragment
+import com.tunanh.clicktofood.ui.home.cart.CartFragment
 import com.tunanh.clicktofood.ui.home.more.profile.UpdateProfileFragment
-import com.tunanh.clicktofood.ui.home.wishlist.WishListFragment
+import com.tunanh.clicktofood.ui.home.more.wishlist.WishListFragment
 import com.tunanh.clicktofood.ui.intro.IntroFragment
 import com.tunanh.clicktofood.ui.login.LoginFragment
 import com.tunanh.clicktofood.ui.main.MainActivity

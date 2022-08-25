@@ -1,4 +1,4 @@
-package com.tunanh.clicktofood.ui.home.wishlist
+package com.tunanh.clicktofood.ui.home.more.wishlist
 
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentWishListBinding

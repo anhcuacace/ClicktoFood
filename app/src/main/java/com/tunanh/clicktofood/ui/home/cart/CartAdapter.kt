@@ -1,4 +1,4 @@
-package com.tunanh.clicktofood.ui.home.more.cart
+package com.tunanh.clicktofood.ui.home.cart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,14 +19,12 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
             binding.cost.text = "${food.cost} $"
             binding.count.text = food.amount.toString()
             binding.tvRateCount.text = food.star.toString()
-
         }
     }
 
     var itemFood: ArrayList<Food>? = null
 
-    //    var onClickItem: ((Food, Int) -> Unit)? = null
-    var onClickPlus: (( Int) -> Unit)? = null
+    var onClickPlus: ((Int) -> Unit)? = null
     var onClickMinus: ((Food, Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val binding =
@@ -40,17 +38,16 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
         holder.binding.plus.setOnSingClickListener {
 
             itemFood!![position] = itemFood!![position].also {
-                it.amount=it.amount+1
+                it.amount = it.amount + 1
             }
             onClickPlus?.invoke(position)
         }
         holder.binding.minus.setOnSingClickListener {
             itemFood!![position] = itemFood!![position].also {
-                it.amount=it.amount-1
+                it.amount = it.amount - 1
             }
             itemFood?.let { it1 -> onClickMinus?.invoke(it1[position], position) }
         }
-
     }
 
     override fun getItemCount(): Int {

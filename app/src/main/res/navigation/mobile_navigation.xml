@@ -74,8 +74,8 @@
             android:id="@+id/action_mainFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_cartFragment"
-            app:destination="@id/cartFragment" />
+            android:id="@+id/action_mainFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateProfileFragment2"
@@ -99,8 +99,10 @@
             app:destination="@id/searchFragment" />
     </fragment>
     <fragment
-        android:id="@+id/cartFragment"
-        android:name="com.tunanh.clicktofood.ui.home.more.cart.CartFragment"
-        android:label="CartFragment" />
+        android:id="@+id/wishListFragment"
+        android:name="com.tunanh.clicktofood.ui.home.more.wishlist.WishListFragment"
+        android:label="WishListFragment" >
+
+    </fragment>
 
 </navigation>

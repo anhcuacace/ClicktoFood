@@ -7,14 +7,14 @@ import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.home.category.CategoryFragment
 import com.tunanh.clicktofood.ui.home.main.HomeFragment
 import com.tunanh.clicktofood.ui.home.more.MoreFragment
-import com.tunanh.clicktofood.ui.home.wishlist.WishListFragment
+import com.tunanh.clicktofood.ui.home.cart.CartFragment
 
 
 class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() {
     companion object {
         const val POSITION_HOME = 0
         const val POSITION_CATEGORY = 1
-        const val POSITION_WISHLIST = 2
+        const val POSITION_CART = 2
         const val POSITION_MORE = 3
     }
 
@@ -28,7 +28,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
     override fun initView() {
         listFragment.add(POSITION_HOME, HomeFragment())
         listFragment.add(POSITION_CATEGORY, CategoryFragment())
-        listFragment.add(POSITION_WISHLIST, WishListFragment())
+        listFragment.add(POSITION_CART, CartFragment())
         listFragment.add(POSITION_MORE, MoreFragment.newInstance())
 
         val fragmentTransaction = childFragmentManager.beginTransaction()
@@ -54,8 +54,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
                     openTab(POSITION_CATEGORY)
                     return@setOnItemSelectedListener true
                 }
-                R.id.wishList -> {
-                    openTab(POSITION_WISHLIST)
+                R.id.cart -> {
+                    openTab(POSITION_CART)
                     return@setOnItemSelectedListener true
                 }
                 R.id.more -> {

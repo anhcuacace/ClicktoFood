@@ -10,9 +10,9 @@
         android:icon="@drawable/ic_category"
         android:title="@string/category" />
     <item
-        android:id="@+id/wishList"
-        android:icon="@drawable/ic_favorite"
-        android:title="@string/wishlist" />
+        android:id="@+id/cart"
+        android:icon="@drawable/ic_cart"
+        android:title="@string/myorders" />
     <item
         android:id="@+id/more"
         android:icon="@drawable/ic_more"

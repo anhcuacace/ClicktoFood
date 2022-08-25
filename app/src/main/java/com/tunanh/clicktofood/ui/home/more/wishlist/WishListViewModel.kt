@@ -1,6 +1,5 @@
-package com.tunanh.clicktofood.ui.home.wishlist
+package com.tunanh.clicktofood.ui.home.more.wishlist
 
-import androidx.lifecycle.ViewModel
 import com.tunanh.clicktofood.ui.base.BaseViewModel
 import javax.inject.Inject
 

@@ -7,6 +7,7 @@ import com.tunanh.clicktofood.databinding.FragmentDetailBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
+import com.tunanh.clicktofood.util.shareLink
 
 class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_detail
@@ -17,10 +18,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     }
 
     private fun click() {
-        binding.back.setOnSingClickListener {
-            (activity as MainActivity).onBackPressed()
+        binding.actionBar.setOnClickImageLeft {
+            getNavController().popBackStack()
         }
-        binding.imgSearch.setOnSingClickListener {
+        binding.actionBar.setOnClickImageRight {
+            shareLink()
+        }
+        binding.actionBar.setOnClickImageRight2 {
             getNavController().navigate(R.id.action_detailFragment_to_searchFragment)
         }
     }

@@ -15,8 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val remoteRepository: RemoteRepository,
-    private val animeService: AnimeService
+    private val remoteRepository: RemoteRepository
 ) :
     BaseViewModel() {
     var sliderList = MutableLiveData<List<Slider>>()

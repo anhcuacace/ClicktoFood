@@ -12,6 +12,7 @@ import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.convertData
 import com.tunanh.clicktofood.util.openWebsite
+import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private var handler = Handler(Looper.getMainLooper())
@@ -25,6 +26,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         sliders()
         categories()
         foodList()
+        onClick()
+    }
+
+    private fun onClick() {
+        binding.seeAll.setOnSingClickListener {
+            getNavController().navigate(
+                R.id.action_mainFragment_to_tempFragment
+            )
+        }
     }
 
     private fun foodList() {
@@ -36,6 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             val data = convertData(listMeals)
             recommendAdapter.foodList = data
             recyclerViewAdapter.foodList = data
+            
             binding.recyclerView2.adapter = recyclerViewAdapter
             binding.recyclerViewRecommend.adapter = recommendAdapter
         }
@@ -48,8 +59,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             adapterViewPager2.sliderList = it
             (activity as MainActivity).hiddenLoading()
             binding.viewPager2.adapter = adapterViewPager2
-            adapterViewPager2.onClickItem={sliders->
-                sliders.img?.let { it1 -> openWebsite(it1,requireContext()) }
+            adapterViewPager2.onClickItem = { sliders ->
+                sliders.img?.let { it1 -> openWebsite(it1, requireContext()) }
             }
             binding.indicator.setViewPager(view?.findViewById(R.id.viewPager2))
             binding.viewPager2.registerOnPageChangeCallback(object :

@@ -55,8 +55,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                     Timber.w(e, "Google sign in failed")
                 }
             }
-//            callbackManager.onActivityResult(Activity.RESULT_OK, result.resultCode, result.data)
-
 
         }
 

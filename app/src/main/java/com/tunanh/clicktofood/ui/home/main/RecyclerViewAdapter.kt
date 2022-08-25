@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
+import com.tunanh.clicktofood.data.remote.model.Category
 import com.tunanh.clicktofood.databinding.ItemRecyclerview2Binding
+import com.tunanh.clicktofood.util.setOnSingClickListener
 
 
 class RecyclerViewAdapter :
@@ -20,7 +22,7 @@ class RecyclerViewAdapter :
             binding.tvRating.text = food.star.toString()
         }
     }
-
+    var onClickItem: ((Food) -> Unit)? = null
     var foodList: List<Food>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v =
@@ -30,6 +32,9 @@ class RecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         foodList?.let { holder.bind(it[position]) }
+        holder.itemView.setOnSingClickListener {
+            foodList?.let { it1 -> onClickItem?.invoke(it1[position]) }
+        }
     }
 
     override fun getItemCount(): Int = foodList?.size ?: 0

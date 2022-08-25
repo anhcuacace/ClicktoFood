@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@id/imgPromo"
-                android:text="@string/_8_promo_are_available"
+                android:text="@string/count_voucher"
                 android:textColor="@color/textcolor1"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -1,26 +1,23 @@
 package com.tunanh.clicktofood.ui.home.more.profile
 
 import android.Manifest
-
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.tunanh.clicktofood.R
-
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentUpdateProfileBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
-import com.tunanh.clicktofood.ui.home.MainFragment
-import com.tunanh.clicktofood.ui.home.more.MoreFragment
+import com.tunanh.clicktofood.ui.home.main.HomeViewModel
+import com.tunanh.clicktofood.ui.home.more.MoreViewModel
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
@@ -58,8 +55,12 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         click()
     }
     private fun click() {
-        binding.back.setOnSingClickListener {
-            (activity as MainActivity).onBackPressed()
+        binding.actionBar.setOnClickImageLeft {
+
+            val myViewModel: MoreViewModel =
+                ViewModelProvider(this, viewModelFactory)[MoreViewModel::class.java]
+            myViewModel.getUser()
+            getNavController().popBackStack()
         }
 
     }
@@ -101,17 +102,6 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             phone = binding.phone.text.toString().trim()
         )
         viewModel.updateUser(mUser!!)
-//        findNavController().navigate(
-//            R.id.action_moreFragment2_to_updateProfileFragment2
-//        )
-
-//        val fragmentManager1=childFragmentManager
-//        val fragmentTransaction1: FragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction1.add(R.id.frame_layout, MoreFragment(), null)
-//        fragmentTransaction1.addToBackStack(null)
-//        //fragmentTransaction.replace(R.id.container, new FragmentA(), null);
-//        //fragmentTransaction.replace(R.id.container, new FragmentA(), null);
-//        fragmentTransaction1.commit()
     }
 
     private fun setUri(mUri: Uri) {
@@ -156,11 +146,4 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
 }

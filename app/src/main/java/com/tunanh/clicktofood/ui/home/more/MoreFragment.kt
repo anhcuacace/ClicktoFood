@@ -64,9 +64,9 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
                 Glide.with(it1).load(Uri.parse(user?.image)).error(R.drawable.ic_account_circle)
                     .into(binding.avt)
             }
-            binding.name.text = user?.name
+            binding.name.text = user?.name?:"Name"
             binding.email.text = user?.email
-            binding.phone.text = user?.phone
+            binding.phone.text = user?.phone?:"Phone"
         }
     }
 
@@ -80,7 +80,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
             when (it) {
                 0 ->{
                     getNavController().navigate(
-                        R.id.action_mainFragment_to_cartFragment
+                        R.id.action_mainFragment_to_wishListFragment
                     )
                 }
                 3 -> {
@@ -98,6 +98,14 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 
 

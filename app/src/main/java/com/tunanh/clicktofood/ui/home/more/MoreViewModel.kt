@@ -59,9 +59,10 @@ class MoreViewModel @Inject constructor(
         itemMoreList2.add(item)
     }
 
-    private fun getUser() {
+    fun getUser() {
         viewModelScope.launch {
-            user.postValue(localRepository.getUser()[0])
+            val data=localRepository.getUser()[0]
+            user.postValue(data)
         }
     }
 
