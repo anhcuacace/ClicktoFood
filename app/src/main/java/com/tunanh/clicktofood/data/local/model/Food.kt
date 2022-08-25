@@ -12,5 +12,5 @@ data class Food(
     val cost: Int = 0,
     val star: Double? = 0.0,
     val img: String? = "",
-    val amount:Int=1
+    var amount:Int=1
 )

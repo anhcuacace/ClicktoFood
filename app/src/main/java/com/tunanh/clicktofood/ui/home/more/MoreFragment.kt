@@ -78,6 +78,11 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
         }
         accountAdapter.onClickItem = {
             when (it) {
+                0 ->{
+                    getNavController().navigate(
+                        R.id.action_mainFragment_to_cartFragment
+                    )
+                }
                 3 -> {
                     openWebsite("https://messenger.com/t/100009599087926", requireContext())
                 }

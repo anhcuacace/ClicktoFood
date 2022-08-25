@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.AppPreferences
-import com.tunanh.clicktofood.data.local.LocalDatabase
 import com.tunanh.clicktofood.data.local.LocalRepository
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.ui.base.BaseViewModel
@@ -16,7 +15,6 @@ import javax.inject.Inject
 
 class MoreViewModel @Inject constructor(
     private val context: Context,
-    private val localDatabase: LocalDatabase,
     private val appPreferences: AppPreferences,
     private val localRepository: LocalRepository
 ) : BaseViewModel() {

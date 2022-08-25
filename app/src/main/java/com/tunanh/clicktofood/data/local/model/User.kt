@@ -10,5 +10,5 @@ data class User(
     val name: String = "",
     val age: Int = 0,
     val image: String = "",
-    val phone: String = ""
+    val phone: String = "Phone"
 )

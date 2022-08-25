@@ -20,7 +20,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
         binding.back.setOnSingClickListener {
             (activity as MainActivity).onBackPressed()
         }
-        binding.imgShare.setOnSingClickListener {
+        binding.imgSearch.setOnSingClickListener {
             getNavController().navigate(R.id.action_detailFragment_to_searchFragment)
         }
     }

@@ -82,4 +82,5 @@
     <string name="bestsellers">Bestsellers</string>
     <string name="_200_ratings">200+ ratings</string>
     <string name="place_delivery_order">Place delivery order</string>
+    <string name="add_to_cart">Add to cart</string>
 </resources>

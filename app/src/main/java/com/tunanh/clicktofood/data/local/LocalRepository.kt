@@ -48,7 +48,7 @@ class LocalRepository @Inject constructor(
         userDao.update(user)
     }
 
-    suspend fun deleteByEmail(email:String){
+    suspend fun deleteByEmail(email: String) {
         userDao.deleteByEmail(email)
     }
 
@@ -59,6 +59,7 @@ class LocalRepository @Inject constructor(
     }
 
     suspend fun getAllFood() = foodDao.getAllFood()
+
     suspend fun deleteById(id: Long) {
         foodDao.deleteById(id)
     }
@@ -66,9 +67,10 @@ class LocalRepository @Inject constructor(
     suspend fun deleteAllFood() {
         foodDao.deleteAllFood()
     }
-    suspend fun updateFood(food: Food){
+
+    suspend fun updateFood(food: Food) {
         foodDao.update(food)
     }
 
-    suspend fun isRowIsExist(id: Long)=foodDao.isRowIsExist(id)
+    suspend fun isRowIsExist(id: Long) = foodDao.isRowIsExist(id)
 }

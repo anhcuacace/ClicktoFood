@@ -7,21 +7,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.more.cart.CartFragment">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/food_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="16dp"
             tools:listitem="@layout/item_cart" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/background_white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
 
@@ -41,12 +47,12 @@
                 android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
                 android:textColor="@color/textcolor1"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
 
                 app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintStart_toEndOf="@+id/imageView"

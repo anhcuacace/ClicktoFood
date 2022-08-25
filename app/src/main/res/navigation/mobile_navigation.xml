@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateProfileFragment2"
@@ -95,5 +98,9 @@
             android:id="@+id/action_detailFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.tunanh.clicktofood.ui.home.more.cart.CartFragment"
+        android:label="CartFragment" />
 
 </navigation>

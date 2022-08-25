@@ -6,13 +6,15 @@ import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.data.local.AppPreferences
 import com.tunanh.clicktofood.data.local.LocalDatabase
+import com.tunanh.clicktofood.data.local.LocalRepository
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class  UpdateProfileViewModel @Inject constructor(
-    private val localDatabase: LocalDatabase
+    private val localDatabase: LocalDatabase,
+    private val localRepository: LocalRepository
 ) : BaseViewModel() {
     var user = MutableLiveData<User>()
 
@@ -28,7 +30,7 @@ class  UpdateProfileViewModel @Inject constructor(
 
     fun updateUser(user: User) {
         viewModelScope.launch {
-            localDatabase.userDao().update(user)
+            localRepository.updateUser(user)
         }
 
     }

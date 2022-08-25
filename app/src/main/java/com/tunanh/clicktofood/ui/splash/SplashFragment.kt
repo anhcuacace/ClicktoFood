@@ -5,7 +5,6 @@ import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentSplashBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
@@ -35,22 +34,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
                     .show()
                 (activity as MainActivity).showLoading()
             }
-            viewModel.viewModelScope.launch {
-                repeat(1000) {
-                    if (hasNetworkConnection(requireContext())) {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.connected),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        (activity as MainActivity).hiddenLoading()
-                        transition()
-                    }
-                    delay(100)
-                }
-                (activity as MainActivity).finish()
-            }
-
         }
     }
 

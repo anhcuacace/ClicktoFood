@@ -1,6 +1,7 @@
 package com.tunanh.clicktofood.ui.login
 
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.common.api.ApiException
 import com.tunanh.clicktofood.data.local.AppPreferences
 import com.tunanh.clicktofood.data.local.LocalRepository
 import com.tunanh.clicktofood.data.local.model.CountId
@@ -52,9 +53,14 @@ class LoginViewModel @Inject constructor(
 
     private fun getId(token: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val data = async { remoteRepository.getIdFood(token) }
 
-            addToCart(cart(data.await()))
+            try {
+                val data = async { remoteRepository.getIdFood(token) }
+                addToCart(cart(data.await()))
+            } catch (e: ApiException) {
+                e.printStackTrace()
+            }
+
         }
 
 
