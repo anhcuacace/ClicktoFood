@@ -3,33 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.search.SearchFragment">
-
-        <include
-            android:id="@+id/searchView1"
-            layout="@layout/search_view"
-            android:drawableLeft="@drawable/ic_back_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView1">
-
+<LinearLayout
+    android:id="@+id/tool_bar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:elevation="@dimen/_4sdp"
+    android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:src="@drawable/ic_back_black"
+        android:visibility="visible"
+        app:tint="@color/gray_600"
+        tools:ignore="ContentDescription" />
+    <com.tunanh.clicktofood.ui.custemview.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_24sdp"
+        app:search_view_hint="@string/what_would_you_like_to_eat"/>
+</LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_food"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </androidx.core.widget.NestedScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </layout>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -10,12 +9,13 @@
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:background="@drawable/search_view"
-            android:hint="What would you like to eat?"
-            />
+            android:background="@drawable/edt_background"
+            android:inputType="text"
+            android:maxLines="1"
+            android:hint="@string/what_would_you_like_to_eat"
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:importantForAutofill="no" />
     </RelativeLayout>
 </layout>

@@ -13,8 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:action_bar_src_left="@drawable/ic_back_black"
-            app:action_bar_src_right2="@drawable/ic_search"
-            app:action_bar_src_right="@drawable/ic_share"/>
+            app:action_bar_src_right="@drawable/ic_share"
+            app:action_bar_src_right2="@drawable/ic_search" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -98,17 +98,12 @@
                         android:layout_alignBottom="@id/star"
                         android:layout_marginStart="2dp"
                         android:gravity="center_vertical"
+                        android:maxLength="5"
                         android:textColor="@color/textcolor1"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        app:drawableLeftCompat="@drawable/ic_star" />
-                    <TextView
-                        android:id="@+id/tv_star"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/star"
-                        android:layout_marginStart="@dimen/_2sdp"/>
-
+                        app:drawableLeftCompat="@drawable/ic_star"
+                        tools:text="2.45" />
 
                     <TextView
                         android:id="@+id/tvRatings"
@@ -151,14 +146,12 @@
                     app:layout_constraintTop_toBottomOf="@id/promoLayout1" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/food_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/tvBestseller"
                     tools:listitem="@layout/item_temp" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

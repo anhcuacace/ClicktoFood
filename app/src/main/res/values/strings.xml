@@ -82,4 +82,5 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="ahihi" translatable="false">ahihi</string>
     <string name="addfood">food has been added</string>
+    <string name="what_would_you_like_to_eat">  What would you like to eat?</string>
 </resources>

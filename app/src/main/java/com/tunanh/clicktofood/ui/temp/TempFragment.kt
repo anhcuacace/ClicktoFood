@@ -32,8 +32,9 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
 
 
     private fun categoryList(categoryTitle: String) {
-        viewModel.callApi(categoryTitle)
         (activity as MainActivity).showLoading()
+        viewModel.callApi(categoryTitle)
+
         binding.actionBar.setTitle(categoryTitle)
 
         viewModel.foodList.observe(this) {
