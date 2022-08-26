@@ -12,7 +12,7 @@ import com.tunanh.clicktofood.util.setOnSingClickListener
 class TempAdapter : RecyclerView.Adapter<TempAdapter.MyViewHolder>() {
 
 
-    inner class MyViewHolder constructor(private val binding: ItemTempBinding) :
+    inner class MyViewHolder constructor( val binding: ItemTempBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(food: Food) {
             Glide.with(itemView.context).load(food.img).error(R.mipmap.ic_launcher)
@@ -21,7 +21,7 @@ class TempAdapter : RecyclerView.Adapter<TempAdapter.MyViewHolder>() {
             binding.cost.text = "${food.cost} $"
         }
     }
-
+    var onClickAdd:((Food) -> Unit)?=null
     var onClickItem: ((Food) -> Unit)? = null
     var foodList: List<Food>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -35,6 +35,9 @@ class TempAdapter : RecyclerView.Adapter<TempAdapter.MyViewHolder>() {
         holder.itemView.setOnSingClickListener {
             foodList?.get(position)?.let { it1 -> onClickItem?.invoke(it1) }
 
+        }
+        holder.binding.tvAdd.setOnSingClickListener {
+            foodList?.get(position)?.let { it1->onClickAdd?.invoke(it1) }
         }
     }
 

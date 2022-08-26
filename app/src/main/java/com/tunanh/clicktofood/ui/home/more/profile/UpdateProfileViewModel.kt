@@ -27,8 +27,8 @@ class  UpdateProfileViewModel @Inject constructor(
     fun updateUser(user: User) {
         viewModelScope.launch {
             localRepository.updateUser(user)
-        }
 
+        }
     }
 }
 

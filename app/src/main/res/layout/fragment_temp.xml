@@ -8,30 +8,38 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.temp.TempFragment">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.tunanh.clicktofood.ui.custemview.ActionBar
+            android:layout_marginTop="@dimen/_4sdp"
+            android:id="@+id/action_bar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            app:action_bar_src_left="@drawable/ic_back_black"
+            app:action_bar_src_right="@drawable/ic_cart"
+            />
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back_black" />
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?actionBarSize"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-            <TextView
-                android:id="@+id/list_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:textColor="@color/textcolor1"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="@string/category" />
-        </androidx.appcompat.widget.Toolbar>
+<!--            <ImageView-->
+<!--                android:id="@+id/back"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/ic_back_black" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/list_name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/_20sdp"-->
+<!--                android:textColor="@color/textcolor1"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                tools:text="@string/category" />-->
+<!--        </androidx.appcompat.widget.Toolbar>-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/food_list"

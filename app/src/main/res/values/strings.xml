@@ -81,4 +81,5 @@
     <string name="place_delivery_order">Place delivery order</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="ahihi" translatable="false">ahihi</string>
+    <string name="addfood">food has been added</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tunanh.clicktofood.R
@@ -40,7 +41,7 @@ private var binding:BottomSheetBinding?=null
         binding?.addToCard?.setOnSingClickListener {
             (activity as MainActivity).viewModel.addToCard(food)
             (activity as MainActivity).viewModel.isLoadCart.value=true
-
+            Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
             dismiss()
         }
     }

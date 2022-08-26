@@ -56,6 +56,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 bundleOf(Pair("food",it))
             )
         }
+        recyclerViewAdapter.onClickItem={
+            getNavController().navigate(
+                R.id.action_mainFragment_to_detailFragment,
+                bundleOf(Pair("food",it))
+            )
+        }
     }
 
     private fun sliders() {

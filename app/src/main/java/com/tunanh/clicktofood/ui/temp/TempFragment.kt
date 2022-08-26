@@ -1,6 +1,6 @@
 package com.tunanh.clicktofood.ui.temp
 
-import android.annotation.SuppressLint
+import android.widget.Toast
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentTempBinding
@@ -8,7 +8,6 @@ import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.custemview.BottomSheetDialogFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.convertData
-import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
     private val adapter = TempAdapter()
@@ -25,25 +24,31 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
     }
 
     private fun click() {
-        binding.back.setOnSingClickListener {
-            (activity as MainActivity).onBackPressed()
+        binding.actionBar.setOnClickImageLeft {
+            getNavController().popBackStack()
         }
 
     }
 
-    @SuppressLint("SetTextI18n")
+
     private fun categoryList(categoryTitle: String) {
         viewModel.callApi(categoryTitle)
-        binding.listName.text = categoryTitle
+        (activity as MainActivity).showLoading()
+        binding.actionBar.setTitle(categoryTitle)
 
         viewModel.foodList.observe(this) {
             val data = convertData(it.meals as ArrayList<Meal>)
             adapter.foodList = data
             binding.foodList.adapter = adapter
+            (activity as MainActivity).hiddenLoading()
         }
         adapter.onClickItem = { it ->
             val bottomSheetDialogFragment=BottomSheetDialogFragment(food = it)
             bottomSheetDialogFragment.show(childFragmentManager,"ActionButton")
+        }
+        adapter.onClickAdd={
+            (activity as MainActivity).viewModel.addToCard(it)
+            Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
         }
     }
 

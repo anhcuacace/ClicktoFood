@@ -16,7 +16,6 @@ import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentUpdateProfileBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
-import com.tunanh.clicktofood.ui.home.main.HomeViewModel
 import com.tunanh.clicktofood.ui.home.more.MoreViewModel
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
@@ -102,6 +101,8 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             phone = binding.phone.text.toString().trim()
         )
         viewModel.updateUser(mUser!!)
+        (activity as MainActivity).viewModel.isLoadProfile.value=true
+
     }
 
     private fun setUri(mUri: Uri) {

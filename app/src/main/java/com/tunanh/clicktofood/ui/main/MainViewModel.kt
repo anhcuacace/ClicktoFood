@@ -18,6 +18,7 @@ class MainViewModel @Inject constructor(
     private val localRepository: LocalRepository
 ) : BaseViewModel() {
     var isLoadCart=MutableLiveData<Boolean>()
+    var isLoadProfile=MutableLiveData<Boolean>()
     private var database: DatabaseReference = Firebase.database.reference
     fun addToCard(food: Food) {
         val myReference = database.child("app/user").child(appPreferences.getToken()).child("card")
