@@ -253,7 +253,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             viewModel.saveUser(
                 user.email ?: "",
                 user.displayName ?: "",
-                true,
                 img,
                 user.phoneNumber ?: "",
                 user.uid

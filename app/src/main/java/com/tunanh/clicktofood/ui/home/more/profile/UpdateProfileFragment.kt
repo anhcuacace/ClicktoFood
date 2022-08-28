@@ -8,6 +8,7 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -19,15 +20,29 @@ import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.home.more.MoreViewModel
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
+import com.tunanh.clicktofood.util.showDialogSetting
 
 
 class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateProfileViewModel>() {
-    companion object {
-        const val MY_REQUEST_CODE = 10
-    }
 
+    private var count=0
     private var mUri: Uri? = null
     private var mUser: User? = null
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                openGallery()
+            } else {
+                if (count>0){
+                    showDialogSetting(requireContext())
+                }else{
+                    Toast.makeText(requireContext(), requireContext().getString(R.string.request_read_internal), Toast.LENGTH_SHORT).show()
+                    count+=1
+                }
+            }
+        }
     private val mActivityResultLauncher =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
@@ -113,11 +128,20 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
 
 
         //không có phiên bản android nhỏ hơn 6
-        if (activity?.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            openGallery()
-        } else {
-            val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-            activity?.requestPermissions(permissions, MY_REQUEST_CODE)
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                openGallery()
+            }
+
+            else -> {
+                // You can directly ask for the permission.
+                // The registered ActivityResultCallback gets the result of this request.
+                requestPermissionLauncher.launch(
+                    Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
         }
     }
 
@@ -131,20 +155,8 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"))
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
 
-        if (requestCode == MY_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openGallery()
-            } else {
-                Toast.makeText(activity, "vui long cho phep truy cap", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+
+
 
 }

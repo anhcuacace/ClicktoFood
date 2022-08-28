@@ -3,20 +3,18 @@ package com.tunanh.clicktofood.ui.detail
 import android.widget.Toast
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
-import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentDetailBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.custemview.BottomSheetDialogFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
-import com.tunanh.clicktofood.ui.temp.TempAdapter
-import com.tunanh.clicktofood.util.convertData
+import com.tunanh.clicktofood.ui.search.SearchFoodAdapter
 import com.tunanh.clicktofood.util.shareLink
 
 class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_detail
     override fun viewModelClass(): Class<DetailViewModel> = DetailViewModel::class.java
     private var food: Food? = null
-    private val adapter = TempAdapter()
+    private val adapter = SearchFoodAdapter()
     override fun initView() {
         food = arguments?.get("food") as Food
         click()
@@ -25,18 +23,18 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     }
 
     private fun recyclerview() {
+        binding.foodList.adapter = adapter
         viewModel.foodList.observe(this){
-            val data = convertData(it.meals as ArrayList<Meal>)
-            adapter.foodList = data
-            binding.foodList.adapter = adapter
-            (activity as MainActivity).hiddenLoading()
+            adapter.addFoodList(it)
         }
         adapter.onClickItem = { it ->
-            val bottomSheetDialogFragment= BottomSheetDialogFragment(food = it)
+            val food=Food(it.id,it.title,it.cost,it.star, img = it.img)
+            val bottomSheetDialogFragment= BottomSheetDialogFragment(food = food)
             bottomSheetDialogFragment.show(childFragmentManager,"ActionButton")
         }
         adapter.onClickAdd={
-            (activity as MainActivity).viewModel.addToCard(it)
+            val food=Food(it.id,it.title,it.cost,it.star, img = it.img)
+            (activity as MainActivity).viewModel.addToCard(food)
             Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
         }
     }

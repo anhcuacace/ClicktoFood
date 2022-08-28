@@ -32,7 +32,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun onClick() {
         binding.seeAll.setOnSingClickListener {
             getNavController().navigate(
-                R.id.action_mainFragment_to_tempFragment
+                R.id.action_mainFragment_to_tempFragment,
+                bundleOf(Pair("category","Beef"))
+            )
+        }
+        binding.searchView.setOnSingClickListener {
+            getNavController().navigate(
+                R.id.action_mainFragment_to_searchFragment
             )
         }
     }

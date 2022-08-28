@@ -2,30 +2,25 @@ package com.tunanh.clicktofood.ui.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.common.api.ApiException
-import com.tunanh.clicktofood.data.remote.RemoteRepository
-import com.tunanh.clicktofood.data.remote.model.Meals
+import com.tunanh.clicktofood.data.local.LocalRepository
+import com.tunanh.clicktofood.data.local.model.FoodData
 import com.tunanh.clicktofood.ui.base.BaseViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
-    private val remoteRepository: RemoteRepository
+   private val localRepository: LocalRepository
 ) : BaseViewModel() {
-    var foodList = MutableLiveData<Meals>()
+    var foodList = MutableLiveData<List<FoodData>>()
 init {
-    callApi()
+    loadFood()
 }
 
-    private fun callApi() {
-        viewModelScope.launch (Dispatchers.IO){
-            try {
-                val data = remoteRepository.getAllPhoToList("Beef")
-                foodList.postValue(data)
-            } catch (e: ApiException) {
-                e.printStackTrace()
-            }
+    private fun loadFood() {
+        viewModelScope.launch {
+            foodList.value=localRepository.getAllFoodData()
         }
     }
+
+
 }

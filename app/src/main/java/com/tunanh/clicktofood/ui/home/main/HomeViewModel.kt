@@ -7,7 +7,6 @@ import com.tunanh.clicktofood.data.remote.RemoteRepository
 import com.tunanh.clicktofood.data.remote.model.Categories
 import com.tunanh.clicktofood.data.remote.model.Meals
 import com.tunanh.clicktofood.data.remote.model.Slider
-import com.tunanh.clicktofood.data.remote.service.AnimeService
 import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -33,9 +32,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val data = async { remoteRepository.getAllPhoToList("Dessert") }
-//                val data2 = async { remoteRepository.getAllPhoToList("Pasta") }
                 foodList.postValue(data.await())
-//                foodList.postValue(data2.await())
             } catch (e: ApiException) {
                 e.printStackTrace()
             }

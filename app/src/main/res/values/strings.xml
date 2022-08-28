@@ -62,12 +62,13 @@
     <string name="quick_login">Quick login</string>
     <string name="save">Saved</string>
     <string name="app_id" translatable="false">com.tunanh.clicktofood</string>
+    <string name="request_read_internal">you refused. press one more time to open settings</string>
     <!--app-->
     <string name="appID" translatable="false">993028136701941997</string>
     <string name="general" translatable="false">General</string>
     <string name="update_profile">Update Profile</string>
 
-<!--    home-->
+    <!--    home-->
     <string name="see_all">See all</string>
     <string name="listfood">delicious food</string>
     <string name="rating" translatable="false">4,3 . 60+ ratings</string>
@@ -83,4 +84,8 @@
     <string name="ahihi" translatable="false">ahihi</string>
     <string name="addfood">food has been added</string>
     <string name="what_would_you_like_to_eat">  What would you like to eat?</string>
+    <!--    search-->
+    <string name="history_search">Search history</string>
+    <string name="remove_all">Remove All</string>
+
 </resources>

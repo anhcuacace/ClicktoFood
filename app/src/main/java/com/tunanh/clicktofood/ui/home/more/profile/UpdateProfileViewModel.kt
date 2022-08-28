@@ -20,7 +20,7 @@ class  UpdateProfileViewModel @Inject constructor(
 
     private fun getUser() {
         viewModelScope.launch {
-            user.value = localRepository.getUser()[0]
+            user.value = localRepository.getUser()
         }
     }
 

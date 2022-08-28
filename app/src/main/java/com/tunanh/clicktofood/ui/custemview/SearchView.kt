@@ -5,10 +5,11 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.core.widget.addTextChangedListener
 import com.tunanh.clicktofood.R
-import com.tunanh.clicktofood.databinding.LayoutSearchViewBinding
 
 class SearchView(context: Context?, attrs: AttributeSet?) : RelativeLayout(context, attrs) {
 
@@ -16,36 +17,40 @@ class SearchView(context: Context?, attrs: AttributeSet?) : RelativeLayout(conte
     var onClickIconRight: (() -> (Unit))? = null
     var onClickIconLeft: (() -> (Unit))? = null
 
-
+    var edtSearch: EditText? = null
+    private var ivLeft: ImageView? = null
+    private var ivRight: ImageView? = null
 
     private var rightIcon = -1
-    private val binding:LayoutSearchViewBinding
+
     init {
-        binding=LayoutSearchViewBinding.inflate(LayoutInflater.from(context))
+        LayoutInflater.from(context).inflate(R.layout.layout_search_view, this, true)
+        edtSearch = findViewById(R.id.edtSearchViewLayoutSearch)
+        ivLeft = findViewById(R.id.ivSearchViewLayoutLeft)
+        ivRight = findViewById(R.id.ivSearchViewLayoutRight)
 
-
-        binding.edtSearchViewLayoutSearch.addTextChangedListener {
+        edtSearch?.addTextChangedListener {
             setImageRightResource()
         }
-        binding.edtSearchViewLayoutSearch.setOnEditorActionListener { _, actionId, _ ->
+        edtSearch?.setOnEditorActionListener { textView, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                onClickSearch?.invoke(binding.edtSearchViewLayoutSearch.text.toString().trim())
-                binding.edtSearchViewLayoutSearch.clearFocus()
+                onClickSearch?.invoke(edtSearch?.text.toString().trim())
+                edtSearch?.clearFocus()
                 setImageRightResource()
-                true
+
             }
             false
         }
-        binding.ivSearchViewLayoutLeft.setOnClickListener {
+        ivLeft?.setOnClickListener {
             onClickIconLeft?.invoke()
         }
-        binding.ivSearchViewLayoutRight.setOnClickListener {
-            val textSearch = binding.edtSearchViewLayoutSearch.text.toString().trim()
+        ivRight?.setOnClickListener {
+            val textSearch = edtSearch?.text.toString().trim()
             if (textSearch.isEmpty()) {
                 onClickIconRight?.invoke()
             } else {
                 onClickSearch?.invoke("")
-                binding.edtSearchViewLayoutSearch.setText("")
+                edtSearch?.setText("")
             }
         }
 
@@ -55,30 +60,30 @@ class SearchView(context: Context?, attrs: AttributeSet?) : RelativeLayout(conte
     }
 
     fun addTextChange(callback: ((String) -> Unit)) {
-        binding.edtSearchViewLayoutSearch.addTextChangedListener {
-            callback.invoke(binding.edtSearchViewLayoutSearch.text.toString().trim())
+        edtSearch?.addTextChangedListener {
+            callback.invoke(edtSearch?.text.toString().trim())
         }
     }
 
     fun setTextSearch(text: String) {
         try {
-            binding.edtSearchViewLayoutSearch.setText(text)
-            binding.edtSearchViewLayoutSearch.setSelection(text.length)
+            edtSearch?.setText(text)
+            edtSearch?.setSelection(text.length)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     fun getTextSearch(): String {
-        return binding.edtSearchViewLayoutSearch.text.toString().trim()
+        return edtSearch?.text.toString().trim()
     }
 
     fun requestFocusSearch() {
-        binding.edtSearchViewLayoutSearch.requestFocus()
+        edtSearch?.requestFocus()
     }
 
     override fun clearFocus() {
-        binding.edtSearchViewLayoutSearch.clearFocus()
+        edtSearch?.clearFocus()
         super.clearFocus()
     }
 
@@ -87,38 +92,38 @@ class SearchView(context: Context?, attrs: AttributeSet?) : RelativeLayout(conte
 
         rightIcon = typedArray.getResourceId(R.styleable.SearchView_search_view_right_icon, -1)
         if (rightIcon != -1) {
-            binding.ivSearchViewLayoutRight.visibility = View.VISIBLE
-            binding.ivSearchViewLayoutRight.setImageResource(rightIcon)
+            ivRight?.visibility = View.VISIBLE
+            ivRight?.setImageResource(rightIcon)
         } else {
-            binding.ivSearchViewLayoutRight.visibility = GONE
+            ivRight?.visibility = GONE
         }
 
         val leftIcon = typedArray.getResourceId(R.styleable.SearchView_search_view_left_icon, -1)
         if (leftIcon != -1) {
-            binding.ivSearchViewLayoutLeft.visibility = View.VISIBLE
-            binding.ivSearchViewLayoutLeft.setImageResource(leftIcon)
+            ivLeft?.visibility = View.VISIBLE
+            ivLeft?.setImageResource(leftIcon)
         } else {
-            binding.ivSearchViewLayoutLeft.visibility = GONE
+            ivLeft?.visibility = GONE
         }
 
         val hint = typedArray.getString(R.styleable.SearchView_search_view_hint) ?: ""
-        binding.edtSearchViewLayoutSearch.hint = hint
+        edtSearch?.hint = hint
 
         typedArray.recycle()
     }
 
     private fun setImageRightResource() {
-        if (binding.edtSearchViewLayoutSearch.text.toString().trim().isEmpty()) {
+        if (edtSearch?.text.toString().trim().isEmpty()) {
             if (rightIcon != -1) {
-                binding.ivSearchViewLayoutRight.setImageResource(rightIcon)
-                binding.ivSearchViewLayoutRight.visibility = View.VISIBLE
+                ivRight?.setImageResource(rightIcon)
+                ivRight?.visibility = View.VISIBLE
             } else {
-                binding.ivSearchViewLayoutRight.setImageResource(R.drawable.ic_cancel)
-                binding.ivSearchViewLayoutRight.visibility = View.GONE
+                ivRight?.setImageResource(R.drawable.ic_cancel)
+                ivRight?.visibility = View.GONE
             }
         } else {
-            binding.ivSearchViewLayoutRight.setImageResource(R.drawable.ic_cancel)
-            binding.ivSearchViewLayoutRight.visibility = View.VISIBLE
+            ivRight?.setImageResource(R.drawable.ic_cancel)
+            ivRight?.visibility = View.VISIBLE
         }
     }
 }

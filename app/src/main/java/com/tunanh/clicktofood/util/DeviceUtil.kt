@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.app.ShareCompat
 import com.tunanh.clicktofood.data.local.model.Food
+import com.tunanh.clicktofood.data.local.model.FoodData
 import com.tunanh.clicktofood.data.remote.model.Meal
 import java.util.concurrent.ThreadLocalRandom
 
@@ -33,7 +34,7 @@ fun count(): Int {
 
 fun convertData(array: ArrayList<Meal>): List<Food> {
     val data = ArrayList<Food>()
-    for (i in array.indices ) {
+    for (i in array.indices) {
         val food = Food(
             array[i].id!!,
             title = array[i].title.toString(),
@@ -42,6 +43,22 @@ fun convertData(array: ArrayList<Meal>): List<Food> {
             img = array[i].img
         )
         data.add(food)
+    }
+    return data
+}
+
+fun convertFoodToDataFood(list: List<Food>): List<FoodData> {
+    val data = ArrayList<FoodData>()
+    for (i in list.indices) {
+        val foodData = FoodData(
+            list[i].id,
+            title = list[i].title,
+            cost = list[i].cost,
+            img = list[i].img,
+            star = list[i].star,
+            like = false
+        )
+        data.add(foodData)
     }
     return data
 }

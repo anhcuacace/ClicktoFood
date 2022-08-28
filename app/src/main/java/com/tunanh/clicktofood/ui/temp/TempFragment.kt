@@ -8,6 +8,7 @@ import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.custemview.BottomSheetDialogFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.convertData
+import com.tunanh.clicktofood.util.convertFoodToDataFood
 
 class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
     private val adapter = TempAdapter()
@@ -27,6 +28,11 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
         binding.actionBar.setOnClickImageLeft {
             getNavController().popBackStack()
         }
+        binding.actionBar.setOnClickImageRight {
+            getNavController().navigate(
+                R.id.action_tempFragment_to_cartFragment
+            )
+        }
 
     }
 
@@ -40,6 +46,7 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
         viewModel.foodList.observe(this) {
             val data = convertData(it.meals as ArrayList<Meal>)
             adapter.foodList = data
+            viewModel.addFoodToDataBase(convertFoodToDataFood(data))
             binding.foodList.adapter = adapter
             (activity as MainActivity).hiddenLoading()
         }

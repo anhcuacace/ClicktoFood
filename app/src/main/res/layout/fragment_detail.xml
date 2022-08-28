@@ -59,6 +59,7 @@
                         android:layout_marginEnd="2dp"
                         android:textColor="@color/edt_background"
                         android:textSize="14sp"
+                        android:padding="@dimen/_4sdp"
                         android:textStyle="bold"
                         app:drawableLeftCompat="@drawable/ic_wine_bar"
                         tools:text="GoFood Partner" />
@@ -98,7 +99,7 @@
                         android:layout_alignBottom="@id/star"
                         android:layout_marginStart="2dp"
                         android:gravity="center_vertical"
-                        android:maxLength="5"
+                        android:maxLength="6"
                         android:textColor="@color/textcolor1"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -149,6 +150,7 @@
                     android:id="@+id/food_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/tvBestseller"
                     tools:listitem="@layout/item_temp" />
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,16 +61,14 @@ class MoreViewModel @Inject constructor(
 
     fun getUser() {
         viewModelScope.launch {
-            val data=localRepository.getUser()[0]
+            val data = localRepository.getUser()
             user.postValue(data)
         }
     }
 
     fun logOut() {
         viewModelScope.launch(Dispatchers.IO) {
-            val email = appPreferences.getEmail()
-            appPreferences.setUser(false)
-            localRepository.deleteByEmail(email)
+            localRepository.deleteUser()
             appPreferences.setEmail("")
             resetCount()
             appPreferences.setToken("")

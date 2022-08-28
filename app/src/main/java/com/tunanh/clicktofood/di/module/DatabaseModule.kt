@@ -46,7 +46,15 @@ class DatabaseModule {
     fun provideFoodDao(db: LocalDatabase) =
         db.foodDao()
 
+    @Singleton
+    @Provides
+    fun provideFoodDataDao(db: LocalDatabase) =
+        db.foodDataDao()
 
+    @Singleton
+    @Provides
+    fun provideHistorySearchDao(db: LocalDatabase)=
+        db.historySearchDao()
 
     @Singleton
     @Provides

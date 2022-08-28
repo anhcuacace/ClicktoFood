@@ -10,7 +10,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.BottomSheetBinding
-import com.tunanh.clicktofood.databinding.LayoutActionBarBinding
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 import com.tunanh.clicktofood.util.shareLink
@@ -18,6 +17,10 @@ import com.tunanh.clicktofood.util.shareLink
 class BottomSheetDialogFragment(var food: Food):BottomSheetDialogFragment(){
 
 private var binding:BottomSheetBinding?=null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.BottomSheetDialogStyle)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

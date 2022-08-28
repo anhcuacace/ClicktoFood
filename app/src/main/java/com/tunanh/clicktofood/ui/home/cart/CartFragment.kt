@@ -20,13 +20,13 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
     }
 
     private fun initRecycleView() {
-        (activity as MainActivity).viewModel.isLoadCart.observe(this){
-            if (it){
+        (activity as MainActivity).viewModel.isLoadCart.observe(this) {
+            if (it) {
                 viewModel.addToCart()
-                (activity as MainActivity).viewModel.isLoadCart.value=false
+                (activity as MainActivity).viewModel.isLoadCart.value = false
             }
         }
-        viewModel.cart.observe(this) {
+        viewModel.cart.observe(viewLifecycleOwner) {
             adapter.itemFood = it as ArrayList<Food>
             binding.foodList.adapter = adapter
             bill(adapter.itemFood as List<Food>)
@@ -48,7 +48,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
         }
     }
 
-    private fun bill(listFood: List<Food>){
+    private fun bill(listFood: List<Food>) {
         var sum = 0.0
         for (i in listFood.indices) {
             sum += listFood[i].amount * listFood[i].cost

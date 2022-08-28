@@ -1,7 +1,6 @@
 package com.tunanh.clicktofood.ui.home.more
 
 import android.net.Uri
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -25,7 +24,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_more
     override fun viewModelClass(): Class<MoreViewModel> = MoreViewModel::class.java
 
-     override fun initView() {
+    override fun initView() {
         getInfo()
         accountList()
         generalList()
@@ -59,20 +58,20 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
 
 
     private fun getInfo() {
-        viewModel.user.observe(this) {
+        viewModel.user.observe(viewLifecycleOwner) {
             user = it
             context?.let { it1 ->
                 Glide.with(it1).load(Uri.parse(user?.image)).error(R.drawable.ic_account_circle)
                     .into(binding.avt)
             }
-            binding.name.text = user?.name?:"Name"
+            binding.name.text = user?.name ?: "Name"
             binding.email.text = user?.email
-            binding.phone.text = user?.phone?:"Phone"
+            binding.phone.text = user?.phone ?: "Phone"
         }
-        (activity as MainActivity).viewModel.isLoadProfile.observe(this){
-            if (it){
+        (activity as MainActivity).viewModel.isLoadProfile.observe(this) {
+            if (it) {
                 viewModel.getUser()
-                (activity as MainActivity).viewModel.isLoadProfile.value=false
+                (activity as MainActivity).viewModel.isLoadProfile.value = false
             }
         }
     }
@@ -85,7 +84,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
         }
         accountAdapter.onClickItem = {
             when (it) {
-                0 ->{
+                0 -> {
                     getNavController().navigate(
                         R.id.action_mainFragment_to_wishListFragment
                     )
@@ -105,14 +104,6 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 
 

@@ -2,7 +2,8 @@
 <layout>
 
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             tools:text="Trà sữa tình duyên"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolor1"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/cardViewId" />
@@ -53,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="20.000.000"
-            android:textColor="@color/black"
+
+            android:textColor="@color/textcolor1"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvNameItem" />

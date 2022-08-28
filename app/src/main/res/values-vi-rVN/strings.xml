@@ -59,5 +59,8 @@
     <string name="_200_ratings">200+ đánh giá</string>
     <string name="addfood">thức ăn đã được thêm vào</string>
     <string name="what_would_you_like_to_eat">  Bạn muốn ăn gì?</string>
+    <string name="history_search">Lịch sử tìm kiếm</string>
+    <string name="remove_all">Xóa hết</string>
+    <string name="request_read_internal">"bạn đã từ chối. nhấn thêm lần nữa để mở cài đặt "</string>
 
 </resources>
