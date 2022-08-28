@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -17,7 +16,6 @@ import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentUpdateProfileBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
-import com.tunanh.clicktofood.ui.home.more.MoreViewModel
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 import com.tunanh.clicktofood.util.showDialogSetting
@@ -70,10 +68,6 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
     }
     private fun click() {
         binding.actionBar.setOnClickImageLeft {
-
-            val myViewModel: MoreViewModel =
-                ViewModelProvider(this, viewModelFactory)[MoreViewModel::class.java]
-            myViewModel.getUser()
             getNavController().popBackStack()
         }
 
@@ -117,7 +111,7 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         )
         viewModel.updateUser(mUser!!)
         (activity as MainActivity).viewModel.isLoadProfile.value=true
-
+        getNavController().popBackStack()
     }
 
     private fun setUri(mUri: Uri) {
@@ -128,17 +122,14 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
 
 
         //không có phiên bản android nhỏ hơn 6
-        when {
+        when (PackageManager.PERMISSION_GRANTED) {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED -> {
+            ) -> {
                 openGallery()
             }
-
             else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
                 requestPermissionLauncher.launch(
                     Manifest.permission.READ_EXTERNAL_STORAGE)
             }
