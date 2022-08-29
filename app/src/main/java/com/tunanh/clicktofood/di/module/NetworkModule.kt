@@ -1,8 +1,6 @@
 package com.tunanh.clicktofood.di.module
 
-import com.tunanh.clicktofood.data.remote.NetworkInterceptor
-import com.tunanh.clicktofood.data.remote.service.AnimeService
-import com.tunanh.clicktofood.data.remote.service.MangaService
+import com.tunanh.clicktofood.data.remote.service.Service
 import com.tunanh.clicktofood.util.AppConfig
 import dagger.Module
 import dagger.Provides
@@ -31,13 +29,10 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAnimeService(retrofit: Retrofit): AnimeService =
-        retrofit.create(AnimeService::class.java)
+    fun provideService(retrofit: Retrofit): Service =
+        retrofit.create(Service::class.java)
 
-    @Singleton
-    @Provides
-    fun provideMangaService(retrofit: Retrofit): MangaService =
-        retrofit.create(MangaService::class.java)
+
 
     @Provides
     @Singleton

@@ -16,7 +16,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     companion object {
         const val INTRO = "intro"
-        const val USER = "user"
         const val EMAIL = "email"
         const val TOKEN = "token"
     }

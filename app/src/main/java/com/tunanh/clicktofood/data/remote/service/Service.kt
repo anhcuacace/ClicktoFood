@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
 
-interface AnimeService {
+interface Service {
 
     @GET
     suspend fun getAllPhoto(@Url url: String): List<Slider>
