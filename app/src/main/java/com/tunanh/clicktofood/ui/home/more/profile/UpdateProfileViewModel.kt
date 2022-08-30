@@ -2,7 +2,6 @@ package com.tunanh.clicktofood.ui.home.more.profile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.tunanh.clicktofood.data.local.LocalDatabase
 import com.tunanh.clicktofood.data.local.LocalRepository
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.ui.base.BaseViewModel

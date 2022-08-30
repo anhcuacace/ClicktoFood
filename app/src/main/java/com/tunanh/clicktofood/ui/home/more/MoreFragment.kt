@@ -68,7 +68,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
             binding.email.text = user?.email
             binding.phone.text = user?.phone ?: "Phone"
         }
-        (activity as MainActivity).viewModel.isLoadProfile.observe(this) {
+        (activity as MainActivity).viewModel.isLoadProfile.observe(viewLifecycleOwner) {
             if (it) {
                 viewModel.getUser()
                 (activity as MainActivity).viewModel.isLoadProfile.value = false

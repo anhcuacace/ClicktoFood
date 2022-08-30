@@ -20,9 +20,9 @@ class MainViewModel @Inject constructor(
 ) : BaseViewModel() {
     var isLoadCart = MutableLiveData<Boolean>()
     var isLoadProfile = MutableLiveData<Boolean>()
-    private var database: DatabaseReference = Firebase.database.reference
+    private var database1: DatabaseReference = Firebase.database.reference
     fun addToCard(food: Food) {
-        val myReference = database.child("app/user")
+        val myReference = database1.child("app/user")
             .child(appPreferences.getToken()).child("card")
         viewModelScope.launch {
             val temp = localRepository.isRowIsExist(food.id)
@@ -35,6 +35,7 @@ class MainViewModel @Inject constructor(
                 localRepository.insertFood(food)
             }
             myReference.child(count().toString()).setValue(food.id)
+            isLoadCart.value=true
         }
     }
 }

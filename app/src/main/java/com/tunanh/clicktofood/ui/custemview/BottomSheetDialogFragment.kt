@@ -43,7 +43,6 @@ private var binding:BottomSheetBinding?=null
         binding?.lnShare?.setOnSingClickListener { shareLink(food.img.toString(), requireContext()) }
         binding?.addToCard?.setOnSingClickListener {
             (activity as MainActivity).viewModel.addToCard(food)
-            (activity as MainActivity).viewModel.isLoadCart.value=true
             Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
             dismiss()
         }

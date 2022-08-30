@@ -20,7 +20,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
     }
 
     private fun initRecycleView() {
-        (activity as MainActivity).viewModel.isLoadCart.observe(this) {
+        (activity as MainActivity).viewModel.isLoadCart.observe(viewLifecycleOwner) {
             if (it) {
                 viewModel.addToCart()
                 (activity as MainActivity).viewModel.isLoadCart.value = false
@@ -63,4 +63,5 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
         val listFood = adapter.itemFood as List<Food>
         viewModel.updateCart(listFood)
     }
+
 }
