@@ -7,6 +7,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.tunanh.clicktofood.data.local.AppPreferences
 import com.tunanh.clicktofood.data.local.LocalRepository
+import com.tunanh.clicktofood.data.local.model.Favourite
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.ui.base.BaseViewModel
 import com.tunanh.clicktofood.util.count

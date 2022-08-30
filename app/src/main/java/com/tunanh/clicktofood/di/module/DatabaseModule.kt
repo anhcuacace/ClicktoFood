@@ -28,13 +28,10 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideFavouriteQuoteDao(db: LocalDatabase) =
-        db.favouriteQuoteDao()
+    fun provideFavouriteDao(db: LocalDatabase) =
+        db.favouriteDao()
 
-    @Singleton
-    @Provides
-    fun provideItemDao(db: LocalDatabase) =
-        db.itemDao()
+
 
     @Singleton
     @Provides

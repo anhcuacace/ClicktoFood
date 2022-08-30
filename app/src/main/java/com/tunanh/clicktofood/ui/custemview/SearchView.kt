@@ -13,9 +13,9 @@ import com.tunanh.clicktofood.R
 
 class SearchView(context: Context?, attrs: AttributeSet?) : RelativeLayout(context, attrs) {
 
-    var onClickSearch: ((String) -> (Unit))? = null
-    var onClickIconRight: (() -> (Unit))? = null
-    var onClickIconLeft: (() -> (Unit))? = null
+    private var onClickSearch: ((String) -> (Unit))? = null
+    private var onClickIconRight: (() -> (Unit))? = null
+    private var onClickIconLeft: (() -> (Unit))? = null
 
     var edtSearch: EditText? = null
     private var ivLeft: ImageView? = null
@@ -32,7 +32,7 @@ class SearchView(context: Context?, attrs: AttributeSet?) : RelativeLayout(conte
         edtSearch?.addTextChangedListener {
             setImageRightResource()
         }
-        edtSearch?.setOnEditorActionListener { textView, actionId, keyEvent ->
+        edtSearch?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 onClickSearch?.invoke(edtSearch?.text.toString().trim())
                 edtSearch?.clearFocus()

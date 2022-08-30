@@ -32,7 +32,7 @@ class MoreViewModel @Inject constructor(
 
     private fun addAccItem() {
         viewModelScope.launch {
-            addToList(R.drawable.ic_cart, context.getString(R.string.myorders))
+            addToList(R.drawable.ic_favorite, context.getString(R.string.wishlist))
             addToList(R.drawable.percent, context.getString(R.string.promos))
             addToList(R.drawable.payments, context.getString(R.string.payment_methosds))
             addToList(R.drawable.ic_help, context.getString(R.string.help))

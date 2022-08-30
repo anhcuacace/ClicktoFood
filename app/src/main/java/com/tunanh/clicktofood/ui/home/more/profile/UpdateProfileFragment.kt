@@ -100,7 +100,7 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         user.updateProfile(profileUpdates)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(activity, "Update profile success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Update profile success", Toast.LENGTH_SHORT).show()
                 }
             }
         mUser = User(
@@ -111,7 +111,7 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         )
         viewModel.updateUser(mUser!!)
         (activity as MainActivity).viewModel.isLoadProfile.value=true
-        getNavController().popBackStack()
+
     }
 
     private fun setUri(mUri: Uri) {

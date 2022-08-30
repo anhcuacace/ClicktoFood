@@ -11,17 +11,10 @@ class AppPreferences @Inject constructor(private val preferences: SharedPreferen
         preferences.edit().putBoolean(MainActivity.INTRO, intro).apply()
     }
 
-    fun setUser(user: Boolean) {
-        preferences.edit().putBoolean(MainActivity.USER, user).apply()
-    }
-
     fun getIntro(): Boolean {
         return preferences.getBoolean(MainActivity.INTRO, false)
     }
 
-    fun getUser(): Boolean {
-        return preferences.getBoolean(MainActivity.USER, false)
-    }
 
     fun setEmail(email: String) {
         preferences.edit().putString(MainActivity.EMAIL, email).apply()
