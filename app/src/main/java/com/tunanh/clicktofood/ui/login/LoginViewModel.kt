@@ -21,11 +21,6 @@ class LoginViewModel @Inject constructor(
     private val localRepository: LocalRepository,
     private val remoteRepository: RemoteRepository
 ) : BaseViewModel() {
-//    private val listId=MutableLiveData<List<Long>>()
-
-    init {
-
-    }
 
     fun saveUser(
         email: String,
@@ -97,5 +92,4 @@ class LoginViewModel @Inject constructor(
         }
         return array
     }
-
 }

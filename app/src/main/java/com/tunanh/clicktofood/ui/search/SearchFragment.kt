@@ -83,5 +83,4 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             viewModel.addHistory(binding.searchView.getTextSearch())
         }
     }
-
 }

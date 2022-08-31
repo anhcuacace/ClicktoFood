@@ -67,8 +67,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
                 }
             }
         }
-
-
     }
 
 
@@ -89,7 +87,5 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
         currentPosition = position
         fragmentTransaction.commitAllowingStateLoss()
     }
-
-
 
 }

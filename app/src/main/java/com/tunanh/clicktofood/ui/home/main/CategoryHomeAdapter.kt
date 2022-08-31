@@ -33,7 +33,6 @@ class CategoryHomeAdapter :
         categoryList?.let { holder.bind(it[position]) }
         holder.itemView.setOnSingClickListener {
             categoryList?.let { it1 -> onClickItem?.invoke(it1[position], position) }
-
         }
     }
 

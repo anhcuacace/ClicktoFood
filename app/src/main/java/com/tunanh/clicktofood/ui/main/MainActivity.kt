@@ -13,12 +13,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun initView() {
 
     }
-
     companion object {
         const val INTRO = "intro"
         const val EMAIL = "email"
         const val TOKEN = "token"
     }
-
-
 }
