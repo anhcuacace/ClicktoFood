@@ -1,32 +1,24 @@
 package com.tunanh.clicktofood.data.local
 
-import com.tunanh.clicktofood.data.local.dao.*
-import com.tunanh.clicktofood.data.local.model.*
+import com.tunanh.clicktofood.data.local.dao.FoodDao
+import com.tunanh.clicktofood.data.local.dao.HistorySearchDao
+import com.tunanh.clicktofood.data.local.dao.UserDao
+import com.tunanh.clicktofood.data.local.model.Food
+import com.tunanh.clicktofood.data.local.model.KeyWorkSearch
+import com.tunanh.clicktofood.data.local.model.User
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class LocalRepository @Inject constructor(
-    private val favouriteDao: FavouriteDao,
     private val userDao: UserDao,
     private val foodDao: FoodDao,
-    private val foodDataDao: FoodDataDao,
     private val historySearchDao: HistorySearchDao
 ) {
 
-    suspend fun addFavourite(favouriteQuote: Favourite) {
-        favouriteDao.addQuote(favouriteQuote)
-    }
-
-    suspend fun deleteFavourite(favouriteQuote: Favourite) {
-        favouriteDao.removeFromFavourite(favouriteQuote)
-    }
-
-    suspend fun getAllFavourite(): List<Favourite> {
-        return favouriteDao.getAllQuotes()
-    }
 
 
+//user
     suspend fun insertUser(user: User) = userDao.addUser(user)
 
     suspend fun isEmailIsExist(email: String) = userDao.isRowIsExist(email)
@@ -38,7 +30,7 @@ class LocalRepository @Inject constructor(
     suspend fun deleteUser() {
         userDao.deleteUser()
     }
-
+//food
     suspend fun getUser() = userDao.getUser()
 
     suspend fun insertFood(food: Food) {
@@ -62,13 +54,19 @@ class LocalRepository @Inject constructor(
 
     suspend fun isRowIsExist(id: Long) = foodDao.isRowIsExist(id)
 
-    suspend fun addFood(listFood: List<FoodData>) {
-        foodDataDao.inserts(listFood)
+    suspend fun insertOrUpdate(food: Food ) {
+        if (foodDao.isRowIsExist(food.id))
+            foodDao.update(food)
+        else
+            foodDao.addFood(food)
     }
+    suspend fun addFood(listFood: List<Food>) {
+        foodDao.inserts(listFood)
+    }
+    suspend fun getCard(): List<Food> =foodDao.loadCard()
 
-    suspend fun getAllFoodData() = foodDataDao.getFoodList()
 
-    suspend fun findFoodByName(name: String): List<FoodData> = foodDataDao.findFoodByName(name)
+    suspend fun findFoodByName(name: String): List<Food> = foodDao.findFoodByName(name)
 
     suspend fun insertHistory(keyword: KeyWorkSearch) {
         historySearchDao.insertHistory(keyword)
@@ -86,5 +84,7 @@ class LocalRepository @Inject constructor(
 
     suspend fun getHistoryByName(text: String): KeyWorkSearch? =
         historySearchDao.getHistoryByName(text)
+
+
 
 }

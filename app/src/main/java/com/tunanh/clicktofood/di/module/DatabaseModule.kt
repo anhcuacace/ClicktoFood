@@ -28,13 +28,6 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideFavouriteDao(db: LocalDatabase) =
-        db.favouriteDao()
-
-
-
-    @Singleton
-    @Provides
     fun provideUserDao(db: LocalDatabase) =
         db.userDao()
 
@@ -43,10 +36,7 @@ class DatabaseModule {
     fun provideFoodDao(db: LocalDatabase) =
         db.foodDao()
 
-    @Singleton
-    @Provides
-    fun provideFoodDataDao(db: LocalDatabase) =
-        db.foodDataDao()
+
 
     @Singleton
     @Provides

@@ -8,6 +8,9 @@ interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addFood(food: Food)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun inserts(foodList: List<Food>?)
+
     @Query("select * from Food")
     suspend fun getAllFood(): List<Food>
 
@@ -25,5 +28,11 @@ interface FoodDao {
 
     @Update
     suspend fun update(food: Food)
+
+    @Query("SELECT * FROM Food WHERE amount > 0")
+    suspend fun loadCard (): List<Food>
+
+    @Query("SELECT * FROM Food WHERE title LIKE '%' || :name  || '%' ORDER BY id DESC")
+    suspend fun findFoodByName(name: String): List<Food>
 
 }

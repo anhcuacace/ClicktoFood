@@ -6,22 +6,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
-import com.tunanh.clicktofood.data.local.model.FoodData
+import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.ItemTempBinding
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.FoodViewHolder>() {
-    var onClickItem: ((FoodData)->Unit) ?= null
-    private var foodList: List<FoodData>? = null
-    var onClickAdd:((FoodData) -> Unit)?=null
+    var onClickItem: ((Food)->Unit) ?= null
+    private var foodList: List<Food>? = null
+    var onClickAdd:((Food) -> Unit)?=null
 
     class FoodViewHolder constructor(val binding: ItemTempBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(foodData: FoodData) {
-            Glide.with(itemView.context).load(foodData.img).error(R.mipmap.ic_launcher)
+        fun bind(food: Food) {
+            Glide.with(itemView.context).load(food.img).error(R.mipmap.ic_launcher)
                 .into(binding.imgFood)
-            binding.tvTitleItem.text = foodData.title
-            binding.cost.text = "${foodData.cost} $"
+            binding.tvTitleItem.text = food.title
+            binding.cost.text = "${food.cost} $"
         }
 
     }
@@ -46,7 +46,7 @@ class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.FoodViewHolder>
     override fun getItemCount(): Int = if (foodList != null) foodList?.size!! else 0
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addFoodList(foodList: List<FoodData>) {
+    fun addFoodList(foodList: List<Food>) {
         this.foodList = foodList
         notifyDataSetChanged()
     }

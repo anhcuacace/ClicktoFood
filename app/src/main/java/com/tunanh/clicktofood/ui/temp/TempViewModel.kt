@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.common.api.ApiException
 import com.tunanh.clicktofood.data.local.LocalRepository
-import com.tunanh.clicktofood.data.local.model.FoodData
+import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.remote.RemoteRepository
 import com.tunanh.clicktofood.data.remote.model.Meals
 import com.tunanh.clicktofood.ui.base.BaseViewModel
@@ -28,7 +28,7 @@ class TempViewModel @Inject constructor(
             }
         }
     }
-    fun addFoodToDataBase(listFood:List<FoodData>){
+    fun addFoodToDataBase(listFood:List<Food>){
         viewModelScope.launch {
             localRepository.addFood(listFood)
         }

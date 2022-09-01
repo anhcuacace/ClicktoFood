@@ -18,7 +18,7 @@ class CartViewModel @Inject constructor(private val localRepository: LocalReposi
 
     fun addToCart() {
         viewModelScope.launch {
-            val data = localRepository.getAllFood()
+            val data = localRepository.getCard()
             cart.postValue(data)
         }
     }

@@ -3,7 +3,7 @@ package com.tunanh.clicktofood.ui.search
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tunanh.clicktofood.data.local.LocalRepository
-import com.tunanh.clicktofood.data.local.model.FoodData
+import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.local.model.KeyWorkSearch
 import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class SearchViewModel  @Inject constructor(private val localRepository: LocalRepository) : BaseViewModel() {
 
-    var foodList= MutableLiveData<List<FoodData>>()
+    var foodList= MutableLiveData<List<Food>>()
     var historyList=MutableLiveData<List<KeyWorkSearch>>()
 
     init {

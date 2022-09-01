@@ -9,6 +9,8 @@ import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.data.remote.RemoteRepository
 import com.tunanh.clicktofood.ui.base.BaseViewModel
+import com.tunanh.clicktofood.ui.main.MainActivity
+import com.tunanh.clicktofood.ui.main.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -19,7 +21,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val appPreferences: AppPreferences,
     private val localRepository: LocalRepository,
-    private val remoteRepository: RemoteRepository
+    private val remoteRepository: RemoteRepository,
+    private val mainViewModel: MainViewModel
 ) : BaseViewModel() {
 
     fun saveUser(
@@ -60,7 +63,7 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun addToCart(cart: List<CountId>) {
-        viewModelScope.launch(Dispatchers.IO) {
+        val job=viewModelScope.launch(Dispatchers.IO) {
             for (i in cart.indices) {
                 val data = withContext(Dispatchers.IO) {
                     remoteRepository.getFood(cart[i].id)
@@ -76,6 +79,10 @@ class LoginViewModel @Inject constructor(
                 )
                 localRepository.insertFood(food)
             }
+        }
+        viewModelScope.launch(Dispatchers.Main) {
+            job.join()
+            mainViewModel.isLoadCart.value=true
         }
     }
 

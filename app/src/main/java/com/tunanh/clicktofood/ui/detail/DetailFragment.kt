@@ -28,12 +28,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
             adapter.addFoodList(it)
         }
         adapter.onClickItem = { it ->
-            val food=Food(it.id,it.title,it.cost,it.star, img = it.img)
+            val food=Food(it.id,it.title,it.cost, star = it.star, img = it.img)
             val bottomSheetDialogFragment= BottomSheetDialogFragment(food = food)
             bottomSheetDialogFragment.show(childFragmentManager,"ActionButton")
         }
         adapter.onClickAdd={
-            val food=Food(it.id,it.title,it.cost,it.star, img = it.img)
+            val food=Food(it.id,it.title,it.cost, star = it.star, img = it.img)
             (activity as MainActivity).viewModel.addToCard(food)
             Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
         }
