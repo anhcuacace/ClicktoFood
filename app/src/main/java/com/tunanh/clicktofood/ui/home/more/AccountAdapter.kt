@@ -16,7 +16,7 @@ class AccountAdapter : RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() 
     }
 
     var itemMore: List<ItemMore>? = null
-    var onClickItem: (( Int) -> Unit)? = null
+    var onClickItem: ((Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountViewHolder {
         val binding =
             ItemRclvMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false)

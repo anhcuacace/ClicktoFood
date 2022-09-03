@@ -87,5 +87,10 @@
     <!--    search-->
     <string name="history_search">Search history</string>
     <string name="remove_all">Remove All</string>
+    <string name="empty_content">you haven\'t added a favorite dish yet</string>
+    <string name="your_order_has_been_placed">Your Order Has Been Placed</string>
+    <string name="thank_you_for_purchasing_our_product_n_please_come_again">Thank you for purchasing our product  Please Come Again.</string>
+    <string name="back_to_home">Back to home</string>
+    <string name="cart_is_currently_empty">cart is currently empty</string>
 
 </resources>

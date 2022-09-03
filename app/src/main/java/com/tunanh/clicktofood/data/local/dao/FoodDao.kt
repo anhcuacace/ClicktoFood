@@ -35,4 +35,7 @@ interface FoodDao {
     @Query("SELECT * FROM Food WHERE title LIKE '%' || :name  || '%' ORDER BY id DESC")
     suspend fun findFoodByName(name: String): List<Food>
 
+    @Query("SELECT * FROM Food WHERE `like` =1 ")
+    suspend fun getWishList(): List<Food>
+
 }

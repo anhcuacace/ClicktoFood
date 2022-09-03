@@ -28,9 +28,12 @@ class TempViewModel @Inject constructor(
             }
         }
     }
-    fun addFoodToDataBase(listFood:List<Food>){
+
+    fun addFoodToDataBase(listFood: List<Food>) {
         viewModelScope.launch {
-            localRepository.addFood(listFood)
+            for (food in listFood) {
+                localRepository.insertOrUpdate(food)
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     var itemFood: ArrayList<Food>? = null
 
-    var onClickPlus: ((Int) -> Unit)? = null
+    var onClickPlus: ((Food,Int) -> Unit)? = null
     var onClickMinus: ((Food, Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val binding =
@@ -40,7 +40,7 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
             itemFood!![position] = itemFood!![position].also {
                 it.amount = it.amount + 1
             }
-            onClickPlus?.invoke(position)
+            itemFood?.let { it1 -> onClickPlus?.invoke(it1[position], position) }
         }
         holder.binding.minus.setOnSingClickListener {
             itemFood!![position] = itemFood!![position].also {

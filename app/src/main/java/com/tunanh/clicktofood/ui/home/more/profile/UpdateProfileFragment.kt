@@ -23,7 +23,7 @@ import com.tunanh.clicktofood.util.showDialogSetting
 
 class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateProfileViewModel>() {
 
-    private var count=0
+    private var count = 0
     private var mUri: Uri? = null
     private var mUser: User? = null
     private val requestPermissionLauncher =
@@ -33,11 +33,15 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             if (isGranted) {
                 openGallery()
             } else {
-                if (count>0){
+                if (count > 0) {
                     showDialogSetting(requireContext())
-                }else{
-                    Toast.makeText(requireContext(), requireContext().getString(R.string.request_read_internal), Toast.LENGTH_SHORT).show()
-                    count+=1
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        requireContext().getString(R.string.request_read_internal),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    count += 1
                 }
             }
         }
@@ -66,12 +70,14 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         updateInfo()
         click()
     }
+
     private fun click() {
         binding.actionBar.setOnClickImageLeft {
             getNavController().popBackStack()
         }
 
     }
+
     private fun getInfo() {
         viewModel.user.observe(this) {
             mUser = it
@@ -100,7 +106,8 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         user.updateProfile(profileUpdates)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(requireContext(), "Update profile success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Update profile success", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         mUser = User(
@@ -110,7 +117,7 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             phone = binding.phone.text.toString().trim()
         )
         viewModel.updateUser(mUser!!)
-        (activity as MainActivity).viewModel.isLoadProfile.value=true
+        (activity as MainActivity).viewModel.isLoadProfile?.invoke()
 
     }
 
@@ -131,7 +138,8 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             }
             else -> {
                 requestPermissionLauncher.launch(
-                    Manifest.permission.READ_EXTERNAL_STORAGE)
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
             }
         }
     }
@@ -145,9 +153,5 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"))
     }
-
-
-
-
 
 }

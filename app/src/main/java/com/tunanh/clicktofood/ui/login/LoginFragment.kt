@@ -258,13 +258,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 user.uid
 
             )
-
         }
 
-
-        getNavController().navigate(
-            R.id.action_loginFragment_to_mainFragment
-        )
+        viewModel.loadDone={
+            getNavController().navigate(
+                R.id.action_loginFragment_to_mainFragment
+            )
+        }
 //
     }
 }

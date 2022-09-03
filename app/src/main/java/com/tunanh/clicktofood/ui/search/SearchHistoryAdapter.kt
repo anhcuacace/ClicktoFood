@@ -9,7 +9,7 @@ import com.tunanh.clicktofood.databinding.ItemHistoryBinding
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class SearchHistoryAdapter : RecyclerView.Adapter<SearchHistoryAdapter.SearchHistoryViewHolder>() {
-    var onClickItem: ((KeyWorkSearch)->Unit)? = null
+    var onClickItem: ((KeyWorkSearch) -> Unit)? = null
     var onClickDeleteItem: ((KeyWorkSearch) -> Unit)? = null
 
     private var historyList: ArrayList<KeyWorkSearch>? = null
@@ -17,7 +17,7 @@ class SearchHistoryAdapter : RecyclerView.Adapter<SearchHistoryAdapter.SearchHis
     class SearchHistoryViewHolder constructor(val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: KeyWorkSearch) {
-            binding.tvName.text=item.name
+            binding.tvName.text = item.name
         }
 
 
@@ -39,7 +39,7 @@ class SearchHistoryAdapter : RecyclerView.Adapter<SearchHistoryAdapter.SearchHis
         }
     }
 
-    override fun getItemCount(): Int = historyList?.size?:0
+    override fun getItemCount(): Int = historyList?.size ?: 0
 
     @SuppressLint("NotifyDataSetChanged")
     fun addHistoryList(historyList: ArrayList<KeyWorkSearch>) {

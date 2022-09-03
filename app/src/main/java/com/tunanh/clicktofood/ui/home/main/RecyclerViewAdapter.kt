@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
-import com.tunanh.clicktofood.data.remote.model.Category
 import com.tunanh.clicktofood.databinding.ItemRecyclerview2Binding
 import com.tunanh.clicktofood.util.setOnSingClickListener
 

@@ -11,9 +11,10 @@ import com.tunanh.clicktofood.databinding.ItemTempBinding
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.FoodViewHolder>() {
-    var onClickItem: ((Food)->Unit) ?= null
+    var onClickItem: ((Food) -> Unit)? = null
     private var foodList: List<Food>? = null
-    var onClickAdd:((Food) -> Unit)?=null
+    var onClickAdd: ((Food) -> Unit)? = null
+    var onClickLike: ((Food) -> Unit)? = null
 
     class FoodViewHolder constructor(val binding: ItemTempBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -22,8 +23,16 @@ class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.FoodViewHolder>
                 .into(binding.imgFood)
             binding.tvTitleItem.text = food.title
             binding.cost.text = "${food.cost} $"
+            updateLike(food)
         }
 
+        fun updateLike(food: Food) {
+            if (food.like) {
+                binding.btnLike.setImageResource(R.drawable.ic_love)
+            } else {
+                binding.btnLike.setImageResource(R.drawable.ic_favorite_border)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -39,7 +48,13 @@ class SearchFoodAdapter : RecyclerView.Adapter<SearchFoodAdapter.FoodViewHolder>
         }
         holder.binding.tvAdd.setOnSingClickListener {
             onClickAdd?.invoke(foodList!![position])
-
+        }
+        holder.binding.btnLike.setOnSingClickListener {
+            foodList.also {
+                it?.get(position)?.like = !it?.get(position)?.like!!
+            }
+            foodList?.let { it1 -> holder.updateLike(it1[position]) }
+            foodList?.let { it1 -> onClickLike?.invoke(it1[position]) }
         }
     }
 

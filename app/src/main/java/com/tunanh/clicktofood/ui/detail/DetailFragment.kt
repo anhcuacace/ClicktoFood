@@ -34,8 +34,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
         }
         adapter.onClickAdd={
             val food=Food(it.id,it.title,it.cost, star = it.star, img = it.img)
-            (activity as MainActivity).viewModel.addToCard(food)
+            (activity as MainActivity).viewModel.addToCard(food.also { food.amount+=1 })
             Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
+        }
+        adapter.onClickLike={
+            (activity as MainActivity).viewModel.updateLove(it)
+            Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
     }
 

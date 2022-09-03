@@ -65,6 +65,8 @@ class LocalRepository @Inject constructor(
     }
     suspend fun getCard(): List<Food> =foodDao.loadCard()
 
+    suspend fun getWithList():List<Food> = foodDao.getWishList()
+
 
     suspend fun findFoodByName(name: String): List<Food> = foodDao.findFoodByName(name)
 

@@ -12,6 +12,7 @@ import com.tunanh.clicktofood.ui.home.more.wishlist.WishListFragment
 import com.tunanh.clicktofood.ui.intro.IntroFragment
 import com.tunanh.clicktofood.ui.login.LoginFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
+import com.tunanh.clicktofood.ui.placedorder.PlacedOrderFragment
 import com.tunanh.clicktofood.ui.search.SearchFragment
 import com.tunanh.clicktofood.ui.splash.SplashFragment
 import com.tunanh.clicktofood.ui.temp.TempFragment
@@ -62,4 +63,7 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindCartFragment(): CartFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindPlacedOrderFragment(): PlacedOrderFragment
 }

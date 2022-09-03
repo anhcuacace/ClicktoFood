@@ -15,6 +15,7 @@ import com.tunanh.clicktofood.ui.home.more.wishlist.WishListViewModel
 import com.tunanh.clicktofood.ui.intro.IntroViewModel
 import com.tunanh.clicktofood.ui.login.LoginViewModel
 import com.tunanh.clicktofood.ui.main.MainViewModel
+import com.tunanh.clicktofood.ui.placedorder.PlacedOrderViewModel
 import com.tunanh.clicktofood.ui.search.SearchViewModel
 import com.tunanh.clicktofood.ui.splash.SplashViewModel
 import com.tunanh.clicktofood.ui.temp.TempViewModel
@@ -97,4 +98,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CartViewModel::class)
     internal abstract fun cartViewModel(viewModel: CartViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlacedOrderViewModel::class)
+    internal abstract fun placedOrderViewModel(viewModel: PlacedOrderViewModel): ViewModel
 }

@@ -14,15 +14,27 @@ class RecommendAdapter :
     RecyclerView.Adapter<RecommendAdapter.MyViewHolder>() {
 
 
-    inner class MyViewHolder constructor(private val binding: ItemRecommendBinding) :
+    inner class MyViewHolder constructor(val binding: ItemRecommendBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(food: Food) {
             Glide.with(itemView.context).load(food.img).error(R.mipmap.ic_launcher)
                 .into(binding.imgRecommend)
             binding.tvNameRecommend.text = food.title
             binding.tvRateCount.text = food.star.toString()
+            updateLike(food)
+        }
+
+        fun updateLike(food: Food) {
+            if (food.like) {
+                binding.btnFavorite.setImageResource(R.drawable.ic_love)
+            } else {
+                binding.btnFavorite.setImageResource(R.drawable.ic_favorite_border)
+            }
         }
     }
+
+
+    var onClickLike: ((Food) -> Unit)? = null
     var onClickItem: ((Food) -> Unit)? = null
     var foodList: List<Food>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -35,6 +47,14 @@ class RecommendAdapter :
         foodList?.let { holder.bind(it[position]) }
         holder.itemView.setOnSingClickListener {
             foodList?.let { it1 -> onClickItem?.invoke(it1[position]) }
+        }
+        holder.binding.btnFavorite.setOnSingClickListener {
+            foodList.also {
+                it?.get(position)?.like = !it?.get(position)?.like!!
+            }
+            foodList?.let { it1 -> onClickLike?.invoke(it1[position]) }
+
+            foodList?.let { it1 -> holder.updateLike(it1[position]) }
         }
     }
 

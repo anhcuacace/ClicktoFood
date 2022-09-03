@@ -72,11 +72,13 @@
             app:layout_constraintTop_toBottomOf="@id/tvPrice">
 
             <ImageView
+                android:id="@+id/img_love"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_favorite_border" />
 
             <TextView
+                android:id="@+id/tv_love"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/com_facebook_like_button_not_liked" />

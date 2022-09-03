@@ -2,7 +2,6 @@ package com.tunanh.clicktofood.data.remote
 
 import com.tunanh.clicktofood.data.remote.model.Categories
 import com.tunanh.clicktofood.data.remote.model.Meals
-import com.tunanh.clicktofood.data.remote.model.MealsForId
 import com.tunanh.clicktofood.data.remote.model.Slider
 import com.tunanh.clicktofood.data.remote.service.Service
 import javax.inject.Inject
@@ -25,11 +24,11 @@ class RemoteRepository @Inject constructor(
         return service.getAllFoodList(c)
     }
 
-    suspend fun getFood(id: Long): MealsForId {
-        return service.getFood(id)
-    }
-
-    suspend fun getIdFood(token:String):List<Long>{
-        return service.getAllId("https://click-to-food-3639d-default-rtdb.firebaseio.com/app/user/$token/card.json")
-    }
+//    suspend fun getFood(id: Long): MealsForId {
+//        return service.getFood(id)
+//    }
+//
+//    suspend fun getIdFood(token:String):List<Long>{
+//        return service.getAllId("https://click-to-food-3639d-default-rtdb.firebaseio.com/app/user/$token/card.json")
+//    }
 }

@@ -8,7 +8,7 @@ import com.tunanh.clicktofood.data.local.AppPreferences
 import com.tunanh.clicktofood.data.local.LocalRepository
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.ui.base.BaseViewModel
-import com.tunanh.clicktofood.util.resetCount
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -69,8 +69,8 @@ class MoreViewModel @Inject constructor(
     fun logOut() {
         viewModelScope.launch(Dispatchers.IO) {
             localRepository.deleteUser()
+            localRepository.deleteAll()
             appPreferences.setEmail("")
-            resetCount()
             appPreferences.setToken("")
             localRepository.deleteAllFood()
         }

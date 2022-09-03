@@ -13,14 +13,14 @@ import com.tunanh.clicktofood.util.setOnSingClickListener
 import com.tunanh.clicktofood.util.showKeyboard
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
-    private val adapter=SearchFoodAdapter()
-    private val historyAdapter=SearchHistoryAdapter()
+    private val adapter = SearchFoodAdapter()
+    private val historyAdapter = SearchHistoryAdapter()
     override fun layoutRes(): Int = R.layout.fragment_search
 
     override fun viewModelClass(): Class<SearchViewModel> = SearchViewModel::class.java
 
     override fun initView() {
-        showKeyboard(binding.searchView.edtSearch!!,requireContext())
+        showKeyboard(binding.searchView.edtSearch!!, requireContext())
 
         //click
         binding.ivBack.setOnSingClickListener {
@@ -31,7 +31,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         }
 
         listSearch()
-        binding.rvHistory.adapter=historyAdapter
+        binding.rvHistory.adapter = historyAdapter
         viewModel.historyList.observe(viewLifecycleOwner) {
             if (it == null || it.isEmpty()) {
                 binding.tvHistoryTitle.visibility = View.GONE
@@ -45,11 +45,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             }
         }
 
-        historyAdapter.onClickItem={
+        historyAdapter.onClickItem = {
             binding.searchView.setTextSearch(it.name)
             binding.searchView.requestFocusSearch()
         }
-        historyAdapter.onClickDeleteItem={
+        historyAdapter.onClickDeleteItem = {
             viewModel.removeHistory(it)
 
         }
@@ -57,7 +57,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     }
 
     private fun listSearch() {
-        binding.listFood.adapter=adapter
+        binding.listFood.adapter = adapter
         binding.searchView.addTextChange {
             if (it.isEmpty()) {
                 binding.listFood.visibility = View.GONE
@@ -69,18 +69,26 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         viewModel.foodList.observe(viewLifecycleOwner) {
             adapter.addFoodList(it)
         }
-        adapter.onClickItem={
+        adapter.onClickItem = {
             viewModel.addHistory(binding.searchView.getTextSearch())
-            val food=Food(it.id,it.title,it.cost, star = it.star, img = it.img)
-            val bottomSheetDialogFragment= BottomSheetDialogFragment(food = food)
-            bottomSheetDialogFragment.show(childFragmentManager,"ActionButton")
+            val food = Food(it.id, it.title, it.cost, star = it.star, img = it.img)
+            val bottomSheetDialogFragment = BottomSheetDialogFragment(food = food)
+            bottomSheetDialogFragment.show(childFragmentManager, "ActionButton")
 
         }
-        adapter.onClickAdd={
-            val food=Food(it.id,it.title,it.cost, star = it.star, img = it.img)
+        adapter.onClickAdd = {
+            val food = it.also { it.amount+=1  }
             (activity as MainActivity).viewModel.addToCard(food)
-            Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.addfood),
+                Toast.LENGTH_SHORT
+            ).show()
             viewModel.addHistory(binding.searchView.getTextSearch())
+        }
+        adapter.onClickLike = {
+            (activity as MainActivity).viewModel.updateLove(it)
+            Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
     }
 }

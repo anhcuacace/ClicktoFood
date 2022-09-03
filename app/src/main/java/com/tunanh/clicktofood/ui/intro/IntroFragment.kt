@@ -1,6 +1,5 @@
 package com.tunanh.clicktofood.ui.intro
 
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentIntroBinding

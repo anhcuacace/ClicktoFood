@@ -9,10 +9,11 @@ import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SearchViewModel  @Inject constructor(private val localRepository: LocalRepository) : BaseViewModel() {
+class SearchViewModel @Inject constructor(private val localRepository: LocalRepository) :
+    BaseViewModel() {
 
-    var foodList= MutableLiveData<List<Food>>()
-    var historyList=MutableLiveData<List<KeyWorkSearch>>()
+    var foodList = MutableLiveData<List<Food>>()
+    var historyList = MutableLiveData<List<KeyWorkSearch>>()
 
     init {
         loadHistory()
@@ -25,12 +26,13 @@ class SearchViewModel  @Inject constructor(private val localRepository: LocalRep
     }
 
     fun removeHistory(data: KeyWorkSearch) {
-        viewModelScope.launch{
+        viewModelScope.launch {
             localRepository.deleteHistory(data)
             historyList.value = localRepository.getHistoryList()
         }
 
     }
+
     fun searchData(name: String) {
         viewModelScope.launch {
             val data = localRepository.findFoodByName(name)
@@ -56,6 +58,7 @@ class SearchViewModel  @Inject constructor(private val localRepository: LocalRep
         }
 
     }
+
     fun removeAllHistory() {
         viewModelScope.launch {
             localRepository.deleteAll()

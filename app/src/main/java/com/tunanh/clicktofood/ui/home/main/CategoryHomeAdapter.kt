@@ -24,8 +24,8 @@ class CategoryHomeAdapter :
     var categoryList: List<Category>? = null
     var onClickItem: ((Category, Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v =
-            ItemCategoryHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val v = ItemCategoryHomeBinding.inflate(LayoutInflater.from(parent.context),
+                parent, false)
         return MyViewHolder(v)
     }
 

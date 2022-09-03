@@ -2,6 +2,7 @@ package com.tunanh.clicktofood.ui.temp
 
 import android.widget.Toast
 import com.tunanh.clicktofood.R
+import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentTempBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
@@ -38,24 +39,31 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
 
 
     private fun categoryList(categoryTitle: String) {
+
         (activity as MainActivity).showLoading()
         viewModel.callApi(categoryTitle)
 
         binding.actionBar.setTitle(categoryTitle)
 
         viewModel.foodList.observe(this) {
-            val data = convertData(it.meals as ArrayList<Meal>)
-            adapter.foodList = data
-            viewModel.addFoodToDataBase(data)
+            val foodList = convertData(it.meals as ArrayList<Meal>)
+            adapter.foodList = foodList as ArrayList<Food>
+            viewModel.addFoodToDataBase(foodList)
             binding.foodList.adapter = adapter
             (activity as MainActivity).hiddenLoading()
+        }
+        adapter.onClickLike={ food,_->
+
+            (activity as MainActivity).viewModel.updateLove(food)
+            Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
         adapter.onClickItem = { it ->
             val bottomSheetDialogFragment=BottomSheetDialogFragment(food = it)
             bottomSheetDialogFragment.show(childFragmentManager,"ActionButton")
         }
         adapter.onClickAdd={
-            (activity as MainActivity).viewModel.addToCard(it)
+            val data=it.also { it.amount+=1 }
+            (activity as MainActivity).viewModel.addToCard(data)
             Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
         }
     }

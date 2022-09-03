@@ -20,7 +20,8 @@ class IntroAdapter : RecyclerView.Adapter<IntroAdapter.IntroViewHolder>() {
     var itemtList: List<IntroItem>? = null
     var onItemClick: ((IntroItem, Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroViewHolder {
-        val binding = ItemIntroBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemIntroBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
         return IntroViewHolder(binding)
     }
 

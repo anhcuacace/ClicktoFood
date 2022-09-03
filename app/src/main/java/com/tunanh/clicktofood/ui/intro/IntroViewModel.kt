@@ -30,14 +30,18 @@ class IntroViewModel @Inject constructor(
             addToList(
                 "ORDER ONLINE",
                 "you can eat anything\nas long as Click to Food",
-                R.drawable.intro3
+                R.drawable.intro1
             )
             addToList(
                 "SELECT FOOD",
                 "Just sit at home and Click to Food take care",
                 R.drawable.intro2
             )
-            addToList("DELIVERY", "Just sit at home and Click to Food take care", R.drawable.intro3)
+            addToList(
+                "DELIVERY",
+                "Just sit at home and Click to Food take care",
+                R.drawable.intro3
+            )
             introList.value = introItemList
         }
     }

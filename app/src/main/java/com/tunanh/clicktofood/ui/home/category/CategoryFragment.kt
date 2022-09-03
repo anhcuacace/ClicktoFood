@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentCategoryBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.ui.home.MainFragmentViewModel
 import com.tunanh.clicktofood.ui.home.main.CategoryHomeAdapter
-import com.tunanh.clicktofood.ui.home.main.HomeViewModel
 
 
 class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel>() {
@@ -16,8 +16,8 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
 
     override fun initView() {
         val categoryHomeAdapter = CategoryHomeAdapter()
-        val myViewModel: HomeViewModel =
-            ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+        val myViewModel: MainFragmentViewModel =
+            ViewModelProvider(this, viewModelFactory)[MainFragmentViewModel::class.java]
 
         myViewModel.categoryList.observe(viewLifecycleOwner) { it1 ->
             categoryHomeAdapter.categoryList = it1.Categories

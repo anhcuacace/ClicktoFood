@@ -15,21 +15,6 @@ import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.remote.model.Meal
 import java.util.concurrent.ThreadLocalRandom
 
-private var count = false
-private var count1 = 0
-fun resetCount() {
-    count = false
-    count1 = 0
-}
-
-fun count(): Int {
-    if (!count) {
-        count = true
-    } else {
-        count1 += 1
-    }
-    return count1
-}
 
 fun convertData(array: ArrayList<Meal>): List<Food> {
     val data = ArrayList<Food>()
@@ -45,7 +30,6 @@ fun convertData(array: ArrayList<Meal>): List<Food> {
     }
     return data
 }
-
 
 
 fun showDialogSetting(context: Context) {

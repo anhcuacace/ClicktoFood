@@ -14,19 +14,20 @@ import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 import com.tunanh.clicktofood.util.shareLink
 
-class BottomSheetDialogFragment(var food: Food):BottomSheetDialogFragment(){
+class BottomSheetDialogFragment(var food: Food) : BottomSheetDialogFragment() {
 
-private var binding:BottomSheetBinding?=null
+    private var binding: BottomSheetBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.BottomSheetDialogStyle)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= BottomSheetBinding.inflate(LayoutInflater.from(context))
+        binding = BottomSheetBinding.inflate(LayoutInflater.from(context))
         return binding!!.root
 
     }
@@ -38,13 +39,39 @@ private var binding:BottomSheetBinding?=null
                 it
             )
         }
+        updateLove()
+        binding?.imgLove?.setOnSingClickListener {
+            food = food.also { food.like = !food.like }
+            updateLove()
+            (activity as MainActivity).viewModel.updateLove(food)
+        }
         binding?.tvNameItem?.text = food.title
         binding?.tvPrice?.text = "${food.cost} $"
-        binding?.lnShare?.setOnSingClickListener { shareLink(food.img.toString(), requireContext()) }
+        binding?.lnShare?.setOnSingClickListener {
+            shareLink(
+                food.img.toString(),
+                requireContext()
+            )
+        }
         binding?.addToCard?.setOnSingClickListener {
-            (activity as MainActivity).viewModel.addToCard(food)
-            Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
+            (activity as MainActivity).viewModel.addToCard(food.also { food.amount+=1 })
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.addfood),
+                Toast.LENGTH_SHORT
+            ).show()
             dismiss()
+        }
+    }
+
+    private fun updateLove() {
+        if (food.like) {
+            binding?.imgLove?.setImageResource(R.drawable.ic_love)
+            binding?.tvLove?.text = getText(com.facebook.R.string.com_facebook_like_button_liked)
+        } else {
+            binding?.imgLove?.setImageResource(R.drawable.ic_favorite_border)
+            binding?.tvLove?.text =
+                getText(com.facebook.R.string.com_facebook_like_button_not_liked)
         }
     }
 }

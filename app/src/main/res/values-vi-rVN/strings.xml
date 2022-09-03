@@ -62,5 +62,10 @@
     <string name="history_search">Lịch sử tìm kiếm</string>
     <string name="remove_all">Xóa hết</string>
     <string name="request_read_internal">"bạn đã từ chối. nhấn thêm lần nữa để mở cài đặt "</string>
+    <string name="empty_content">bạn chưa thêm một món ăn yêu thích nào</string>
+    <string name="your_order_has_been_placed">Đơn hàng của bạn đã được đặt</string>
+    <string name="thank_you_for_purchasing_our_product_n_please_come_again">Cảm ơn bạn đã mua sản phẩm của chúng tôi \n Vui lòng quay lại.</string>
+    <string name="back_to_home">"Trở lại trang chủ "</string>
+    <string name="cart_is_currently_empty">giỏ hàng hiện đang trống</string>
 
 </resources>

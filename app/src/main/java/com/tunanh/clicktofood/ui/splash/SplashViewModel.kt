@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
-    private val appPreferences: AppPreferences,
+    appPreferences: AppPreferences,
     private val localRepository: LocalRepository
 ) :
     BaseViewModel() {
@@ -19,9 +19,9 @@ class SplashViewModel @Inject constructor(
 
     init {
         intro.value = appPreferences.getIntro()
-        val email=appPreferences.getEmail()
+        val email = appPreferences.getEmail()
         viewModelScope.launch {
-            user.value=localRepository.isEmailIsExist(email)
+            user.value = localRepository.isEmailIsExist(email)
         }
     }
 

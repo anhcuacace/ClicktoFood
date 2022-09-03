@@ -12,18 +12,29 @@ import com.tunanh.clicktofood.util.setOnSingClickListener
 class TempAdapter : RecyclerView.Adapter<TempAdapter.MyViewHolder>() {
 
 
-    inner class MyViewHolder constructor( val binding: ItemTempBinding) :
+    inner class MyViewHolder constructor(val binding: ItemTempBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(food: Food) {
             Glide.with(itemView.context).load(food.img).error(R.mipmap.ic_launcher)
                 .into(binding.imgFood)
             binding.tvTitleItem.text = food.title
             binding.cost.text = "${food.cost} $"
+            updateLike(food)
+        }
+
+        fun updateLike(food: Food) {
+            if (food.like) {
+                binding.btnLike.setImageResource(R.drawable.ic_love)
+            } else {
+                binding.btnLike.setImageResource(R.drawable.ic_favorite_border)
+            }
         }
     }
-    var onClickAdd:((Food) -> Unit)?=null
+
+    var onClickLike: ((Food, Int) -> Unit)? = null
+    var onClickAdd: ((Food) -> Unit)? = null
     var onClickItem: ((Food) -> Unit)? = null
-    var foodList: List<Food>? = null
+    var foodList: ArrayList<Food>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v =
             ItemTempBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -37,7 +48,14 @@ class TempAdapter : RecyclerView.Adapter<TempAdapter.MyViewHolder>() {
 
         }
         holder.binding.tvAdd.setOnSingClickListener {
-            foodList?.get(position)?.let { it1->onClickAdd?.invoke(it1) }
+            foodList?.get(position)?.let { it1 -> onClickAdd?.invoke(it1) }
+        }
+        holder.binding.btnLike.setOnSingClickListener {
+            foodList.also {
+                it?.get(position)?.like = !it?.get(position)?.like!!
+            }
+            foodList?.let { it1 -> holder.updateLike(it1[position]) }
+            foodList?.let { it1 -> onClickLike?.invoke(it1[position], position) }
         }
     }
 

@@ -36,8 +36,6 @@ class DatabaseModule {
     fun provideFoodDao(db: LocalDatabase) =
         db.foodDao()
 
-
-
     @Singleton
     @Provides
     fun provideHistorySearchDao(db: LocalDatabase)=

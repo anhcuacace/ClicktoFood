@@ -2,15 +2,16 @@ package com.tunanh.clicktofood.ui.home.main
 
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.tunanh.clicktofood.R
-import com.tunanh.clicktofood.data.remote.model.Meal
 import com.tunanh.clicktofood.databinding.FragmentHomeBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.ui.home.MainFragmentViewModel
 import com.tunanh.clicktofood.ui.main.MainActivity
-import com.tunanh.clicktofood.util.convertData
 import com.tunanh.clicktofood.util.openWebsite
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
@@ -33,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         binding.seeAll.setOnSingClickListener {
             getNavController().navigate(
                 R.id.action_mainFragment_to_tempFragment,
-                bundleOf(Pair("category","Beef"))
+                bundleOf(Pair("category", "Beef"))
             )
         }
         binding.searchView.setOnSingClickListener {
@@ -47,25 +48,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         val recyclerViewAdapter = RecyclerViewAdapter()
         val recommendAdapter = RecommendAdapter()
         viewModel.foodList.observe(this) {
-            val listMeals = it.meals as ArrayList<Meal>
-//            val listMeals2= listMeals.sortBy { listMeal->listMeal.id } as ArrayList<Meals>
-            val data = convertData(listMeals)
-            recommendAdapter.foodList = data
-            recyclerViewAdapter.foodList = data
-            
-            binding.recyclerView2.adapter = recyclerViewAdapter
-            binding.recyclerViewRecommend.adapter = recommendAdapter
+            if (it == null || it.isEmpty()) {
+                binding.rclv.visibility = View.GONE
+            } else {
+                recommendAdapter.foodList = it
+                recyclerViewAdapter.foodList = it
+
+                binding.recyclerView2.adapter = recyclerViewAdapter
+                binding.recyclerViewRecommend.adapter = recommendAdapter
+            }
+
         }
-        recommendAdapter.onClickItem={
+        recommendAdapter.onClickLike = { food ->
+            (activity as MainActivity).viewModel.updateLove(food)
+            Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
+        }
+        recommendAdapter.onClickItem = {
             getNavController().navigate(
                 R.id.action_mainFragment_to_detailFragment,
-                bundleOf(Pair("food",it))
+                bundleOf(Pair("food", it))
             )
         }
-        recyclerViewAdapter.onClickItem={
+        recyclerViewAdapter.onClickItem = {
             getNavController().navigate(
                 R.id.action_mainFragment_to_detailFragment,
-                bundleOf(Pair("food",it))
+                bundleOf(Pair("food", it))
             )
         }
     }
@@ -107,8 +114,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun categories() {
         val adapter = CategoryHomeAdapter()
-
-        viewModel.categoryList.observe(this) {
+        val myViewModel: MainFragmentViewModel =
+            ViewModelProvider(this, viewModelFactory)[MainFragmentViewModel::class.java]
+        myViewModel.categoryList.observe(this) {
             adapter.categoryList = it.Categories
             binding.categoryes.adapter = adapter
         }

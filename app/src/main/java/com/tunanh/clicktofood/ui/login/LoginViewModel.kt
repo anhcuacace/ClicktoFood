@@ -1,30 +1,28 @@
 package com.tunanh.clicktofood.ui.login
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.common.api.ApiException
+import com.google.firebase.FirebaseException
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.tunanh.clicktofood.data.local.AppPreferences
 import com.tunanh.clicktofood.data.local.LocalRepository
-import com.tunanh.clicktofood.data.local.model.CountId
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.data.local.model.User
-import com.tunanh.clicktofood.data.remote.RemoteRepository
 import com.tunanh.clicktofood.ui.base.BaseViewModel
-import com.tunanh.clicktofood.ui.main.MainActivity
-import com.tunanh.clicktofood.ui.main.MainViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.concurrent.ThreadLocalRandom
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val appPreferences: AppPreferences,
-    private val localRepository: LocalRepository,
-    private val remoteRepository: RemoteRepository,
-    private val mainViewModel: MainViewModel
+    private val localRepository: LocalRepository
 ) : BaseViewModel() {
-
+    private var database1: DatabaseReference = Firebase.database.reference
+    var loadDone:(()->Unit)?=null
     fun saveUser(
         email: String,
         name: String,
@@ -44,59 +42,52 @@ class LoginViewModel @Inject constructor(
             )
             localRepository.insertUser(mUser)
         }
-        getId(token)
+        getCart(token)
     }
 
-    private fun getId(token: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-
+    private fun getCart(token: String) {
+        val array= ArrayList<Food>()
             try {
-                val data = async { remoteRepository.getIdFood(token) }
-                addToCart(cart(data.await()))
-            } catch (e: ApiException) {
-                e.printStackTrace()
+                val myReference = database1.child("app/user")
+                    .child(token).child("card")
+                myReference.addValueEventListener(object :ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (data in snapshot.children){
+                            val foodData=data.value as HashMap<*, *>
+                            val food=Food(
+                                id = foodData["id"] as Long,
+                                title = foodData["title"] as String,
+                                cost = (foodData["cost"] as Long).toInt(),
+                                like=foodData["like"] as Boolean,
+                             star= foodData["star"] as Double,
+                             img=foodData["img"]as String,
+                             amount= (foodData["amount"] as Long).toInt()
+                            )
+                            array.add(food)
+                        }
+                        addToCart(array)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("LoginViewModel",error.message)
+                    }
+
+                })
+
+            }catch (e:FirebaseException){
+                Log.e("LoginViewModel",e.message.toString())
             }
 
-        }
 
 
     }
 
-    private fun addToCart(cart: List<CountId>) {
-        val job=viewModelScope.launch(Dispatchers.IO) {
-            for (i in cart.indices) {
-                val data = withContext(Dispatchers.IO) {
-                    remoteRepository.getFood(cart[i].id)
-                }
-                val data1 = data.meals?.get(0)
-                val food = Food(
-                    data1?.id ?: 0,
-                    title = data1?.title.toString(),
-                    cost = ThreadLocalRandom.current().nextInt(20, 100),
-                    star = ThreadLocalRandom.current().nextDouble(3.5, 5.0),
-                    img = data1?.img,
-                    amount = cart[i].amount
-                )
-                localRepository.insertFood(food)
-            }
+    private fun addToCart(food: List<Food>) {
+        viewModelScope.launch {
+            localRepository.addFood(food)
+            loadDone?.invoke()
         }
-        viewModelScope.launch(Dispatchers.Main) {
-            job.join()
-            mainViewModel.isLoadCart.value=true
-        }
+
     }
 
-    private fun cart(data: List<Long>): List<CountId> {
-        val array = ArrayList<CountId>()
-        for (i in data.indices) {
-            var count = 1
-            for (j in 0 until i) {
-                if (data[j] == data[i]) {
-                    count += 1
-                }
-            }
-            array.add(i, CountId(data[i], count))
-        }
-        return array
-    }
 }
