@@ -28,7 +28,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
             if (array.isEmpty()) {
                 Toast.makeText(requireContext(), requireContext().getText(R.string.cart_is_currently_empty), Toast.LENGTH_SHORT).show()
             } else {
-                viewModel.placeOrder(array)
+                viewModel.placeOrder(array as List<Food>)
             }
 
         }

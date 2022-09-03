@@ -19,13 +19,14 @@ class CartViewModel @Inject constructor(
     appPreferences: AppPreferences
 ) :
     BaseViewModel() {
+    private var itemFood: Food? = null
     val cart = MutableLiveData<List<Food>>()
     private val random = UUID.randomUUID().toString()
     private var database1: DatabaseReference = Firebase.database.reference
     private val myReferenceOrder = database1.child("app/user")
-        .child(appPreferences.getToken()).child("order").child(random)
-    private val myReferenceCart=database1.child("app/user")
         .child(appPreferences.getToken()).child("order")
+    private val myReferenceCart = database1.child("app/user")
+        .child(appPreferences.getToken()).child("card")
     var loadDone: (() -> Unit)? = null
 
     init {
@@ -46,17 +47,17 @@ class CartViewModel @Inject constructor(
         }
     }
 
-    fun placeOrder(array: ArrayList<Food>) {
+    fun placeOrder(array: List<Food>) {
 
         viewModelScope.launch {
             for (food in array) {
-                val data=food
-                data.amount = 0
-                localRepository.updateFood(data)
-                myReferenceCart.setValue(data)
+                itemFood = food
+                itemFood?.amount = 0
+                localRepository.updateFood(itemFood!!)
+                myReferenceCart.setValue(itemFood)
             }
         }
-        myReferenceOrder.setValue(array).addOnCompleteListener {
+        myReferenceOrder.child(random).setValue(array).addOnCompleteListener {
             loadDone?.invoke()
         }
 
