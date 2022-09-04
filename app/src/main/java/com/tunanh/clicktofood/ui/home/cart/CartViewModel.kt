@@ -12,14 +12,13 @@ import com.tunanh.clicktofood.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class CartViewModel @Inject constructor(
     private val localRepository: LocalRepository,
     appPreferences: AppPreferences
 ) :
     BaseViewModel() {
-    private var itemFood: Food? = null
+
     val cart = MutableLiveData<List<Food>>()
     private val random = UUID.randomUUID().toString()
     private var database1: DatabaseReference = Firebase.database.reference
@@ -51,10 +50,17 @@ class CartViewModel @Inject constructor(
 
         viewModelScope.launch {
             for (food in array) {
-                itemFood = food
-                itemFood?.amount = 0
-                localRepository.updateFood(itemFood!!)
-                myReferenceCart.setValue(itemFood)
+                val data = Food(
+                    id = food.id,
+                    title = food.title,
+                    like = food.like,
+                    amount = 0,
+                    cost = food.cost,
+                    star = food.star,
+                    img = food.img
+                )
+                localRepository.updateFood(data)
+                myReferenceCart.setValue(data)
             }
         }
         myReferenceOrder.child(random).setValue(array).addOnCompleteListener {
