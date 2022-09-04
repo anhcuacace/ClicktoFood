@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.tunanh.clicktofood.listener.OnClickConfirmDialog
+import com.tunanh.clicktofood.ui.custemview.FoodDialog
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -44,4 +46,21 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
 
     fun Fragment.getNavController(): NavController =
         NavHostFragment.findNavController(this)
+
+    fun showDialog(
+        title: String,
+        content: String,
+        rightButton: String,
+        leftButton: String,
+        onClickConfirmDialog: OnClickConfirmDialog
+    ) {
+        FoodDialog.Builder()
+            .with(requireContext())
+            .title(title)
+            .content(content)
+            .rightButton(rightButton)
+            .leftButton(leftButton)
+            .onClick(onClickConfirmDialog)
+            .build()
+    }
 }

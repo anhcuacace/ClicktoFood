@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.cart.CartFragment">
+
         <TextView
             android:id="@+id/tv_empty"
             android:layout_width="match_parent"
@@ -14,11 +15,12 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_4sdp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/login_btn"
-            android:visibility="gone"
             android:text="@string/cart_is_currently_empty"
-            android:textSize="20sp" />
+            android:textColor="@color/login_btn"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/food_list"
             android:layout_width="match_parent"
@@ -77,9 +79,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/cash"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="cash" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -100,8 +102,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,24 +46,20 @@ class CartViewModel @Inject constructor(
         }
     }
 
-    fun placeOrder(array: List<Food>) {
-
-        viewModelScope.launch {
+    fun placeOrder(array: ArrayList<Food>) {
+        val job1 = viewModelScope.launch {
+            myReferenceOrder.child(random).setValue(array)
+        }
+        val job2 = viewModelScope.launch {
+            job1.join()
             for (food in array) {
-                val data = Food(
-                    id = food.id,
-                    title = food.title,
-                    like = food.like,
-                    amount = 0,
-                    cost = food.cost,
-                    star = food.star,
-                    img = food.img
-                )
+                val data = food.apply { amount = 0 }
                 localRepository.updateFood(data)
-                myReferenceCart.setValue(data)
+                myReferenceCart.child(food.id.toString()).setValue(data)
             }
         }
-        myReferenceOrder.child(random).setValue(array).addOnCompleteListener {
+        viewModelScope.launch {
+            job2.join()
             loadDone?.invoke()
         }
 

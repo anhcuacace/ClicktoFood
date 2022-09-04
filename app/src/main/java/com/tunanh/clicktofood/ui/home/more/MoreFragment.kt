@@ -7,6 +7,7 @@ import com.google.firebase.ktx.Firebase
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentMoreBinding
+import com.tunanh.clicktofood.listener.OnClickConfirmDialog
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.openPlaystore
@@ -42,6 +43,20 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
             when (it) {
                 1 -> {
                     openPlaystore(requireContext())
+                }
+                2 -> {
+                    showDialog("Thông báo",
+                        "Tính năng đang phát triển",
+                        "Đồng ý",
+                        "",
+                        object : OnClickConfirmDialog {
+                            override fun onClickRightButton() {
+                            }
+
+                            override fun onClickLeftButton() {
+                            }
+
+                        })
                 }
             }
         }
@@ -93,14 +108,44 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
                     shareApp(requireContext())
                 }
                 9 -> {
-                    Firebase.auth.signOut()
-                    viewModel.logOut()
-                    getNavController().navigate(
-                        R.id.action_mainFragment_to_loginFragment
-                    )
+                    showDialog("Cảnh Báo",
+                        "Bạn chắc chắn muốn đăng xuất",
+                        "Đồng ý",
+                        "Hủy",
+                        object : OnClickConfirmDialog {
+                            override fun onClickRightButton() {
+                                logOut()
+                            }
+
+                            override fun onClickLeftButton() {
+                            }
+
+                        })
+                }
+                1, 2, 4, 5, 7, 8 -> {
+                    showDialog("Thông báo",
+                        "Tính năng đang phát triển",
+                        "Đồng ý",
+                        "",
+                        object : OnClickConfirmDialog {
+                            override fun onClickRightButton() {
+                            }
+
+                            override fun onClickLeftButton() {
+                            }
+
+                        })
                 }
             }
         }
+    }
+
+    private fun logOut() {
+        Firebase.auth.signOut()
+        viewModel.logOut()
+        getNavController().navigate(
+            R.id.action_mainFragment_to_loginFragment
+        )
     }
 
 

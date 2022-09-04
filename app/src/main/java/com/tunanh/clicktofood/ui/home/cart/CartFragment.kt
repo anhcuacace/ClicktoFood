@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.FragmentCartBinding
+import com.tunanh.clicktofood.listener.OnClickConfirmDialog
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
@@ -25,11 +26,20 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
 
     private fun placeOrder() {
         binding.placedOrder.setOnSingClickListener {
-            if (array.isEmpty()) {
-                Toast.makeText(requireContext(), requireContext().getText(R.string.cart_is_currently_empty), Toast.LENGTH_SHORT).show()
-            } else {
-                viewModel.placeOrder(array as List<Food>)
-            }
+            showDialog("Thông báo",
+                "Tổng tiền bạn là ${binding.total.text}\n vui lòng chờ ít phút",
+                "Đồng ý",
+                "Xác Nhận",
+                object : OnClickConfirmDialog {
+                    override fun onClickRightButton() {
+                        viewModel.placeOrder(array)
+                    }
+
+                    override fun onClickLeftButton() {
+                    }
+
+                })
+
 
         }
         viewModel.loadDone = {
@@ -40,8 +50,8 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
     }
 
     private fun initRecycleView() {
-        (activity as MainActivity).viewModel.isLoadCart= {
-                viewModel.addToCart()
+        (activity as MainActivity).viewModel.isLoadCart = {
+            viewModel.addToCart()
         }
         viewModel.cart.observe(viewLifecycleOwner) {
             array = it as ArrayList<Food>
@@ -49,8 +59,8 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
                 binding.foodList.visibility = View.GONE
                 binding.tvEmpty.visibility = View.VISIBLE
             } else {
-                binding.foodList.visibility=View.VISIBLE
-                binding.tvEmpty.visibility=View.GONE
+                binding.foodList.visibility = View.VISIBLE
+                binding.tvEmpty.visibility = View.GONE
                 adapter.itemFood = array
                 binding.foodList.adapter = adapter
                 bill(array)
@@ -87,7 +97,12 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
         }
         sum *= voucher
         sum += fee
-        binding.total.text = sum.toString()
+        binding.total.text = "$sum $"
+        if (sum.toString().isEmpty()) {
+            binding.constraintLayout.visibility = View.GONE
+        } else {
+            binding.constraintLayout.visibility = View.VISIBLE
+        }
     }
 
 

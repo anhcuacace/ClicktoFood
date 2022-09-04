@@ -22,7 +22,7 @@ class LoginViewModel @Inject constructor(
     private val localRepository: LocalRepository
 ) : BaseViewModel() {
     private var database1: DatabaseReference = Firebase.database.reference
-    var loadDone:(()->Unit)?=null
+    var loadDone: (() -> Unit)? = null
     fun saveUser(
         email: String,
         name: String,
@@ -46,38 +46,37 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun getCart(token: String) {
-        val array= ArrayList<Food>()
-            try {
-                val myReference = database1.child("app/user")
-                    .child(token).child("card")
-                myReference.addValueEventListener(object :ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        for (data in snapshot.children){
-                            val foodData=data.value as HashMap<*, *>
-                            val food=Food(
-                                id = foodData["id"] as Long,
-                                title = foodData["title"] as String,
-                                cost = (foodData["cost"] as Long).toInt(),
-                                like=foodData["like"] as Boolean,
-                             star= foodData["star"] as Double,
-                             img=foodData["img"]as String,
-                             amount= (foodData["amount"] as Long).toInt()
-                            )
-                            array.add(food)
-                        }
-                        addToCart(array)
+        val array = ArrayList<Food>()
+        try {
+            val myReference = database1.child("app/user")
+                .child(token).child("card")
+            myReference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (data in snapshot.children) {
+                        val foodData = data.value as HashMap<*, *>
+                        val food = Food(
+                            id = foodData["id"] as Long,
+                            title = foodData["title"] as String,
+                            cost = (foodData["cost"] as Long).toInt(),
+                            like = foodData["like"] as Boolean,
+                            star = foodData["star"] as Double,
+                            img = foodData["img"] as String,
+                            amount = (foodData["amount"] as Long).toInt()
+                        )
+                        array.add(food)
                     }
+                    addToCart(array)
+                }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.e("LoginViewModel",error.message)
-                    }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("LoginViewModel", error.message)
+                }
 
-                })
+            })
 
-            }catch (e:FirebaseException){
-                Log.e("LoginViewModel",e.message.toString())
-            }
-
+        } catch (e: FirebaseException) {
+            Log.e("LoginViewModel", e.message.toString())
+        }
 
 
     }
