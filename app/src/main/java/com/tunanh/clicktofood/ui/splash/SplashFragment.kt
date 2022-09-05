@@ -23,18 +23,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
 
         if (hasNetworkConnection(requireContext())) {
             transition()
-        } else {
-            viewModel.viewModelScope.launch(Dispatchers.Main) {
-                delay(2000)
-                binding.animationView.visibility = View.GONE
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.network_fail),
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                (activity as MainActivity).showLoading()
-            }
         }
 
 
