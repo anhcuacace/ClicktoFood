@@ -18,8 +18,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
 
         if (hasNetworkConnection(requireContext())) {
             transition()
-        }else {
-            binding.animationView.visibility=View.GONE
+        } else {
+            binding.animationView.visibility = View.GONE
             Handler(Looper.getMainLooper()).postDelayed({
                 (activity as MainActivity).finish()
             }, 10000)

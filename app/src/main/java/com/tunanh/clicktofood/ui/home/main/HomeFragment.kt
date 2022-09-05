@@ -55,6 +55,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             if (it == null || it.isEmpty()) {
                 binding.rclv.visibility = View.GONE
             } else {
+                binding.rclv.visibility=View.VISIBLE
                 recommendAdapter.foodList = it
                 recyclerViewAdapter.foodList = it
 
