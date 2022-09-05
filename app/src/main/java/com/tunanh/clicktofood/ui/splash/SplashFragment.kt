@@ -3,16 +3,11 @@ package com.tunanh.clicktofood.ui.splash
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.viewModelScope
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentSplashBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.hasNetworkConnection
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
     override fun layoutRes(): Int = R.layout.fragment_splash

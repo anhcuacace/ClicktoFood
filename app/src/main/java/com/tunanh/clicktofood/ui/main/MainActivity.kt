@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import android.widget.Toast
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.ActivityMainBinding
 import com.tunanh.clicktofood.ui.base.BaseActivity

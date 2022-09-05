@@ -5,7 +5,6 @@ import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.tunanh.clicktofood.R
