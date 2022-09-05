@@ -91,4 +91,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun networkFail() {
+
+    }
+
+    override fun successfulNetwork() {
+
+    }
 }

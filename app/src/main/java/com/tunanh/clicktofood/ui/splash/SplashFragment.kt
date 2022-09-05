@@ -21,7 +21,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
 
     override fun initView() {
         if (hasNetworkConnection(requireContext())) {
-            transition()
+
         } else {
             viewModel.viewModelScope.launch(Dispatchers.Main) {
                 delay(2000)
@@ -32,7 +32,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
                     Toast.LENGTH_LONG
                 )
                     .show()
-                (activity as MainActivity).showLoading()
+
             }
         }
     }
@@ -55,6 +55,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
                 }
             }
         }, 2000)
+    }
+
+    override fun networkFail() {
+        binding.animationView.visibility = View.GONE
+        (activity as MainActivity).showLoading()
+    }
+
+    override fun successfulNetwork() {
+        (activity as MainActivity).hiddenLoading()
+        transition()
     }
 
 

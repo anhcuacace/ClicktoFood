@@ -60,5 +60,13 @@ class WishListFragment : BaseFragment<FragmentWishListBinding, WishListViewModel
 
     }
 
+    override fun networkFail() {
+
+    }
+
+    override fun successfulNetwork() {
+
+    }
+
 
 }

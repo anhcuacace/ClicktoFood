@@ -1,5 +1,6 @@
 package com.tunanh.clicktofood.ui.main
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -15,6 +16,7 @@ class MainViewModel @Inject constructor(
     appPreferences: AppPreferences,
     private val localRepository: LocalRepository
 ) : BaseViewModel() {
+    var isNetworkConnection=MutableLiveData<Boolean>()
     var isLoadCart: (() -> Unit)? = null
 
     var isLoadProfile: (() -> Unit)? = null

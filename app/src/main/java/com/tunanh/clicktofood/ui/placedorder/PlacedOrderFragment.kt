@@ -15,4 +15,12 @@ class PlacedOrderFragment : BaseFragment<FragmentPlacedOrderBinding,PlacedOrderV
             getNavController().navigate(R.id.action_placedOrderFragment_to_mainFragment)
         }
     }
+
+    override fun networkFail() {
+
+    }
+
+    override fun successfulNetwork() {
+
+    }
 }

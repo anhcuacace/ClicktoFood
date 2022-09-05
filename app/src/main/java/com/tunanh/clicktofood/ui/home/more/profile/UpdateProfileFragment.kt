@@ -154,4 +154,12 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"))
     }
 
+    override fun networkFail() {
+
+    }
+
+    override fun successfulNetwork() {
+
+    }
+
 }

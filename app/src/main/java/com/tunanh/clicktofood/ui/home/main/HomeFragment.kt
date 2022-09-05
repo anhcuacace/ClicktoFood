@@ -140,4 +140,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         )
     }
 
+    override fun networkFail() {
+
+    }
+
+    override fun successfulNetwork() {
+
+    }
+
 }

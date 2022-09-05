@@ -1,6 +1,7 @@
 package com.tunanh.clicktofood
 
 //import com.zing.zalo.zalosdk.oauth.ZaloSDKApplication
+import android.content.BroadcastReceiver
 import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
@@ -14,7 +15,6 @@ import dagger.android.support.DaggerApplication
 import timber.log.Timber
 
 class BaseApp : DaggerApplication() {
-
     lateinit var instance: BaseApp
     private var remoteConfig: FirebaseRemoteConfig? = null
     private var mFirebaseAnalytics: FirebaseAnalytics? = null

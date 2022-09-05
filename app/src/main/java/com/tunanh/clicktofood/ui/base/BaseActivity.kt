@@ -19,7 +19,7 @@ abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppC
     protected lateinit var binding: T
     lateinit var viewModel: M
 
-    protected var dialog: AlertDialog? = null
+    private var dialog: AlertDialog? = null
     protected var navHost: NavHostFragment? = null
 
     @Inject
@@ -61,5 +61,7 @@ abstract class BaseActivity<T : ViewDataBinding, M : BaseViewModel> : DaggerAppC
     fun hiddenLoading() {
         dialog?.dismiss()
     }
+
+
 
 }

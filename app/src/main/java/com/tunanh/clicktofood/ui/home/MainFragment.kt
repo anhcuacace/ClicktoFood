@@ -88,4 +88,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
         fragmentTransaction.commitAllowingStateLoss()
     }
 
+    override fun networkFail() {
+
+    }
+
+    override fun successfulNetwork() {
+
+    }
+
 }

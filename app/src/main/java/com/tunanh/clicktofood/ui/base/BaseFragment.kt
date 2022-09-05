@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.tunanh.clicktofood.listener.OnClickConfirmDialog
 import com.tunanh.clicktofood.ui.custemview.FoodDialog
+import com.tunanh.clicktofood.ui.main.MainActivity
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -27,6 +28,8 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
     protected abstract fun layoutRes(): Int
     protected abstract fun viewModelClass(): Class<M>
     protected abstract fun initView()
+    protected abstract fun networkFail()
+    protected abstract fun successfulNetwork()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +45,17 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass()]
         initView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).viewModel.isNetworkConnection.observe(this){
+            if (!it){
+                networkFail()
+            }else{
+                successfulNetwork()
+            }
+        }
     }
 
     fun Fragment.getNavController(): NavController =
