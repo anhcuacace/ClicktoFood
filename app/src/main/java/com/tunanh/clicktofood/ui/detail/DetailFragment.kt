@@ -61,13 +61,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
         }
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 
 }

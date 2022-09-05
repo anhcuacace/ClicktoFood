@@ -148,13 +148,6 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
         )
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 
 }

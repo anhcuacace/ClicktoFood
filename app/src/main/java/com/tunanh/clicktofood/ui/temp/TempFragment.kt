@@ -68,13 +68,6 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
         }
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 
 }

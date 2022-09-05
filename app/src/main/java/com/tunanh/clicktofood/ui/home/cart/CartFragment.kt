@@ -105,12 +105,5 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
         }
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-    }
-
 
 }

@@ -56,13 +56,6 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
         }
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 
 }

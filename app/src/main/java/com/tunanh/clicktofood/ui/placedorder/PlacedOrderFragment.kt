@@ -16,11 +16,5 @@ class PlacedOrderFragment : BaseFragment<FragmentPlacedOrderBinding,PlacedOrderV
         }
     }
 
-    override fun networkFail() {
 
-    }
-
-    override fun successfulNetwork() {
-
-    }
 }

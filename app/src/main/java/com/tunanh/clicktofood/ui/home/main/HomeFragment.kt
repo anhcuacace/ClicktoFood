@@ -5,6 +5,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.tunanh.clicktofood.R
@@ -23,6 +24,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun viewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
 
     override fun initView() {
+
+
+
+
         (activity as MainActivity).showLoading()
         sliders()
         categories()
@@ -140,12 +145,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         )
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 }

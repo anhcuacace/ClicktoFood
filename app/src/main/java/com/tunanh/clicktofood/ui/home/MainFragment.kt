@@ -1,13 +1,14 @@
 package com.tunanh.clicktofood.ui.home
-
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentMainBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
+import com.tunanh.clicktofood.ui.home.cart.CartFragment
 import com.tunanh.clicktofood.ui.home.category.CategoryFragment
 import com.tunanh.clicktofood.ui.home.main.HomeFragment
 import com.tunanh.clicktofood.ui.home.more.MoreFragment
-import com.tunanh.clicktofood.ui.home.cart.CartFragment
+import com.tunanh.clicktofood.ui.main.MainActivity
 
 
 class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() {
@@ -30,7 +31,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
         listFragment.add(POSITION_CATEGORY, CategoryFragment())
         listFragment.add(POSITION_CART, CartFragment())
         listFragment.add(POSITION_MORE, MoreFragment.newInstance())
-
         val fragmentTransaction = childFragmentManager.beginTransaction()
         listFragment.forEachIndexed { index, fragment ->
             if (!isFragmentAdded) {
@@ -88,12 +88,5 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() 
         fragmentTransaction.commitAllowingStateLoss()
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 }

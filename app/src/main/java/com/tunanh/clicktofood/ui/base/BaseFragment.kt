@@ -28,8 +28,7 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
     protected abstract fun layoutRes(): Int
     protected abstract fun viewModelClass(): Class<M>
     protected abstract fun initView()
-    protected abstract fun networkFail()
-    protected abstract fun successfulNetwork()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,11 +48,22 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).viewModel.isNetworkConnection.observe(this){
-            if (!it){
-                networkFail()
-            }else{
-                successfulNetwork()
+        (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
+            if (!it) {
+                showDialog(
+                    "cảnh báo",
+                    "không có mạng các chức năng có thể bị lỗi",
+                    "đợi chút bật mạng",
+                    "mai dùng tiếp",
+                    object : OnClickConfirmDialog {
+                        override fun onClickRightButton() {
+                        }
+
+                        override fun onClickLeftButton() {
+                            (activity as MainActivity).finish()
+                        }
+
+                    })
             }
         }
     }

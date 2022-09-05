@@ -20,23 +20,23 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
     override fun viewModelClass(): Class<SplashViewModel> = SplashViewModel::class.java
 
     override fun initView() {
-        (activity as MainActivity).viewModel.isNetworkConnection.observe(this){
-            if (it) {
-                transition()
-            } else {
-                viewModel.viewModelScope.launch(Dispatchers.Main) {
-                    delay(2000)
-                    binding.animationView.visibility = View.GONE
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.network_fail),
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                    (activity as MainActivity).showLoading()
-                }
+
+        if (hasNetworkConnection(requireContext())) {
+            transition()
+        } else {
+            viewModel.viewModelScope.launch(Dispatchers.Main) {
+                delay(2000)
+                binding.animationView.visibility = View.GONE
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.network_fail),
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                (activity as MainActivity).showLoading()
             }
         }
+
 
     }
 
@@ -47,7 +47,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
                     viewModel.user.observe(this) { it1 ->
                         if (it1) {
                             getNavController().navigate(R.id.action_splashFragment_to_mainFragment)
-
                         } else {
                             getNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                         }
@@ -60,12 +59,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
         }, 2000)
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
+    override fun onDestroy() {
+        super.onDestroy()
+        print("==== destroy")
     }
 
 

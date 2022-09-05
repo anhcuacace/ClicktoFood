@@ -92,11 +92,5 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         }
     }
 
-    override fun networkFail() {
 
-    }
-
-    override fun successfulNetwork() {
-
-    }
 }

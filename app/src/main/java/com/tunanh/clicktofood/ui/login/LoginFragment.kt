@@ -269,13 +269,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 //
     }
 
-    override fun networkFail() {
-
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 }
 

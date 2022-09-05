@@ -34,12 +34,6 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
 
     }
 
-    override fun networkFail() {
 
-    }
-
-    override fun successfulNetwork() {
-
-    }
 
 }
