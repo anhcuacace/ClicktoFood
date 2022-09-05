@@ -26,7 +26,7 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 if (binding.screenViewpager.currentItem == 2) {
-                    changbutton()
+                    changButton()
                 } else {
                     binding.btn.text = resources.getText(R.string.next)
                     binding.btn.textSize = 20F
@@ -42,7 +42,7 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
         })
     }
 
-    private fun changbutton() {
+    private fun changButton() {
         binding.btn.text = resources.getText(R.string.Getstarted)
         binding.btn.textSize = 14F
         binding.btn.setOnSingClickListener {

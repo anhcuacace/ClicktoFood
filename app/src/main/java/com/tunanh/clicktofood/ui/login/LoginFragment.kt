@@ -22,6 +22,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentLoginBinding
+import com.tunanh.clicktofood.listener.OnSingleClickListener
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
@@ -275,5 +276,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun successfulNetwork() {
 
     }
+
 }
 

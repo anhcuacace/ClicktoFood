@@ -14,16 +14,7 @@ import com.tunanh.clicktofood.util.hasNetworkConnection
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
-
-            if (hasNetworkConnection(context)) {
-                Toast.makeText(this@MainActivity, "Internet Connected", Toast.LENGTH_SHORT).show()
-                viewModel.isNetworkConnection.value=true
-            } else {
-                Toast.makeText(this@MainActivity, "Internet Disconnected", Toast.LENGTH_SHORT)
-                    .show()
-                viewModel.isNetworkConnection.value=false
-            }
-
+            viewModel.isNetworkConnection.value = hasNetworkConnection(context)
         }
 
     }
