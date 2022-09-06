@@ -46,27 +46,6 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
         initView()
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
-            if (!it) {
-                showDialog(
-                    "cảnh báo",
-                    "không có mạng các chức năng có thể bị lỗi",
-                    "đợi chút bật mạng",
-                    "mai dùng tiếp",
-                    object : OnClickConfirmDialog {
-                        override fun onClickRightButton() {
-                        }
-
-                        override fun onClickLeftButton() {
-                            (activity as MainActivity).finish()
-                        }
-
-                    })
-            }
-        }
-    }
 
     fun Fragment.getNavController(): NavController =
         NavHostFragment.findNavController(this)
