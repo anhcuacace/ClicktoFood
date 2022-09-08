@@ -24,20 +24,19 @@ class CategoryHomeAdapter :
     var categoryList: List<Category>? = null
     var onClickItem: ((Category) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v = ItemCategoryHomeBinding.inflate(LayoutInflater.from(parent.context),
-                parent, false)
+        val v = ItemCategoryHomeBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent, false
+        )
         return MyViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         categoryList?.let { holder.bind(it[position]) }
         holder.itemView.setOnSingClickListener {
-
             categoryList?.let { it1 -> onClickItem?.invoke(it1[position]) }
         }
     }
 
     override fun getItemCount(): Int = categoryList?.size ?: 0
-
-
 }

@@ -14,7 +14,7 @@ class PlacedOrderFragment : BaseFragment<FragmentPlacedOrderBinding,PlacedOrderV
     override fun initView() {
         (activity as MainActivity).viewModel.isLoadCart?.invoke()
         binding.goHome.setOnSingClickListener {
-            getNavController().popBackStack()
+            getNavController().navigate(R.id.action_placedOrderFragment_to_mainFragment)
         }
     }
 }
