@@ -25,8 +25,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun initView() {
 
 
-
-
         (activity as MainActivity).showLoading()
         sliders()
         categories()
@@ -55,7 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             if (it == null || it.isEmpty()) {
                 binding.rclv.visibility = View.GONE
             } else {
-                binding.rclv.visibility=View.VISIBLE
+                binding.rclv.visibility = View.VISIBLE
                 recommendAdapter.foodList = it
                 recyclerViewAdapter.foodList = it
 
@@ -125,14 +123,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             adapter.categoryList = it.Categories
             binding.categoryes.adapter = adapter
         }
-        adapter.onClickItem = { category, _ ->
-            getNavController().navigate(
-                R.id.action_mainFragment_to_tempFragment,
-                bundleOf(
-                    Pair("category", category.title)
-                )
-            )
-
+        adapter.onClickItem = { category ->
+            (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
+                if (!it) {
+                    showDialogErrorNetwork()
+                } else {
+                    getNavController().navigate(
+                        R.id.action_mainFragment_to_tempFragment,
+                        bundleOf(
+                            Pair("category", category.title)
+                        )
+                    )
+                }
+            }
         }
     }
 

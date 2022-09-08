@@ -1,7 +1,6 @@
 package com.tunanh.clicktofood.ui.home.cart
 
 import android.view.View
-import android.widget.Toast
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.FragmentCartBinding
@@ -26,26 +25,32 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
 
     private fun placeOrder() {
         binding.placedOrder.setOnSingClickListener {
-            showDialog("Thông báo",
-                "Tổng tiền bạn là ${binding.total.text}\n vui lòng chờ ít phút",
-                "Đồng ý",
-                "Xác Nhận",
-                object : OnClickConfirmDialog {
-                    override fun onClickRightButton() {
-                        viewModel.placeOrder(array)
-                    }
+            (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
+                if (!it) {
+                    showDialogErrorNetwork()
+                } else {
+                    showDialog("Thông báo",
+                        "Tổng tiền bạn là ${binding.total.text}\n vui lòng chờ ít phút",
+                        "Đồng ý",
+                        "Xác Nhận",
+                        object : OnClickConfirmDialog {
+                            override fun onClickRightButton() {
+                                viewModel.placeOrder(array)
+                            }
 
-                    override fun onClickLeftButton() {
-                    }
+                            override fun onClickLeftButton() {
+                            }
 
-                })
-
+                        })
+                }
+            }
 
         }
         viewModel.loadDone = {
             getNavController().navigate(
                 R.id.action_mainFragment_to_placedOrderFragment
             )
+
         }
     }
 

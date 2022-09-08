@@ -4,7 +4,6 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentCategoryBinding
-import com.tunanh.clicktofood.listener.OnClickConfirmDialog
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.home.MainFragmentViewModel
 import com.tunanh.clicktofood.ui.home.main.CategoryHomeAdapter
@@ -24,24 +23,11 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
         myViewModel.categoryList.observe(viewLifecycleOwner) { it1 ->
             categoryHomeAdapter.categoryList = it1.Categories
             binding.listCategory.adapter = categoryHomeAdapter
-            categoryHomeAdapter.onClickItem = { category, _ ->
+            categoryHomeAdapter.onClickItem = { category ->
                 (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
                     if (!it) {
-                        showDialog(
-                            "cảnh báo",
-                            "không có mạng các chức năng có thể bị lỗi",
-                            "đợi chút bật mạng",
-                            "mai dùng tiếp",
-                            object : OnClickConfirmDialog {
-                                override fun onClickRightButton() {
-                                }
-
-                                override fun onClickLeftButton() {
-                                    (activity as MainActivity).finish()
-                                }
-
-                            })
-                    }else{
+                        showDialogErrorNetwork()
+                    } else {
                         getNavController().navigate(
                             R.id.action_mainFragment_to_tempFragment,
                             bundleOf(
@@ -50,12 +36,10 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
                         )
                     }
                 }
-
             }
         }
 
     }
-
 
 
 }

@@ -124,8 +124,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/mainFragment"
-            app:popUpToInclusive="true"/>
+            />
     </fragment>
     <fragment
         android:id="@+id/updateProfileFragment2"
@@ -173,16 +172,6 @@
     <fragment
         android:id="@+id/placedOrderFragment"
         android:name="com.tunanh.clicktofood.ui.placedorder.PlacedOrderFragment"
-        android:label="PlacedOrderFragment" >
-        <action
-            android:id="@+id/action_placedOrderFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/placedOrderFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        android:label="PlacedOrderFragment" />
 
 </navigation>

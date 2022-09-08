@@ -46,11 +46,25 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
         initView()
     }
 
+    protected fun showDialogErrorNetwork(){
+        showDialog("Thông báo",
+            "Hiện tại không có kết nối \n chúng ta gặp lại nhau sau nhé",
+            "Đồng ý",
+            "Hủy",
+            object : OnClickConfirmDialog {
+                override fun onClickRightButton() {
+                    (activity as MainActivity).finish()
+                }
 
-    fun Fragment.getNavController(): NavController =
+                override fun onClickLeftButton() {
+                }
+
+            })
+    }
+    protected fun Fragment.getNavController(): NavController =
         NavHostFragment.findNavController(this)
 
-    fun showDialog(
+    protected fun showDialog(
         title: String,
         content: String,
         rightButton: String,
