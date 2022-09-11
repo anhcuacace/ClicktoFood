@@ -8,7 +8,6 @@ import com.tunanh.clicktofood.data.local.model.KeyWorkSearch
 import com.tunanh.clicktofood.databinding.FragmentSearchBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.custemview.BottomSheetDialogFragment
-import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 import com.tunanh.clicktofood.util.showKeyboard
 
@@ -78,7 +77,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         }
         adapter.onClickAdd = {
             val food = it.also { it.amount+=1  }
-            (activity as MainActivity).viewModel.addToCard(food)
+            mainViewModel.addToCard(food)
             Toast.makeText(
                 requireContext(),
                 requireContext().getString(R.string.addfood),
@@ -87,7 +86,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             viewModel.addHistory(binding.searchView.getTextSearch())
         }
         adapter.onClickLike = {
-            (activity as MainActivity).viewModel.updateLove(it)
+            mainViewModel.updateLove(it)
             Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
     }

@@ -4,7 +4,6 @@ import com.tunanh.clicktofood.data.remote.model.Categories
 import com.tunanh.clicktofood.data.remote.model.Meals
 import com.tunanh.clicktofood.data.remote.model.MealsForId
 import com.tunanh.clicktofood.data.remote.model.Slider
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url

@@ -9,7 +9,6 @@ import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentMoreBinding
 import com.tunanh.clicktofood.listener.OnClickConfirmDialog
 import com.tunanh.clicktofood.ui.base.BaseFragment
-import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.openPlaystore
 import com.tunanh.clicktofood.util.openWebsite
 import com.tunanh.clicktofood.util.setOnSingClickListener
@@ -83,7 +82,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>() {
             binding.email.text = user?.email
             binding.phone.text = user?.phone ?: "Phone"
         }
-        (activity as MainActivity).viewModel.isLoadProfile = {
+        mainViewModel.isLoadProfile = {
             viewModel.getUser()
         }
     }

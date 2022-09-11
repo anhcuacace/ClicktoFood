@@ -1,6 +1,5 @@
 package com.tunanh.clicktofood.ui.home
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.FragmentMainBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
@@ -8,7 +7,6 @@ import com.tunanh.clicktofood.ui.home.cart.CartFragment
 import com.tunanh.clicktofood.ui.home.category.CategoryFragment
 import com.tunanh.clicktofood.ui.home.main.HomeFragment
 import com.tunanh.clicktofood.ui.home.more.MoreFragment
-import com.tunanh.clicktofood.ui.main.MainActivity
 
 
 class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>() {

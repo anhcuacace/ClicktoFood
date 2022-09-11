@@ -6,7 +6,6 @@ import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.FragmentCartBinding
 import com.tunanh.clicktofood.listener.OnClickConfirmDialog
 import com.tunanh.clicktofood.ui.base.BaseFragment
-import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 
 class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
@@ -25,7 +24,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
 
     private fun placeOrder() {
         binding.placedOrder.setOnSingClickListener {
-            (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
+            mainViewModel.isNetworkConnection.observe(this) {
                 if (!it) {
                     showDialogErrorNetwork()
                 } else {
@@ -55,7 +54,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
     }
 
     private fun initRecycleView() {
-        (activity as MainActivity).viewModel.isLoadCart = {
+        mainViewModel.isLoadCart = {
             viewModel.addToCart()
         }
         viewModel.cart.observe(viewLifecycleOwner) {
@@ -76,7 +75,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
             adapter.notifyItemChanged(i)
             array = adapter.itemFood!!
             bill(array)
-            (activity as MainActivity).viewModel.addToCard(food)
+            mainViewModel.addToCard(food)
         }
         adapter.onClickMinus = { food, i ->
             if (food.amount == 0) {
@@ -91,7 +90,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>() {
             }
             array = adapter.itemFood!!
             bill(array)
-            (activity as MainActivity).viewModel.addToCard(food)
+            mainViewModel.addToCard(food)
         }
     }
 

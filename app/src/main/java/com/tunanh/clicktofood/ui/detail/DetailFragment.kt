@@ -6,7 +6,6 @@ import com.tunanh.clicktofood.data.local.model.Food
 import com.tunanh.clicktofood.databinding.FragmentDetailBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.custemview.BottomSheetDialogFragment
-import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.ui.search.SearchFoodAdapter
 import com.tunanh.clicktofood.util.shareLink
 
@@ -34,11 +33,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
         }
         adapter.onClickAdd={
             val food=Food(it.id,it.title,it.cost, star = it.star, img = it.img)
-            (activity as MainActivity).viewModel.addToCard(food.also { food.amount+=1 })
+            mainViewModel.addToCard(food.also { food.amount+=1 })
             Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
         }
         adapter.onClickLike={
-            (activity as MainActivity).viewModel.updateLove(it)
+            mainViewModel.updateLove(it)
             Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
     }

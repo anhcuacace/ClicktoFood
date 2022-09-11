@@ -54,7 +54,7 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
         }
         adapter.onClickLike={ food,_->
 
-            (activity as MainActivity).viewModel.updateLove(food)
+            mainViewModel.updateLove(food)
             Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
         adapter.onClickItem = { it ->
@@ -63,7 +63,7 @@ class TempFragment : BaseFragment<FragmentTempBinding, TempViewModel>() {
         }
         adapter.onClickAdd={
             val data=it.also { it.amount+=1 }
-            (activity as MainActivity).viewModel.addToCard(data)
+            mainViewModel.addToCard(data)
             Toast.makeText(requireContext(), requireContext().getString(R.string.addfood), Toast.LENGTH_SHORT).show()
         }
     }

@@ -1,7 +1,6 @@
 package com.tunanh.clicktofood
 
 //import com.zing.zalo.zalosdk.oauth.ZaloSDKApplication
-import android.content.BroadcastReceiver
 import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics

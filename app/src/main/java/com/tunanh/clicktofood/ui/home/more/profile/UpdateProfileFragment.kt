@@ -117,7 +117,7 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
             phone = binding.phone.text.toString().trim()
         )
         viewModel.updateUser(mUser!!)
-        (activity as MainActivity).viewModel.isLoadProfile?.invoke()
+        mainViewModel.isLoadProfile?.invoke()
 
     }
 

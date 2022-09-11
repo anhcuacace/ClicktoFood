@@ -37,7 +37,7 @@ class WishListFragment : BaseFragment<FragmentWishListBinding, WishListViewModel
 
         }
         adapter.onClickLike = { food, i ->
-            (activity as MainActivity).viewModel.updateLove(food)
+            mainViewModel.updateLove(food)
             Toast.makeText(requireContext(), "đã xóa ${food.title}", Toast.LENGTH_SHORT).show()
             adapter.foodList?.removeAt(i)
             adapter.notifyDataSetChanged()
@@ -50,7 +50,7 @@ class WishListFragment : BaseFragment<FragmentWishListBinding, WishListViewModel
             bottomSheetDialogFragment.show(childFragmentManager, "ActionButton")
         }
         adapter.onClickAdd = { food ->
-            (activity as MainActivity).viewModel.addToCard(food.also { food.amount += 1 })
+            mainViewModel.addToCard(food.also { food.amount += 1 })
             Toast.makeText(
                 requireContext(),
                 requireContext().getString(R.string.addfood),
@@ -59,8 +59,6 @@ class WishListFragment : BaseFragment<FragmentWishListBinding, WishListViewModel
         }
 
     }
-
-
 
 
 }

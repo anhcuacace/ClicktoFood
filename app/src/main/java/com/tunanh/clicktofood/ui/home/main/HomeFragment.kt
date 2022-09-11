@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
         }
         recommendAdapter.onClickLike = { food ->
-            (activity as MainActivity).viewModel.updateLove(food)
+            mainViewModel.updateLove(food)
             Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
         }
         recommendAdapter.onClickItem = {
@@ -124,7 +124,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.categoryes.adapter = adapter
         }
         adapter.onClickItem = { category ->
-            (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
+            mainViewModel.isNetworkConnection.observe(this) {
                 if (!it) {
                     showDialogErrorNetwork()
                 } else {

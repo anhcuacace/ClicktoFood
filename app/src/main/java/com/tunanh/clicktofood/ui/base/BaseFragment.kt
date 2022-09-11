@@ -14,13 +14,14 @@ import androidx.navigation.fragment.NavHostFragment
 import com.tunanh.clicktofood.listener.OnClickConfirmDialog
 import com.tunanh.clicktofood.ui.custemview.FoodDialog
 import com.tunanh.clicktofood.ui.main.MainActivity
+import com.tunanh.clicktofood.ui.main.MainViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFragment() {
     protected lateinit var binding: T
     protected lateinit var viewModel: M
-
+    protected lateinit var mainViewModel: MainViewModel
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -43,6 +44,7 @@ abstract class BaseFragment<T : ViewDataBinding, M : BaseViewModel> : DaggerFrag
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass()]
+        mainViewModel=ViewModelProvider(this,viewModelFactory)[MainViewModel::class.java]
         initView()
     }
 

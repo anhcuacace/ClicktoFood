@@ -7,7 +7,6 @@ import com.tunanh.clicktofood.databinding.FragmentCategoryBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
 import com.tunanh.clicktofood.ui.home.MainFragmentViewModel
 import com.tunanh.clicktofood.ui.home.main.CategoryHomeAdapter
-import com.tunanh.clicktofood.ui.main.MainActivity
 
 
 class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel>() {
@@ -24,7 +23,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
             categoryHomeAdapter.categoryList = it1.Categories
             binding.listCategory.adapter = categoryHomeAdapter
             categoryHomeAdapter.onClickItem = { category ->
-                (activity as MainActivity).viewModel.isNetworkConnection.observe(this) {
+                mainViewModel.isNetworkConnection.observe(this) {
                     if (!it) {
                         showDialogErrorNetwork()
                     } else {

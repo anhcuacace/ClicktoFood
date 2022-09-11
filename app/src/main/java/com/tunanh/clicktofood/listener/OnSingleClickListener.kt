@@ -8,7 +8,7 @@ abstract class OnSingleClickListener : View.OnClickListener {
         const val MIN_CLICK_INTERVAL = 500L
     }
 
-    var mLastClickTime = 0L
+    private var mLastClickTime = 0L
 
     abstract fun onSingleClick(view: View)
 
