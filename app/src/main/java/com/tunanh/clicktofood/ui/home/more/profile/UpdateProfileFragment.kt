@@ -16,7 +16,6 @@ import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.data.local.model.User
 import com.tunanh.clicktofood.databinding.FragmentUpdateProfileBinding
 import com.tunanh.clicktofood.ui.base.BaseFragment
-import com.tunanh.clicktofood.ui.main.MainActivity
 import com.tunanh.clicktofood.util.setOnSingClickListener
 import com.tunanh.clicktofood.util.showDialogSetting
 
@@ -153,7 +152,6 @@ class UpdateProfileFragment : BaseFragment<FragmentUpdateProfileBinding, UpdateP
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"))
     }
-
 
 
 }

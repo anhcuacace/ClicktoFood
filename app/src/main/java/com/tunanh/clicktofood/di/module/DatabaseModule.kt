@@ -38,7 +38,7 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideHistorySearchDao(db: LocalDatabase)=
+    fun provideHistorySearchDao(db: LocalDatabase) =
         db.historySearchDao()
 
     @Singleton

@@ -8,8 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.tunanh.clicktofood.R
 import com.tunanh.clicktofood.databinding.LayoutConfirmDialogBinding
 import com.tunanh.clicktofood.listener.OnClickConfirmDialog
-
-open class FoodDialog private constructor(builder: Builder) {
+class FoodDialog private constructor(builder: Builder) {
     private var title: String? = null
     private var content: String? = null
     private var rightButton: String? = null

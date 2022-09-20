@@ -124,17 +124,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.categoryes.adapter = adapter
         }
         adapter.onClickItem = { category ->
-            mainViewModel.isNetworkConnection.observe(this) {
-                if (!it) {
-                    showDialogErrorNetwork()
-                } else {
-                    getNavController().navigate(
-                        R.id.action_mainFragment_to_tempFragment,
-                        bundleOf(
-                            Pair("category", category.title)
-                        )
+            if (mainViewModel.isNetworkConnection.value == false) {
+                showDialogErrorNetwork()
+            } else {
+                getNavController().navigate(
+                    R.id.action_mainFragment_to_tempFragment,
+                    bundleOf(
+                        Pair("category", category.title)
                     )
-                }
+                )
             }
         }
     }

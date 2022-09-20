@@ -23,17 +23,15 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
             categoryHomeAdapter.categoryList = it1.Categories
             binding.listCategory.adapter = categoryHomeAdapter
             categoryHomeAdapter.onClickItem = { category ->
-                mainViewModel.isNetworkConnection.observe(this) {
-                    if (!it) {
-                        showDialogErrorNetwork()
-                    } else {
-                        getNavController().navigate(
-                            R.id.action_mainFragment_to_tempFragment,
-                            bundleOf(
-                                Pair("category", category.title)
-                            )
+                if (mainViewModel.isNetworkConnection.value == false) {
+                    showDialogErrorNetwork()
+                } else {
+                    getNavController().navigate(
+                        R.id.action_mainFragment_to_tempFragment,
+                        bundleOf(
+                            Pair("category", category.title)
                         )
-                    }
+                    )
                 }
             }
         }

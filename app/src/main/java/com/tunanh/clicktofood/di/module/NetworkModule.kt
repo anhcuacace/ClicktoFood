@@ -33,7 +33,6 @@ class NetworkModule {
         retrofit.create(Service::class.java)
 
 
-
     @Provides
     @Singleton
     fun provideHttpClient(): OkHttpClient {
